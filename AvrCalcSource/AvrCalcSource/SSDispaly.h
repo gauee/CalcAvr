@@ -7,6 +7,8 @@
 #ifndef SSDISPLAY_H_
 #define SSDISPLAY_H_
 
+#include <avr/io.h>
+
 #define MAX_COL 4
 
 uint8_t COLS[MAX_COL] = {
@@ -30,6 +32,8 @@ uint8_t Digits[10] = {
 	0b10000000,		//8
 	0b10010000
 };
+
+int cur_idx=0;
 
 void setNumberToDisplay(int val);
 

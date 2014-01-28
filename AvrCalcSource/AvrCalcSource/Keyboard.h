@@ -7,6 +7,8 @@
 #ifndef KEYBOARD_H_
 #define KEYBOARD_H_
 
+#include <avr/io.h>
+
 void readValueFromKeyboard(void);
 
 uint8_t KeyboardValues[4][4] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};

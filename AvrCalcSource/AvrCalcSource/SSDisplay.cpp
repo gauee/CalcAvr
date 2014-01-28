@@ -4,7 +4,7 @@
  * Created: 2014-01-28 14:12:38
  *  Author: gauee
  */ 
-#include <SSDispaly.h>
+#include "SSDispaly.h"
 
 void initSSDisplay(){
 	initPortA();

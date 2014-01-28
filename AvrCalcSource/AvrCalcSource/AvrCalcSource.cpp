@@ -5,11 +5,11 @@
  *  Author: gauee
  */ 
 
-
-#include <avr/io.h>
+#include "AvrCalcSource.h"
 
 int main(void)
 {
+	
     while(1)
     {
         //TODO:: Please write your application code 

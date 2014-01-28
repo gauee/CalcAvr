@@ -1,0 +1,247 @@
+
+AvrCalcSource.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000134  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00000134  000001c8  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000048  00800060  00800060  000001c8  2**0
+                  ALLOC
+  3 .stab         00001e18  00000000  00000000  000001c8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      0000075f  00000000  00000000  00001fe0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      0000002f  00000000  00000000  0000273f  2**0
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000178  00000000  00000000  0000276e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00000cde  00000000  00000000  000028e6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 000004ac  00000000  00000000  000035c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   000005e2  00000000  00000000  00003a70  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  000002f8  00000000  00000000  00004054  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00000553  00000000  00000000  0000434c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    0000058c  00000000  00000000  0000489f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000158  00000000  00000000  00004e2b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+
+double numbersMul(double first,double second){
+	return first*second;
+}
+
+double numbersDiv(double first,double second){
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+	if(second != 0){
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 74 00 	jmp	0xe8	; 0xe8 <__vector_10>
+		return first/second;
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+	}
+	return -0.12345;
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+}
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+		WriteNibble(0x03);
+		_delay_ms(10);
+	}
+	WriteNibble(0x02);
+	_delay_ms(5);
+	WriteByte(0x28);
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e4 e3       	ldi	r30, 0x34	; 52
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+	_delay_ms(5);
+	WriteByte(0x08);
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+	_delay_ms(5);
+	WriteByte(0x01);
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a8 3a       	cpi	r26, 0xA8	; 168
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 98 00 	jmp	0x130	; 0x130 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <main>:
+	_delay_ms(5);
+	WriteByte(0x06);
+  92:	ff cf       	rjmp	.-2      	; 0x92 <main>
+
+00000094 <_Z8schedulev>:
+  94:	cf 93       	push	r28
+  96:	df 93       	push	r29
+  98:	40 91 60 00 	lds	r20, 0x0060
+  9c:	50 91 61 00 	lds	r21, 0x0061
+  a0:	14 16       	cp	r1, r20
+	_delay_ms(5);
+	WriteByte(0x0F);
+  a2:	15 06       	cpc	r1, r21
+  a4:	f4 f4       	brge	.+60     	; 0xe2 <_Z8schedulev+0x4e>
+  a6:	e4 e6       	ldi	r30, 0x64	; 100
+  a8:	f0 e0       	ldi	r31, 0x00	; 0
+  aa:	a8 e6       	ldi	r26, 0x68	; 104
+  ac:	b0 e0       	ldi	r27, 0x00	; 0
+  ae:	80 e0       	ldi	r24, 0x00	; 0
+  b0:	90 e0       	ldi	r25, 0x00	; 0
+  b2:	20 81       	ld	r18, Z
+  b4:	31 81       	ldd	r19, Z+1	; 0x01
+	++new_task_idx;
+}
+
+void schedule(){
+	for(int i=0;i<new_task_idx;++i){
+		if(scheduled_task[i].to_go){
+  b6:	21 15       	cp	r18, r1
+  b8:	31 05       	cpc	r19, r1
+  ba:	69 f0       	breq	.+26     	; 0xd6 <_Z8schedulev+0x42>
+			scheduled_task[i].to_go--;
+  bc:	21 50       	subi	r18, 0x01	; 1
+  be:	31 09       	sbc	r19, r1
+  c0:	31 83       	std	Z+1, r19	; 0x01
+  c2:	20 83       	st	Z, r18
+			if(!scheduled_task[i].to_go){
+  c4:	23 2b       	or	r18, r19
+  c6:	39 f4       	brne	.+14     	; 0xd6 <_Z8schedulev+0x42>
+				scheduled_task[i].ready++;
+  c8:	2c 91       	ld	r18, X
+  ca:	2f 5f       	subi	r18, 0xFF	; 255
+  cc:	2c 93       	st	X, r18
+				scheduled_task[i].to_go = scheduled_task[i].inteval;
+  ce:	22 81       	ldd	r18, Z+2	; 0x02
+  d0:	33 81       	ldd	r19, Z+3	; 0x03
+  d2:	31 83       	std	Z+1, r19	; 0x01
+  d4:	20 83       	st	Z, r18
+	
+	++new_task_idx;
+}
+
+void schedule(){
+	for(int i=0;i<new_task_idx;++i){
+  d6:	01 96       	adiw	r24, 0x01	; 1
+  d8:	37 96       	adiw	r30, 0x07	; 7
+  da:	17 96       	adiw	r26, 0x07	; 7
+  dc:	84 17       	cp	r24, r20
+  de:	95 07       	cpc	r25, r21
+  e0:	44 f3       	brlt	.-48     	; 0xb2 <_Z8schedulev+0x1e>
+				scheduled_task[i].to_go = scheduled_task[i].inteval;
+			}
+		}
+	}
+	
+}
+  e2:	df 91       	pop	r29
+  e4:	cf 91       	pop	r28
+  e6:	08 95       	ret
+
+000000e8 <__vector_10>:
+		}
+		i++;
+	}
+}
+
+ISR(TIMER0_COMP_vect){
+  e8:	1f 92       	push	r1
+  ea:	0f 92       	push	r0
+  ec:	0f b6       	in	r0, 0x3f	; 63
+  ee:	0f 92       	push	r0
+  f0:	11 24       	eor	r1, r1
+  f2:	2f 93       	push	r18
+  f4:	3f 93       	push	r19
+  f6:	4f 93       	push	r20
+  f8:	5f 93       	push	r21
+  fa:	6f 93       	push	r22
+  fc:	7f 93       	push	r23
+  fe:	8f 93       	push	r24
+ 100:	9f 93       	push	r25
+ 102:	af 93       	push	r26
+ 104:	bf 93       	push	r27
+ 106:	ef 93       	push	r30
+ 108:	ff 93       	push	r31
+	schedule();
+ 10a:	0e 94 4a 00 	call	0x94	; 0x94 <_Z8schedulev>
+}
+ 10e:	ff 91       	pop	r31
+ 110:	ef 91       	pop	r30
+ 112:	bf 91       	pop	r27
+ 114:	af 91       	pop	r26
+ 116:	9f 91       	pop	r25
+ 118:	8f 91       	pop	r24
+ 11a:	7f 91       	pop	r23
+ 11c:	6f 91       	pop	r22
+ 11e:	5f 91       	pop	r21
+ 120:	4f 91       	pop	r20
+ 122:	3f 91       	pop	r19
+ 124:	2f 91       	pop	r18
+ 126:	0f 90       	pop	r0
+ 128:	0f be       	out	0x3f, r0	; 63
+ 12a:	0f 90       	pop	r0
+ 12c:	1f 90       	pop	r1
+ 12e:	18 95       	reti
+
+00000130 <_exit>:
+ 130:	f8 94       	cli
+
+00000132 <__stop_program>:
+ 132:	ff cf       	rjmp	.-2      	; 0x132 <__stop_program>
