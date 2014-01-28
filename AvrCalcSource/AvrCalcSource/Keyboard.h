@@ -4,18 +4,26 @@
  * Created: 2014-01-28 14:34:46
  *  Author: gauee
  */ 
-#ifndef KEYBOARD_H_
-#define KEYBOARD_H_
+#ifndef __KEYBOARD__H__
+#define __KEYBOARD__H__
 
 #include <avr/io.h>
+#include "KeyItems.h"
 
-void readValueFromKeyboard(void);
+#define MAX_OPERATORS 4
 
-uint8_t KeyboardValues[4][4] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+class KeyboardController{
 
-uint8_t zero[16]={0,0,0,0,0,0,0,1,0,0,0,2,0,3,4,0};
+public:
+ KeyboardController();
+ ~KeyboardController();
 
-int readKey;
+ KeyItem readValueFromKeyboard(void);
 
+ int getNextOperator();
+ void initOperatorId();
 
-#endif /* KEYBOARD_H_ */
+ void setKeyValue(int val);
+};
+
+#endif /* __KEYBOARD__H__ */

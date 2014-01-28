@@ -1,13 +1,30 @@
 /*
- * Keyboard.cpp
- *
- * Created: 2014-01-28 14:34:58
- *  Author: gauee
- */ 
+* Keyboard.cpp
+*
+* Created: 2014-01-28 14:34:58
+*  Author: gauee
+*/
 
 #include "Keyboard.h"
 
-void readValueFromKeyboard(){
+uint8_t KeyboardValues[4][4] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+uint8_t zero[16]={0,0,0,0,0,0,0,1,0,0,0,2,0,3,4,0};
+char oprtrs[MAX_OPERATORS] = {'+','-','*','/'};
+int operatorId = 0;
+int readKey;
+
+
+KeyboardController::KeyboardController(){}
+
+KeyboardController::~KeyboardController(){}
+
+void KeyboardController::setKeyValue(int val){
+	readKey = val;
+}
+
+KeyItem KeyboardController::readValueFromKeyboard(){
+
+	/*
 	PORTC = 0;
 	DDRC = 0xF0;
 	PORTC = 0x0F;
@@ -21,9 +38,43 @@ void readValueFromKeyboard(){
 	int row = zero[PINC>>4];
 	
 	if(row == 0 || col == 0){
-		readKey =0;
+	readKey =0;
 	}else{
-		readKey = KeyboardValues[row-1][col-1];
+	readKey = KeyboardValues[row-1][col-1];
+	}
+	*/
+	if(readKey != 4){
+		initOperatorId();
 	}
 	
+	if(readKey == 4){					//operator +,-,*,/
+		return KeyOperator(oprtrs[getNextOperator()]);
+		}else if(readKey % 4 ==0){			//memory operations
+		return KeyMemo(readKey/4);
+		}else if(readKey == 13){			//Cleaning calculations
+		return KeyClean();
+		}else if(readKey == 15){			//Finish calculate
+		return KeyResult();
+		}else{								//Numbers left
+		
+		int val = '0';
+		if(readKey < 4){
+			val+=readKey;
+		}else if(readKey < 8){
+			val +=(readKey-1);
+		}else if(readKey < 12){
+			val +=(readKey-2);
+		}
+		
+		return KeyNumber(val);
+	}
 }
+
+int KeyboardController::getNextOperator(){
+	return (++operatorId)%MAX_OPERATORS;
+}
+
+void KeyboardController::initOperatorId(){
+	operatorId = MAX_OPERATORS-1;
+}
+

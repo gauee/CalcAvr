@@ -19,7 +19,8 @@ void cleanLastResultInMemo();
 double getLastResultFromMemo();
 
 //Obsługa Klawiatury
-int readPressedKey();
+int readPressedKey(KeyboardController keyboardCntlr);
+void appendKeyItem(KeyItem item);
 
 //Obsługa Portu szeregowego
 int readCharFromSerialPort();
