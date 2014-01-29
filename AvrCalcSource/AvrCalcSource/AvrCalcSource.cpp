@@ -51,6 +51,7 @@ void appendKeyItem(KeyItem item){
 	}
 	
 	if(item.getId() == ID_RESULT){
+		// to jest efekt kiedy zczytamy "="
 		
 	}
 }
