@@ -7,6 +7,7 @@
 
 #include "calcOperation.h"
 
+//obs³uga operacji dodawania
 double numbersAdd(double first,double second){
 	return first+second;
 }
