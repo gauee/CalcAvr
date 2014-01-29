@@ -7,11 +7,13 @@
 
 #include "Keyboard.h"
 #include "AvrCalcSource.h"
+#include "calcOperation.h"
 
-char calc[128];
+const int size_table = 128;
+char calc[size_table];
 int curCalcIdx =-1;
 bool lastIsOperator = false;
-
+CalcResult rslt;
 int main(void)
 {
 	KeyboardController keyboardCntlr = KeyboardController();
@@ -45,13 +47,50 @@ void appendKeyItem(KeyItem item){
 	}
 	
 	if(item.getId() == ID_NUMBER){
-		calc[++curCalcIdx] = (char)item.getVal();
+		calc[++curCalcIdx] = '0' + item.getVal();
 		lastIsOperator = false;
 		return;
 	}
 	
+	if(item.getId() == ID_CLEAN){
+		
+		rslt.cleanCalcOperation();
+		for (int i = 0; i < curCalcIdx + 1; i++ )
+		{
+			calc[i] = 0;
+		}
+		
+	}
+	
+	if (item.getId() == ID_MEMO)
+	{
+		if (item.getVal() == MEMO_WRITE){
+			rslt.addToMemo();
+		}
+		if (item.getVal() == MEMO_READ)
+		{
+			rslt.readMemo();
+		}
+		if (item.getVal() == MEMO_ERASE)
+		{
+			rslt.eraseMemo();
+		}
+	}
+	
+	
 	if(item.getId() == ID_RESULT){
 		// to jest efekt kiedy zczytamy "="
+		for(int i = 0; i < size_table;i++){
+			calc[i] = 0;
+		}
 		
+		CalcResult *rslt = new CalcResult();
+		rslt->getResult(calc);
+		calc[0] = '=';
+		for(int i = 0; i < rslt->size; i++){
+			
+			calc[i + 1] = rslt->tableResult[i];
+			
+		}
 	}
 }

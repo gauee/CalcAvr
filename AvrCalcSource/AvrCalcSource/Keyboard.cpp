@@ -43,6 +43,9 @@ KeyItem KeyboardController::readValueFromKeyboard(){
 	readKey = KeyboardValues[row-1][col-1];
 	}
 	*/
+	
+	//liczby przechowywane w int
+	
 	if(readKey != 4){
 		initOperatorId();
 	}
@@ -57,7 +60,7 @@ KeyItem KeyboardController::readValueFromKeyboard(){
 		return KeyResult();
 		}else{								//Numbers left
 		
-		int val = '0';
+		int val = 0;
 		if(readKey < 4){
 			val+=readKey;
 		}else if(readKey < 8){
