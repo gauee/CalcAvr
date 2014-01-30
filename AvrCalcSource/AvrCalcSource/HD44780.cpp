@@ -74,6 +74,6 @@ void LCD_Initalize(void)
 	
 };
 
-void initPortC(void){
+void initPortA(void){
 	DDRC = 0xFF;
 }

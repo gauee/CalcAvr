@@ -41,7 +41,7 @@ void showNextDigit(void);
 
 void initSSDisplay();
 
-void initPortA();
+void initPortD();
 void initPortB();
 
 #endif /* SSDISPLAY_H_ */

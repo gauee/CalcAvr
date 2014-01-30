@@ -7,14 +7,14 @@
 #include "SSDispaly.h"
 
 void initSSDisplay(){
-	initPortA();
 	initPortB();
+	initPortD();
 }
 
-void initPortA(){
+void initPortB(){
 	DDRA = 0xFF;
 }
-void initPortB(){
+void initPortD(){
 	DDRB = 0xFF;
 }
 

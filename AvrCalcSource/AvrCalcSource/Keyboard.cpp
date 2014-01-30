@@ -7,6 +7,17 @@
 
 #include "Keyboard.h"
 
+/*
+PC7 - w1
+PC6 - w2
+PC5 - w3
+PC4 - w4
+PC3 - k1
+PC2 - k2
+PC1 - k3
+PC0 - k4
+*/
+
 uint8_t KeyboardValues[4][4] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
 uint8_t zero[16]={0,0,0,0,0,0,0,1,0,0,0,2,0,3,4,0};
 char oprtrs[MAX_OPERATORS] = {'+','-','*','/'};
@@ -24,7 +35,6 @@ void KeyboardController::setKeyValue(int val){
 
 KeyItem KeyboardController::readValueFromKeyboard(){
 
-	/*
 	PORTC = 0;
 	DDRC = 0xF0;
 	PORTC = 0x0F;
@@ -38,11 +48,11 @@ KeyItem KeyboardController::readValueFromKeyboard(){
 	int row = zero[PINC>>4];
 	
 	if(row == 0 || col == 0){
-	readKey =0;
+		readKey =0;
 	}else{
-	readKey = KeyboardValues[row-1][col-1];
+		readKey = KeyboardValues[row-1][col-1];
 	}
-	*/
+	
 	
 	//liczby przechowywane w int
 	

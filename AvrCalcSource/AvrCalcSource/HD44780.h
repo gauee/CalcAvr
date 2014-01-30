@@ -55,7 +55,7 @@ void LCD_GoToXY(unsigned char, unsigned char);
 void LCD_Clear(void);
 void LCD_Home(void);
 void LCD_Initalize(void);
-void initPortC(void);
+void initPortA(void);
 
 
 #endif

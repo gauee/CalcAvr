@@ -7,17 +7,12 @@
 #ifndef __CALC__OPERATIONS__H__
 #define __CALC__OPERATIONS__H__
 
-double numbersAdd(double first,double second);
-double numbersSub(double first,double second);
-double numbersMul(double first,double second);
-double numbersDiv(double first,double second);
 
 class CalcResult{
 	public:
 	int size;
 	char tableResult [8];
 	char tableMemo[8];
-	void getResult(char *);
 	void cleanCalcOperation();
 	void addToMemo();
 	void readMemo();
@@ -29,6 +24,13 @@ class CalcResult{
 	char operator2;
 	
 };
+
+double numbersAdd(double first,double second);
+double numbersSub(double first,double second);
+double numbersMul(double first,double second);
+double numbersDiv(double first,double second);
+CalcResult getResult();
+
 
 #endif /*__CALC__OPERATIONS__H__*/
 

@@ -8,27 +8,33 @@
 #include "Keyboard.h"
 #include "AvrCalcSource.h"
 #include "calcOperation.h"
+#include "HD44780.h"
 
 const int size_table = 128;
 char calc[size_table];
 int curCalcIdx =-1;
 bool lastIsOperator = false;
-CalcResult rslt;
 int main(void)
 {
-	KeyboardController keyboardCntlr = KeyboardController();
+	initPortA();
+	LCD_Initalize();
+	_delay_ms(100);
+	LCD_Text("Damian123");
 	
-	const int COMMANDS_NUM=10;
-	int commands [COMMANDS_NUM] = {1, 2, 3, 4, 1, 2, 4, 4, 1, 15 };
-	for(int i=0;i<COMMANDS_NUM;++i){
-		keyboardCntlr.setKeyValue(commands[i]);
-		readPressedKey(keyboardCntlr);
-	}
-	
-	while(1)
-	{
-		//TODO:: Please write your application code
-	}
+	//KeyboardController keyboardCntlr = KeyboardController();
+	//
+	////const int COMMANDS_NUM=10;
+	////int commands [COMMANDS_NUM] = {1, 2, 3, 4, 1, 2, 4, 4, 1, 15 };
+	////for(int i=0;i<COMMANDS_NUM;++i){
+		////keyboardCntlr.setKeyValue(commands[i]);
+		////readPressedKey(keyboardCntlr);
+	////}
+	//
+	//while(1)
+	//{
+		//keyboardCntlr.readValueFromKeyboard();
+		////TODO:: Please write your application code
+	//}
 }
 
 int readPressedKey(KeyboardController keyboardCntlr){
@@ -54,7 +60,7 @@ void appendKeyItem(KeyItem item){
 	
 	if(item.getId() == ID_CLEAN){
 		
-		rslt.cleanCalcOperation();
+		getResult().cleanCalcOperation();
 		for (int i = 0; i < curCalcIdx + 1; i++ )
 		{
 			calc[i] = 0;
@@ -65,15 +71,15 @@ void appendKeyItem(KeyItem item){
 	if (item.getId() == ID_MEMO)
 	{
 		if (item.getVal() == MEMO_WRITE){
-			rslt.addToMemo();
+			getResult().addToMemo();
 		}
 		if (item.getVal() == MEMO_READ)
 		{
-			rslt.readMemo();
+			getResult().readMemo();
 		}
 		if (item.getVal() == MEMO_ERASE)
 		{
-			rslt.eraseMemo();
+			getResult().eraseMemo();
 		}
 	}
 	
@@ -84,12 +90,11 @@ void appendKeyItem(KeyItem item){
 			calc[i] = 0;
 		}
 		
-		CalcResult *rslt = new CalcResult();
-		rslt->getResult(calc);
+		CalcResult rslt = getResult();
 		calc[0] = '=';
-		for(int i = 0; i < rslt->size; i++){
+		for(int i = 0; i < rslt.size; i++){
 			
-			calc[i + 1] = rslt->tableResult[i];
+			calc[i + 1] = rslt.tableResult[i];
 			
 		}
 	}
