@@ -17,7 +17,7 @@ class CalcResult{
 	int size;
 	char tableResult [8];
 	char tableMemo[8];
-	void getResult();
+	void getResult(char *);
 	void cleanCalcOperation();
 	void addToMemo();
 	void readMemo();

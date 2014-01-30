@@ -7,6 +7,7 @@
 
 #include "calcOperation.h"
 #include "AvrCalcSource.h"
+CalcResult rslt;
 
 //potrzebujemy 3 pola zwiazane ze zmienymi i 2 ostatnie operatory w liscie
 
@@ -31,15 +32,15 @@ double numbersDiv(double first,double second){
 }
 
 void cleanCalcOperation(){
-	first_variable = 0;
-	second_variable = 0;
-	third_variable = 0;
-	operator1 = 0;
-	operator2 = 0;
+	rslt.first_variable = 0;
+	rslt.second_variable = 0;
+	rslt.third_variable = 0;
+	rslt.operator1 = 0;
+	rslt.operator2 = 0;
 	
 	for (int i = 0; i< 8; i++)
 	{
-		tableResult[i] = 0;
+		rslt.tableResult[i] = 0;
 	}
 	
 	
@@ -49,7 +50,7 @@ void addToMemo(){
 	
 	for(int i = 0 ; i < 8 ; i++){
 		
-		tableMemo[i] = tableResult[i];
+		rslt.tableMemo[i] = rslt.tableResult[i];
 		
 	}
 	
@@ -59,7 +60,7 @@ void readMemo(){
 	
 	for(int i = 0 ; i < 8 ; i++){
 		
-		tableResult[i] = tableMemo[i];
+		rslt.tableResult[i] = rslt.tableMemo[i];
 		
 	}
 	
@@ -69,15 +70,15 @@ void eraseMemo(){
 	
 	for(int i = 0 ; i < 8 ; i++){
 		
-		tableMemo[i] = 0;
+		rslt.tableMemo[i] = 0;
 		
 	}
 	
 }
 
-CalcResult::void getResult(char tab[]){
+void getResult(char tab[]){
 	
-	for (int i = 0; i < tab.size; i++ )
+	for (int i = 0; i < 8; i++ )
 	{
 		
 		

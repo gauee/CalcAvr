@@ -8,6 +8,7 @@
 #define __AVR__CALC__SOURCE__H__
 
 #include <avr/io.h>
+#include "Keyboard.h"
 
 //Obsługa LCD
 void cleanCalculation();
