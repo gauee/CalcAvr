@@ -46,10 +46,14 @@ void LCD_GoToXY(unsigned char x, unsigned char y)
 
 void LCD_Clear(void)
 {
+	LCD_Command(0x01);
+	_delay_us(100);
 };
 
 void LCD_Home(void)
 {
+	LCD_Command(0x02);
+	_delay_us(100);
 };
 
 void LCD_Initalize(void)
@@ -75,5 +79,5 @@ void LCD_Initalize(void)
 };
 
 void initPortA(void){
-	DDRC = 0xFF;
+	DDRA = 0xFF;
 }

@@ -52,7 +52,7 @@ void appendKeyItem(KeyItem item){
 		return;
 	}
 	
-	if(item.getId() == ID_NUMBER){
+	if(item.id == ID_NUMBER){
 		calc[++curCalcIdx] = '0' + item.getVal();
 		lastIsOperator = false;
 		return;
