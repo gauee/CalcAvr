@@ -13,6 +13,7 @@ MemoController::~MemoController(){};
 	
 void MemoController::addToMemo(CalcResult* cr){
 	//TODO: implement.
+	this->cr = *cr;
 }
 	
 CalcResult* MemoController::readFromMemo(){
@@ -22,4 +23,5 @@ CalcResult* MemoController::readFromMemo(){
 
 void MemoController::eraseFromMemo(){
 	//TODO: implement.
+	this->cr.cleanResult();
 }
