@@ -18,3 +18,26 @@ void CalcResult::cleanResult(){
 	}
 	size = 0;
 };
+
+void CalcResult::setResult(double toSetRslt){
+	int firstPart = toSetRslt;
+	int tenPow = 1;
+	int curSize=0;
+	while(firstPart>tenPow){
+		tenPow*=10;
+	}
+	int tmp = firstPart;
+	while(tenPow>1 && curSize<CALC_RESULT_SIZE){
+		tmp %= tenPow;
+		tenPow/=10;
+		this->tableResult[curSize++]=('0'+(tmp/tenPow));
+	}
+	if((toSetRslt-firstPart)>0 && curSize < CALC_RESULT_SIZE){
+		this->tableResult[curSize++]='.';
+		double secondPart = (toSetRslt-firstPart)*10;
+		while(curSize<CALC_RESULT_SIZE && secondPart>0){
+			this->tableResult[curSize++]=('0'+((int)secondPart));
+		}
+	}
+	this->size=curSize;
+}

@@ -27,12 +27,13 @@ int main(void)
 
 	initAvrCalc();
 	//
-	////const int COMMANDS_NUM=10;
-	////int commands [COMMANDS_NUM] = {1, 2, 3, 4, 1, 2, 4, 4, 1, 15 };
-	//for(int i=0;i<COMMANDS_NUM;++i){
-	////keyboardCntlr.setKeyValue(commands[i]);
-	////readPressedKey(keyboardCntlr);
-	////}
+	const int COMMANDS_NUM=14;
+	//21*3+40*5=  //=263
+	int commands [COMMANDS_NUM] = {/*21*/2,1,/*'*'*/4,4,4,/*3*/3,/*'+'*/4,/*40*/5,14,/*'*'*/4,4,4,/*5*/6,/*'='*/15};
+	for(int i=0;i<COMMANDS_NUM;++i){
+		keyboardCntlr.setKeyValue(commands[i]);
+		readPressedKey();
+	}
 	//
 	while(1)
 	{

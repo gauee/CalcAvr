@@ -11,8 +11,8 @@
 
 CalcOperation::CalcOperation(){
 	cr = CalcResult();
-	curOptIdx=0;
-	curVarIdx=0;
+	cleanOperators();
+	cleanVariables();
 	isLastVar = true;
 };
 
@@ -47,6 +47,11 @@ void CalcOperation::cleanCalcOperation(){
 }
 
 CalcResult* CalcOperation::getResult(){
+	curOptIdx++;
+	while(curOptIdx>0){
+		calculate();
+	}
+	cr.setResult(variables[0]);
 	return &cr;
 }
 
@@ -80,7 +85,7 @@ void CalcOperation::cleanOperators(){
 	for(int i=0;i<OPT_SIZE;++i){
 		operators[i]=0;
 	}
-	curOptIdx=0;
+	curOptIdx=-1;
 }
 
 void CalcOperation::cleanVariables(){
@@ -91,26 +96,29 @@ void CalcOperation::cleanVariables(){
 }
 
 void CalcOperation::calculate(){
+	if(curOptIdx==0){
+		return;
+	}
 	int rslts[2];
 	for(int i=0;i<curOptIdx;++i){
 		rslts[i] = calculateResultFor(variables[i],variables[i+1],operators[i]);
 	}
 	if(curOptIdx==1){
 		variables[0]=rslts[0];
-		}else{
+		}else if(curOptIdx==2){
 		if(isFirstOptGeater()){
 			variables[0]=rslts[0];
 			variables[1] = variables[2];
+			operators[0] = operators[1];
 			}else{
 			variables[1]=rslts[1];
 		}
 	}
 
-
 	curOptIdx--;
-	curVarIdx--;
 	operators[curOptIdx]=0;
 	variables[curVarIdx]=0;
+	curVarIdx--;
 }
 
 double CalcOperation::calculateResultFor(double var1,double var2,char opt){

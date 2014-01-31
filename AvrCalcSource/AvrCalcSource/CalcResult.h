@@ -7,9 +7,9 @@
 #ifndef __CALC__RESULT__H__
 #define __CALC__RESULT__H__
 
-#define CALC_RESULT_SIZE 8
-
 class CalcResult{
+	private:
+	static const int CALC_RESULT_SIZE=8;
 	
 	public:
 	CalcResult();
@@ -17,6 +17,7 @@ class CalcResult{
 	int size;
 	char tableResult [CALC_RESULT_SIZE];
 	void cleanResult();
+	void setResult(double toSetRslt);
 	
 };
 
