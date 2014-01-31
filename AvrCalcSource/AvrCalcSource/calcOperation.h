@@ -23,17 +23,25 @@ class CalcOperation{
 	private:
 	//Variables
 	CalcResult cr;
-	double first_variable;
-	double second_variable;
-	double third_variable;
-	char operator1;
-	char operator2;
+	static const int VAR_SIZE = 3;
+	static const int OPT_SIZE = 2;
+	double variables[VAR_SIZE];
+	char operators[OPT_SIZE];
+	int curVarIdx;
+	int curOptIdx;
+	bool isLastVar;
+	
 	//Methods
 	double numbersAdd(double first,double second);
 	double numbersSub(double first,double second);
 	double numbersMul(double first,double second);
 	double numbersDiv(double first,double second);
-	
+	void cleanVariables();
+	void cleanOperators();
+	void calculate();
+	double calculateResultFor(double var1,double var2,char opt);
+	bool isFirstOptGeater();
+	int getOperatorPrior(char opt);
 	};
 
 
