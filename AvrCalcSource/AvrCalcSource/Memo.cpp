@@ -19,12 +19,10 @@ void MemoController::addToMemo(CalcResult* cr){
 }
 	
 CalcResult* MemoController::readFromMemo(){
-	//TODO: implement.
 	return &cr;
 }
 
 void MemoController::eraseFromMemo(){
-	//TODO: implement.
 	this->cr.cleanResult();
 	rslt = 0;
 }

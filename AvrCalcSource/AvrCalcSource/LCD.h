@@ -19,8 +19,8 @@ class LCDController
 	void cleanDisplay(void);
 	void loadCalcResult(CalcResult* cr);
 	void writeCalcResult(CalcResult* cr);
-	void addOperator(KeyItem item);
-	void addNumber(KeyItem item);
+	void addOperator(char opt);
+	void addNumber(int num);
 
 	protected:
 	private:
@@ -28,7 +28,7 @@ class LCDController
 	static const int MAX_CALC_OPER_SIZE = 128;
 	char calcOperStr[MAX_CALC_OPER_SIZE];
 	int curIdx;
-
+	bool lastWasOperator;
 	//Methods	
 	void displayCalcOperation();
 };

@@ -57,4 +57,13 @@ void CalcOperation::loadCalcResult(CalcResult* cr){
 	//TODO: implement.
 }
 
+
+void CalcOperation::addNumber(int num){
+	
+}
+
+void CalcOperation::addOperator(char opt){
+	
+}
+
 //dopisac do konca

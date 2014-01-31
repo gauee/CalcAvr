@@ -10,6 +10,7 @@
 
 LCDController::LCDController(){
 	curIdx =0;
+	lastWasOperator = false;
 	};
 
 LCDController::~LCDController(){};
@@ -39,10 +40,17 @@ void LCDController::displayCalcOperation(){
 	LCD_Text(calcOperStr);
 }
 
-void LCDController::addNumber(KeyItem item){
-	
+void LCDController::addNumber(int num){
+	if(lastWasOperator){
+		++curIdx;
+	}
+	calcOperStr[curIdx++]=('0'+num);
+	lastWasOperator = false;
+	displayCalcOperation();
 }
 
-void LCDController::addOperator(KeyItem item){
-	
+void LCDController::addOperator(char opt){
+	calcOperStr[curIdx]=opt;
+	lastWasOperator=true;
+	displayCalcOperation();
 }

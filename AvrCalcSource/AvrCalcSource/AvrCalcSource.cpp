@@ -96,11 +96,11 @@ void appendKeyItem(KeyItem item){
 }
 
 void appendOperator(KeyItem optr){
-	lcdCntrlr.addOperator(optr);
-	calcOperationCntlr.addOperator(optr);
+	lcdCntrlr.addOperator(optr.getVal());
+	calcOperationCntlr.addOperator(optr.getVal());
 }
 
 void appendNumber(KeyItem number){
-	lcdCntrlr.addNumber(number);
-	calcOperationCntlr.addNumber(number);
+	lcdCntrlr.addNumber(number.getVal());
+	calcOperationCntlr.addNumber(number.getVal());
 }
