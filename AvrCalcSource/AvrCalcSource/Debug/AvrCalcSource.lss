@@ -1,0 +1,2296 @@
+
+AvrCalcSource.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000ece  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000028  00800060  00000ece  00000f62  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000114  00800088  00800088  00000f8a  2**0
+                  ALLOC
+  3 .stab         000020c4  00000000  00000000  00000f8c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000848  00000000  00000000  00003050  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      0000002f  00000000  00000000  00003898  2**0
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000320  00000000  00000000  000038c7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00002b84  00000000  00000000  00003be7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 00000e15  00000000  00000000  0000676b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   00000ea8  00000000  00000000  00007580  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000a9c  00000000  00000000  00008428  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00000e93  00000000  00000000  00008ec4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    000015eb  00000000  00000000  00009d57  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000290  00000000  00000000  0000b342  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+	LCD_Command(0x02);
+	_delay_us(100);
+};
+
+void LCD_Initalize(void)
+{
+   0:	0c 94 2c 00 	jmp	0x58	; 0x58 <__dtors_end>
+   4:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+   8:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+   c:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  10:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  14:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  18:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  1c:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  20:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  24:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  28:	0c 94 28 07 	jmp	0xe50	; 0xe50 <__vector_10>
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	__tmp = ((F_CPU) / 4e3) * __ms;
+  2c:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  30:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  34:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  38:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  3c:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  40:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  44:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  48:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+	if (__tmp < 1.0)
+  4c:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+  50:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__bad_interrupt>
+
+00000054 <__ctors_start>:
+  54:	71 02       	muls	r23, r17
+
+00000056 <__ctors_end>:
+  56:	7e 02       	muls	r23, r30
+
+00000058 <__dtors_end>:
+  58:	11 24       	eor	r1, r1
+  5a:	1f be       	out	0x3f, r1	; 63
+  5c:	cf e5       	ldi	r28, 0x5F	; 95
+  5e:	d8 e0       	ldi	r29, 0x08	; 8
+  60:	de bf       	out	0x3e, r29	; 62
+		__ticks = 1;
+  62:	cd bf       	out	0x3d, r28	; 61
+
+00000064 <__do_copy_data>:
+  64:	10 e0       	ldi	r17, 0x00	; 0
+  66:	a0 e6       	ldi	r26, 0x60	; 96
+  68:	b0 e0       	ldi	r27, 0x00	; 0
+  6a:	ee ec       	ldi	r30, 0xCE	; 206
+	else if (__tmp > 65535)
+  6c:	fe e0       	ldi	r31, 0x0E	; 14
+  6e:	02 c0       	rjmp	.+4      	; 0x74 <__do_copy_data+0x10>
+  70:	05 90       	lpm	r0, Z+
+  72:	0d 92       	st	X+, r0
+  74:	a8 38       	cpi	r26, 0x88	; 136
+  76:	b1 07       	cpc	r27, r17
+  78:	d9 f7       	brne	.-10     	; 0x70 <__do_copy_data+0xc>
+
+0000007a <__do_clear_bss>:
+  7a:	21 e0       	ldi	r18, 0x01	; 1
+  7c:	a8 e8       	ldi	r26, 0x88	; 136
+  7e:	b0 e0       	ldi	r27, 0x00	; 0
+  80:	01 c0       	rjmp	.+2      	; 0x84 <.do_clear_bss_start>
+
+00000082 <.do_clear_bss_loop>:
+  82:	1d 92       	st	X+, r1
+
+00000084 <.do_clear_bss_start>:
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+  84:	ac 39       	cpi	r26, 0x9C	; 156
+  86:	b2 07       	cpc	r27, r18
+  88:	e1 f7       	brne	.-8      	; 0x82 <.do_clear_bss_loop>
+
+0000008a <__do_global_ctors>:
+  8a:	10 e0       	ldi	r17, 0x00	; 0
+  8c:	c6 e5       	ldi	r28, 0x56	; 86
+  8e:	d0 e0       	ldi	r29, 0x00	; 0
+  90:	04 c0       	rjmp	.+8      	; 0x9a <__do_global_ctors+0x10>
+  92:	22 97       	sbiw	r28, 0x02	; 2
+  94:	fe 01       	movw	r30, r28
+  96:	0e 94 56 07 	call	0xeac	; 0xeac <__tablejump__>
+  9a:	c4 35       	cpi	r28, 0x54	; 84
+  9c:	d1 07       	cpc	r29, r17
+  9e:	c9 f7       	brne	.-14     	; 0x92 <__do_global_ctors+0x8>
+  a0:	0e 94 ca 00 	call	0x194	; 0x194 <main>
+  a4:	0c 94 5a 07 	jmp	0xeb4	; 0xeb4 <__do_global_dtors>
+
+000000a8 <__bad_interrupt>:
+  a8:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000ac <_ZN7KeyItem6getValEv>:
+  ac:	cf 93       	push	r28
+  ae:	df 93       	push	r29
+  b0:	00 d0       	rcall	.+0      	; 0xb2 <_ZN7KeyItem6getValEv+0x6>
+  b2:	cd b7       	in	r28, 0x3d	; 61
+  b4:	de b7       	in	r29, 0x3e	; 62
+	__asm__ volatile (
+		"1: sbiw %0,1" "\n\t"
+		"brne 1b"
+		: "=w" (__count)
+		: "0" (__count)
+	);
+  b6:	9a 83       	std	Y+2, r25	; 0x02
+  b8:	89 83       	std	Y+1, r24	; 0x01
+  ba:	89 81       	ldd	r24, Y+1	; 0x01
+  bc:	9a 81       	ldd	r25, Y+2	; 0x02
+  be:	fc 01       	movw	r30, r24
+  c0:	80 81       	ld	r24, Z
+  c2:	0f 90       	pop	r0
+  c4:	0f 90       	pop	r0
+  c6:	df 91       	pop	r29
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+  c8:	cf 91       	pop	r28
+  ca:	08 95       	ret
+
+000000cc <_ZN7KeyItem5getIdEv>:
+  cc:	cf 93       	push	r28
+  ce:	df 93       	push	r29
+  d0:	00 d0       	rcall	.+0      	; 0xd2 <_ZN7KeyItem5getIdEv+0x6>
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+  d2:	cd b7       	in	r28, 0x3d	; 61
+  d4:	de b7       	in	r29, 0x3e	; 62
+  d6:	9a 83       	std	Y+2, r25	; 0x02
+  d8:	89 83       	std	Y+1, r24	; 0x01
+  da:	89 81       	ldd	r24, Y+1	; 0x01
+  dc:	9a 81       	ldd	r25, Y+2	; 0x02
+  de:	fc 01       	movw	r30, r24
+  e0:	81 81       	ldd	r24, Z+1	; 0x01
+  e2:	0f 90       	pop	r0
+			__ticks --;
+		}
+		return;
+	}
+	else
+		__ticks = (uint16_t)__tmp;
+  e4:	0f 90       	pop	r0
+  e6:	df 91       	pop	r29
+  e8:	cf 91       	pop	r28
+  ea:	08 95       	ret
+
+000000ec <_ZN14MemoController11isMemoWriteEP7KeyItem>:
+  ec:	cf 93       	push	r28
+  ee:	df 93       	push	r29
+  f0:	00 d0       	rcall	.+0      	; 0xf2 <_ZN14MemoController11isMemoWriteEP7KeyItem+0x6>
+  f2:	cd b7       	in	r28, 0x3d	; 61
+  f4:	de b7       	in	r29, 0x3e	; 62
+  f6:	9a 83       	std	Y+2, r25	; 0x02
+  f8:	89 83       	std	Y+1, r24	; 0x01
+  fa:	89 81       	ldd	r24, Y+1	; 0x01
+  fc:	9a 81       	ldd	r25, Y+2	; 0x02
+  fe:	0e 94 56 00 	call	0xac	; 0xac <_ZN7KeyItem6getValEv>
+ 102:	28 2f       	mov	r18, r24
+ 104:	30 e0       	ldi	r19, 0x00	; 0
+ 106:	80 91 60 00 	lds	r24, 0x0060
+ 10a:	90 91 61 00 	lds	r25, 0x0061
+ 10e:	41 e0       	ldi	r20, 0x01	; 1
+ 110:	28 17       	cp	r18, r24
+	_delay_ms(20);
+	for(int i=0;i<3;++i){
+ 112:	39 07       	cpc	r19, r25
+ 114:	09 f0       	breq	.+2      	; 0x118 <_ZN14MemoController11isMemoWriteEP7KeyItem+0x2c>
+ 116:	40 e0       	ldi	r20, 0x00	; 0
+		WriteNibble(0x03);
+ 118:	84 2f       	mov	r24, r20
+ 11a:	0f 90       	pop	r0
+ 11c:	0f 90       	pop	r0
+ 11e:	df 91       	pop	r29
+ 120:	cf 91       	pop	r28
+ 122:	08 95       	ret
+
+00000124 <_ZN14MemoController10isMemoReadEP7KeyItem>:
+ 124:	cf 93       	push	r28
+ 126:	df 93       	push	r29
+ 128:	00 d0       	rcall	.+0      	; 0x12a <_ZN14MemoController10isMemoReadEP7KeyItem+0x6>
+ 12a:	cd b7       	in	r28, 0x3d	; 61
+ 12c:	de b7       	in	r29, 0x3e	; 62
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	__tmp = ((F_CPU) / 4e3) * __ms;
+ 12e:	9a 83       	std	Y+2, r25	; 0x02
+ 130:	89 83       	std	Y+1, r24	; 0x01
+ 132:	89 81       	ldd	r24, Y+1	; 0x01
+ 134:	9a 81       	ldd	r25, Y+2	; 0x02
+ 136:	0e 94 56 00 	call	0xac	; 0xac <_ZN7KeyItem6getValEv>
+ 13a:	28 2f       	mov	r18, r24
+ 13c:	30 e0       	ldi	r19, 0x00	; 0
+ 13e:	80 91 62 00 	lds	r24, 0x0062
+ 142:	90 91 63 00 	lds	r25, 0x0063
+ 146:	41 e0       	ldi	r20, 0x01	; 1
+ 148:	28 17       	cp	r18, r24
+ 14a:	39 07       	cpc	r19, r25
+ 14c:	09 f0       	breq	.+2      	; 0x150 <_ZN14MemoController10isMemoReadEP7KeyItem+0x2c>
+	if (__tmp < 1.0)
+ 14e:	40 e0       	ldi	r20, 0x00	; 0
+ 150:	84 2f       	mov	r24, r20
+ 152:	0f 90       	pop	r0
+ 154:	0f 90       	pop	r0
+ 156:	df 91       	pop	r29
+ 158:	cf 91       	pop	r28
+ 15a:	08 95       	ret
+
+0000015c <_ZN14MemoController11isMemoEraseEP7KeyItem>:
+ 15c:	cf 93       	push	r28
+ 15e:	df 93       	push	r29
+ 160:	00 d0       	rcall	.+0      	; 0x162 <_ZN14MemoController11isMemoEraseEP7KeyItem+0x6>
+ 162:	cd b7       	in	r28, 0x3d	; 61
+ 164:	de b7       	in	r29, 0x3e	; 62
+		__ticks = 1;
+ 166:	9a 83       	std	Y+2, r25	; 0x02
+ 168:	89 83       	std	Y+1, r24	; 0x01
+ 16a:	89 81       	ldd	r24, Y+1	; 0x01
+ 16c:	9a 81       	ldd	r25, Y+2	; 0x02
+ 16e:	0e 94 56 00 	call	0xac	; 0xac <_ZN7KeyItem6getValEv>
+	else if (__tmp > 65535)
+ 172:	28 2f       	mov	r18, r24
+ 174:	30 e0       	ldi	r19, 0x00	; 0
+ 176:	80 91 64 00 	lds	r24, 0x0064
+ 17a:	90 91 65 00 	lds	r25, 0x0065
+ 17e:	41 e0       	ldi	r20, 0x01	; 1
+ 180:	28 17       	cp	r18, r24
+ 182:	39 07       	cpc	r19, r25
+ 184:	09 f0       	breq	.+2      	; 0x188 <_ZN14MemoController11isMemoEraseEP7KeyItem+0x2c>
+ 186:	40 e0       	ldi	r20, 0x00	; 0
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+ 188:	84 2f       	mov	r24, r20
+ 18a:	0f 90       	pop	r0
+ 18c:	0f 90       	pop	r0
+ 18e:	df 91       	pop	r29
+ 190:	cf 91       	pop	r28
+ 192:	08 95       	ret
+
+00000194 <main>:
+ 194:	cf 93       	push	r28
+ 196:	df 93       	push	r29
+ 198:	cd b7       	in	r28, 0x3d	; 61
+ 19a:	de b7       	in	r29, 0x3e	; 62
+ 19c:	0e 94 d3 00 	call	0x1a6	; 0x1a6 <_Z11initAvrCalcv>
+ 1a0:	0e 94 23 01 	call	0x246	; 0x246 <_Z14readPressedKeyv>
+ 1a4:	fd cf       	rjmp	.-6      	; 0x1a0 <main+0xc>
+
+000001a6 <_Z11initAvrCalcv>:
+ 1a6:	cf 93       	push	r28
+ 1a8:	df 93       	push	r29
+ 1aa:	cd b7       	in	r28, 0x3d	; 61
+ 1ac:	de b7       	in	r29, 0x3e	; 62
+ 1ae:	cb 54       	subi	r28, 0x4B	; 75
+ 1b0:	d1 09       	sbc	r29, r1
+ 1b2:	0f b6       	in	r0, 0x3f	; 63
+ 1b4:	f8 94       	cli
+ 1b6:	de bf       	out	0x3e, r29	; 62
+ 1b8:	0f be       	out	0x3f, r0	; 63
+ 1ba:	cd bf       	out	0x3d, r28	; 61
+ 1bc:	ce 01       	movw	r24, r28
+ 1be:	84 96       	adiw	r24, 0x24	; 36
+ 1c0:	0e 94 03 04 	call	0x806	; 0x806 <_ZN18KeyboardControllerC1Ev>
+ 1c4:	88 e2       	ldi	r24, 0x28	; 40
+ 1c6:	fe 01       	movw	r30, r28
+ 1c8:	b4 96       	adiw	r30, 0x24	; 36
+ 1ca:	a9 e0       	ldi	r26, 0x09	; 9
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 1cc:	b1 e0       	ldi	r27, 0x01	; 1
+ 1ce:	01 90       	ld	r0, Z+
+ 1d0:	0d 92       	st	X+, r0
+ 1d2:	8a 95       	dec	r24
+ 1d4:	e1 f7       	brne	.-8      	; 0x1ce <_Z11initAvrCalcv+0x28>
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 1d6:	ce 01       	movw	r24, r28
+ 1d8:	84 96       	adiw	r24, 0x24	; 36
+ 1da:	0e 94 3d 04 	call	0x87a	; 0x87a <_ZN18KeyboardControllerD1Ev>
+ 1de:	ce 01       	movw	r24, r28
+ 1e0:	4a 96       	adiw	r24, 0x1a	; 26
+ 1e2:	0e 94 25 06 	call	0xc4a	; 0xc4a <_ZN14MemoControllerC1Ev>
+ 1e6:	8a e0       	ldi	r24, 0x0A	; 10
+			__ticks --;
+		}
+		return;
+	}
+	else
+		__ticks = (uint16_t)__tmp;
+ 1e8:	fe 01       	movw	r30, r28
+ 1ea:	7a 96       	adiw	r30, 0x1a	; 26
+ 1ec:	a1 e3       	ldi	r26, 0x31	; 49
+ 1ee:	b1 e0       	ldi	r27, 0x01	; 1
+ 1f0:	01 90       	ld	r0, Z+
+ 1f2:	0d 92       	st	X+, r0
+ 1f4:	8a 95       	dec	r24
+ 1f6:	e1 f7       	brne	.-8      	; 0x1f0 <_Z11initAvrCalcv+0x4a>
+ 1f8:	ce 01       	movw	r24, r28
+ 1fa:	4a 96       	adiw	r24, 0x1a	; 26
+ 1fc:	0e 94 35 06 	call	0xc6a	; 0xc6a <_ZN14MemoControllerD1Ev>
+ 200:	ce 01       	movw	r24, r28
+ 202:	02 96       	adiw	r24, 0x02	; 2
+ 204:	0e 94 8b 02 	call	0x516	; 0x516 <_ZN13CalcOperationC1Ev>
+ 208:	88 e1       	ldi	r24, 0x18	; 24
+ 20a:	fe 01       	movw	r30, r28
+ 20c:	32 96       	adiw	r30, 0x02	; 2
+ 20e:	ab e3       	ldi	r26, 0x3B	; 59
+ 210:	b1 e0       	ldi	r27, 0x01	; 1
+ 212:	01 90       	ld	r0, Z+
+ 214:	0d 92       	st	X+, r0
+};
+
+void LCD_Initalize(void)
+{
+	_delay_ms(20);
+	for(int i=0;i<3;++i){
+ 216:	8a 95       	dec	r24
+ 218:	e1 f7       	brne	.-8      	; 0x212 <_Z11initAvrCalcv+0x6c>
+ 21a:	ce 01       	movw	r24, r28
+ 21c:	02 96       	adiw	r24, 0x02	; 2
+ 21e:	0e 94 b8 02 	call	0x570	; 0x570 <_ZN13CalcOperationD1Ev>
+ 222:	ce 01       	movw	r24, r28
+ 224:	01 96       	adiw	r24, 0x01	; 1
+ 226:	0e 94 df 05 	call	0xbbe	; 0xbbe <_ZN13LCDControllerC1Ev>
+ 22a:	ce 01       	movw	r24, r28
+ 22c:	01 96       	adiw	r24, 0x01	; 1
+ 22e:	0e 94 eb 05 	call	0xbd6	; 0xbd6 <_ZN13LCDControllerD1Ev>
+ 232:	c5 5b       	subi	r28, 0xB5	; 181
+		WriteNibble(0x03);
+		_delay_ms(10);
+	}
+	WriteNibble(0x02);
+ 234:	df 4f       	sbci	r29, 0xFF	; 255
+ 236:	0f b6       	in	r0, 0x3f	; 63
+ 238:	f8 94       	cli
+ 23a:	de bf       	out	0x3e, r29	; 62
+ 23c:	0f be       	out	0x3f, r0	; 63
+ 23e:	cd bf       	out	0x3d, r28	; 61
+ 240:	df 91       	pop	r29
+ 242:	cf 91       	pop	r28
+ 244:	08 95       	ret
+
+00000246 <_Z14readPressedKeyv>:
+ 246:	cf 93       	push	r28
+ 248:	df 93       	push	r29
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	__tmp = ((F_CPU) / 4e3) * __ms;
+ 24a:	00 d0       	rcall	.+0      	; 0x24c <_Z14readPressedKeyv+0x6>
+ 24c:	cd b7       	in	r28, 0x3d	; 61
+ 24e:	de b7       	in	r29, 0x3e	; 62
+ 250:	89 e0       	ldi	r24, 0x09	; 9
+ 252:	91 e0       	ldi	r25, 0x01	; 1
+ 254:	0e 94 49 04 	call	0x892	; 0x892 <_ZN18KeyboardController21readValueFromKeyboardEv>
+ 258:	9a 83       	std	Y+2, r25	; 0x02
+ 25a:	89 83       	std	Y+1, r24	; 0x01
+ 25c:	89 81       	ldd	r24, Y+1	; 0x01
+ 25e:	9a 81       	ldd	r25, Y+2	; 0x02
+ 260:	0e 94 37 01 	call	0x26e	; 0x26e <_Z13appendKeyItem7KeyItem>
+ 264:	0f 90       	pop	r0
+ 266:	0f 90       	pop	r0
+ 268:	df 91       	pop	r29
+	if (__tmp < 1.0)
+ 26a:	cf 91       	pop	r28
+ 26c:	08 95       	ret
+
+0000026e <_Z13appendKeyItem7KeyItem>:
+ 26e:	cf 93       	push	r28
+ 270:	df 93       	push	r29
+ 272:	00 d0       	rcall	.+0      	; 0x274 <_Z13appendKeyItem7KeyItem+0x6>
+ 274:	00 d0       	rcall	.+0      	; 0x276 <_Z13appendKeyItem7KeyItem+0x8>
+ 276:	cd b7       	in	r28, 0x3d	; 61
+ 278:	de b7       	in	r29, 0x3e	; 62
+ 27a:	9c 83       	std	Y+4, r25	; 0x04
+ 27c:	8b 83       	std	Y+3, r24	; 0x03
+ 27e:	ce 01       	movw	r24, r28
+ 280:	03 96       	adiw	r24, 0x03	; 3
+		__ticks = 1;
+ 282:	0e 94 66 00 	call	0xcc	; 0xcc <_ZN7KeyItem5getIdEv>
+ 286:	98 2f       	mov	r25, r24
+ 288:	81 e0       	ldi	r24, 0x01	; 1
+ 28a:	99 23       	and	r25, r25
+	else if (__tmp > 65535)
+ 28c:	09 f0       	breq	.+2      	; 0x290 <_Z13appendKeyItem7KeyItem+0x22>
+ 28e:	80 e0       	ldi	r24, 0x00	; 0
+ 290:	88 23       	and	r24, r24
+ 292:	09 f0       	breq	.+2      	; 0x296 <_Z13appendKeyItem7KeyItem+0x28>
+ 294:	7e c0       	rjmp	.+252    	; 0x392 <_Z13appendKeyItem7KeyItem+0x124>
+ 296:	ce 01       	movw	r24, r28
+ 298:	03 96       	adiw	r24, 0x03	; 3
+ 29a:	0e 94 66 00 	call	0xcc	; 0xcc <_ZN7KeyItem5getIdEv>
+ 29e:	98 2f       	mov	r25, r24
+ 2a0:	81 e0       	ldi	r24, 0x01	; 1
+ 2a2:	91 30       	cpi	r25, 0x01	; 1
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+ 2a4:	09 f0       	breq	.+2      	; 0x2a8 <_Z13appendKeyItem7KeyItem+0x3a>
+ 2a6:	80 e0       	ldi	r24, 0x00	; 0
+ 2a8:	88 23       	and	r24, r24
+ 2aa:	29 f0       	breq	.+10     	; 0x2b6 <_Z13appendKeyItem7KeyItem+0x48>
+ 2ac:	8b 81       	ldd	r24, Y+3	; 0x03
+ 2ae:	9c 81       	ldd	r25, Y+4	; 0x04
+ 2b0:	0e 94 d1 01 	call	0x3a2	; 0x3a2 <_Z14appendOperator7KeyItem>
+ 2b4:	6f c0       	rjmp	.+222    	; 0x394 <_Z13appendKeyItem7KeyItem+0x126>
+ 2b6:	8c 81       	ldd	r24, Y+4	; 0x04
+ 2b8:	85 30       	cpi	r24, 0x05	; 5
+ 2ba:	29 f4       	brne	.+10     	; 0x2c6 <_Z13appendKeyItem7KeyItem+0x58>
+ 2bc:	8b 81       	ldd	r24, Y+3	; 0x03
+ 2be:	9c 81       	ldd	r25, Y+4	; 0x04
+ 2c0:	0e 94 01 02 	call	0x402	; 0x402 <_Z12appendNumber7KeyItem>
+ 2c4:	67 c0       	rjmp	.+206    	; 0x394 <_Z13appendKeyItem7KeyItem+0x126>
+ 2c6:	ce 01       	movw	r24, r28
+ 2c8:	03 96       	adiw	r24, 0x03	; 3
+ 2ca:	0e 94 66 00 	call	0xcc	; 0xcc <_ZN7KeyItem5getIdEv>
+ 2ce:	98 2f       	mov	r25, r24
+ 2d0:	81 e0       	ldi	r24, 0x01	; 1
+ 2d2:	93 30       	cpi	r25, 0x03	; 3
+ 2d4:	09 f0       	breq	.+2      	; 0x2d8 <_Z13appendKeyItem7KeyItem+0x6a>
+ 2d6:	80 e0       	ldi	r24, 0x00	; 0
+ 2d8:	88 23       	and	r24, r24
+ 2da:	41 f0       	breq	.+16     	; 0x2ec <_Z13appendKeyItem7KeyItem+0x7e>
+ 2dc:	8b e3       	ldi	r24, 0x3B	; 59
+ 2de:	91 e0       	ldi	r25, 0x01	; 1
+ 2e0:	0e 94 c8 02 	call	0x590	; 0x590 <_ZN13CalcOperation18cleanCalcOperationEv>
+ 2e4:	83 e5       	ldi	r24, 0x53	; 83
+ 2e6:	91 e0       	ldi	r25, 0x01	; 1
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 2e8:	0e 94 f7 05 	call	0xbee	; 0xbee <_ZN13LCDController12cleanDisplayEv>
+ 2ec:	ce 01       	movw	r24, r28
+ 2ee:	03 96       	adiw	r24, 0x03	; 3
+ 2f0:	0e 94 66 00 	call	0xcc	; 0xcc <_ZN7KeyItem5getIdEv>
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 2f4:	98 2f       	mov	r25, r24
+ 2f6:	81 e0       	ldi	r24, 0x01	; 1
+ 2f8:	92 30       	cpi	r25, 0x02	; 2
+ 2fa:	09 f0       	breq	.+2      	; 0x2fe <_Z13appendKeyItem7KeyItem+0x90>
+ 2fc:	80 e0       	ldi	r24, 0x00	; 0
+ 2fe:	88 23       	and	r24, r24
+ 300:	99 f1       	breq	.+102    	; 0x368 <_Z13appendKeyItem7KeyItem+0xfa>
+ 302:	ce 01       	movw	r24, r28
+			__ticks --;
+		}
+		return;
+	}
+	else
+		__ticks = (uint16_t)__tmp;
+ 304:	03 96       	adiw	r24, 0x03	; 3
+ 306:	0e 94 76 00 	call	0xec	; 0xec <_ZN14MemoController11isMemoWriteEP7KeyItem>
+ 30a:	88 23       	and	r24, r24
+ 30c:	49 f0       	breq	.+18     	; 0x320 <_Z13appendKeyItem7KeyItem+0xb2>
+ 30e:	8b e3       	ldi	r24, 0x3B	; 59
+ 310:	91 e0       	ldi	r25, 0x01	; 1
+ 312:	0e 94 f5 02 	call	0x5ea	; 0x5ea <_ZN13CalcOperation9getResultEv>
+ 316:	bc 01       	movw	r22, r24
+ 318:	81 e3       	ldi	r24, 0x31	; 49
+ 31a:	91 e0       	ldi	r25, 0x01	; 1
+ 31c:	0e 94 45 06 	call	0xc8a	; 0xc8a <_ZN14MemoController9addToMemoEP10CalcResult>
+ 320:	ce 01       	movw	r24, r28
+ 322:	03 96       	adiw	r24, 0x03	; 3
+ 324:	0e 94 92 00 	call	0x124	; 0x124 <_ZN14MemoController10isMemoReadEP7KeyItem>
+ 328:	88 23       	and	r24, r24
+ 32a:	a1 f0       	breq	.+40     	; 0x354 <_Z13appendKeyItem7KeyItem+0xe6>
+ 32c:	81 e3       	ldi	r24, 0x31	; 49
+ 32e:	91 e0       	ldi	r25, 0x01	; 1
+ 330:	0e 94 61 06 	call	0xcc2	; 0xcc2 <_ZN14MemoController12readFromMemoEv>
+	_delay_ms(5);
+	WriteByte(0x28);
+ 334:	9a 83       	std	Y+2, r25	; 0x02
+ 336:	89 83       	std	Y+1, r24	; 0x01
+ 338:	89 81       	ldd	r24, Y+1	; 0x01
+ 33a:	9a 81       	ldd	r25, Y+2	; 0x02
+ 33c:	bc 01       	movw	r22, r24
+ 33e:	8b e3       	ldi	r24, 0x3B	; 59
+ 340:	91 e0       	ldi	r25, 0x01	; 1
+ 342:	0e 94 03 03 	call	0x606	; 0x606 <_ZN13CalcOperation14loadCalcResultEP10CalcResult>
+ 346:	89 81       	ldd	r24, Y+1	; 0x01
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	__tmp = ((F_CPU) / 4e3) * __ms;
+ 348:	9a 81       	ldd	r25, Y+2	; 0x02
+ 34a:	bc 01       	movw	r22, r24
+ 34c:	83 e5       	ldi	r24, 0x53	; 83
+ 34e:	91 e0       	ldi	r25, 0x01	; 1
+ 350:	0e 94 03 06 	call	0xc06	; 0xc06 <_ZN13LCDController14loadCalcResultEP10CalcResult>
+ 354:	ce 01       	movw	r24, r28
+ 356:	03 96       	adiw	r24, 0x03	; 3
+ 358:	0e 94 ae 00 	call	0x15c	; 0x15c <_ZN14MemoController11isMemoEraseEP7KeyItem>
+ 35c:	88 23       	and	r24, r24
+ 35e:	21 f0       	breq	.+8      	; 0x368 <_Z13appendKeyItem7KeyItem+0xfa>
+ 360:	81 e3       	ldi	r24, 0x31	; 49
+ 362:	91 e0       	ldi	r25, 0x01	; 1
+ 364:	0e 94 6f 06 	call	0xcde	; 0xcde <_ZN14MemoController13eraseFromMemoEv>
+	if (__tmp < 1.0)
+ 368:	ce 01       	movw	r24, r28
+ 36a:	03 96       	adiw	r24, 0x03	; 3
+ 36c:	0e 94 66 00 	call	0xcc	; 0xcc <_ZN7KeyItem5getIdEv>
+ 370:	98 2f       	mov	r25, r24
+ 372:	81 e0       	ldi	r24, 0x01	; 1
+ 374:	94 30       	cpi	r25, 0x04	; 4
+ 376:	09 f0       	breq	.+2      	; 0x37a <_Z13appendKeyItem7KeyItem+0x10c>
+ 378:	80 e0       	ldi	r24, 0x00	; 0
+ 37a:	88 23       	and	r24, r24
+ 37c:	59 f0       	breq	.+22     	; 0x394 <_Z13appendKeyItem7KeyItem+0x126>
+ 37e:	8b e3       	ldi	r24, 0x3B	; 59
+		__ticks = 1;
+ 380:	91 e0       	ldi	r25, 0x01	; 1
+ 382:	0e 94 f5 02 	call	0x5ea	; 0x5ea <_ZN13CalcOperation9getResultEv>
+ 386:	bc 01       	movw	r22, r24
+ 388:	83 e5       	ldi	r24, 0x53	; 83
+	else if (__tmp > 65535)
+ 38a:	91 e0       	ldi	r25, 0x01	; 1
+ 38c:	0e 94 14 06 	call	0xc28	; 0xc28 <_ZN13LCDController15writeCalcResultEP10CalcResult>
+ 390:	01 c0       	rjmp	.+2      	; 0x394 <_Z13appendKeyItem7KeyItem+0x126>
+ 392:	00 00       	nop
+ 394:	0f 90       	pop	r0
+ 396:	0f 90       	pop	r0
+ 398:	0f 90       	pop	r0
+ 39a:	0f 90       	pop	r0
+ 39c:	df 91       	pop	r29
+ 39e:	cf 91       	pop	r28
+ 3a0:	08 95       	ret
+
+000003a2 <_Z14appendOperator7KeyItem>:
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+ 3a2:	0f 93       	push	r16
+ 3a4:	1f 93       	push	r17
+ 3a6:	cf 93       	push	r28
+ 3a8:	df 93       	push	r29
+ 3aa:	00 d0       	rcall	.+0      	; 0x3ac <_Z14appendOperator7KeyItem+0xa>
+ 3ac:	cd b7       	in	r28, 0x3d	; 61
+ 3ae:	de b7       	in	r29, 0x3e	; 62
+ 3b0:	9a 83       	std	Y+2, r25	; 0x02
+ 3b2:	89 83       	std	Y+1, r24	; 0x01
+ 3b4:	90 91 08 01 	lds	r25, 0x0108
+ 3b8:	81 e0       	ldi	r24, 0x01	; 1
+ 3ba:	89 27       	eor	r24, r25
+ 3bc:	88 23       	and	r24, r24
+ 3be:	49 f0       	breq	.+18     	; 0x3d2 <_Z14appendOperator7KeyItem+0x30>
+ 3c0:	80 91 66 00 	lds	r24, 0x0066
+ 3c4:	90 91 67 00 	lds	r25, 0x0067
+ 3c8:	01 96       	adiw	r24, 0x01	; 1
+ 3ca:	90 93 67 00 	sts	0x0067, r25
+ 3ce:	80 93 66 00 	sts	0x0066, r24
+ 3d2:	00 91 66 00 	lds	r16, 0x0066
+ 3d6:	10 91 67 00 	lds	r17, 0x0067
+ 3da:	ce 01       	movw	r24, r28
+ 3dc:	01 96       	adiw	r24, 0x01	; 1
+ 3de:	0e 94 56 00 	call	0xac	; 0xac <_ZN7KeyItem6getValEv>
+ 3e2:	28 2f       	mov	r18, r24
+ 3e4:	c8 01       	movw	r24, r16
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 3e6:	88 57       	subi	r24, 0x78	; 120
+ 3e8:	9f 4f       	sbci	r25, 0xFF	; 255
+ 3ea:	fc 01       	movw	r30, r24
+ 3ec:	20 83       	st	Z, r18
+ 3ee:	81 e0       	ldi	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 3f0:	80 93 08 01 	sts	0x0108, r24
+ 3f4:	0f 90       	pop	r0
+ 3f6:	0f 90       	pop	r0
+ 3f8:	df 91       	pop	r29
+ 3fa:	cf 91       	pop	r28
+ 3fc:	1f 91       	pop	r17
+ 3fe:	0f 91       	pop	r16
+ 400:	08 95       	ret
+
+00000402 <_Z12appendNumber7KeyItem>:
+			__ticks --;
+		}
+		return;
+	}
+	else
+		__ticks = (uint16_t)__tmp;
+ 402:	0f 93       	push	r16
+ 404:	1f 93       	push	r17
+ 406:	cf 93       	push	r28
+ 408:	df 93       	push	r29
+ 40a:	00 d0       	rcall	.+0      	; 0x40c <_Z12appendNumber7KeyItem+0xa>
+ 40c:	cd b7       	in	r28, 0x3d	; 61
+ 40e:	de b7       	in	r29, 0x3e	; 62
+ 410:	9a 83       	std	Y+2, r25	; 0x02
+ 412:	89 83       	std	Y+1, r24	; 0x01
+ 414:	80 91 66 00 	lds	r24, 0x0066
+ 418:	90 91 67 00 	lds	r25, 0x0067
+ 41c:	01 96       	adiw	r24, 0x01	; 1
+ 41e:	90 93 67 00 	sts	0x0067, r25
+ 422:	80 93 66 00 	sts	0x0066, r24
+ 426:	00 91 66 00 	lds	r16, 0x0066
+ 42a:	10 91 67 00 	lds	r17, 0x0067
+ 42e:	ce 01       	movw	r24, r28
+	_delay_ms(5);
+	WriteByte(0x08);
+ 430:	01 96       	adiw	r24, 0x01	; 1
+ 432:	0e 94 56 00 	call	0xac	; 0xac <_ZN7KeyItem6getValEv>
+ 436:	28 2f       	mov	r18, r24
+ 438:	20 5d       	subi	r18, 0xD0	; 208
+ 43a:	c8 01       	movw	r24, r16
+ 43c:	88 57       	subi	r24, 0x78	; 120
+ 43e:	9f 4f       	sbci	r25, 0xFF	; 255
+ 440:	fc 01       	movw	r30, r24
+ 442:	20 83       	st	Z, r18
+ 444:	10 92 08 01 	sts	0x0108, r1
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	__tmp = ((F_CPU) / 4e3) * __ms;
+ 448:	0f 90       	pop	r0
+ 44a:	0f 90       	pop	r0
+ 44c:	df 91       	pop	r29
+ 44e:	cf 91       	pop	r28
+ 450:	1f 91       	pop	r17
+ 452:	0f 91       	pop	r16
+ 454:	08 95       	ret
+
+00000456 <_Z41__static_initialization_and_destruction_0ii>:
+ 456:	cf 93       	push	r28
+ 458:	df 93       	push	r29
+ 45a:	00 d0       	rcall	.+0      	; 0x45c <_Z41__static_initialization_and_destruction_0ii+0x6>
+ 45c:	00 d0       	rcall	.+0      	; 0x45e <_Z41__static_initialization_and_destruction_0ii+0x8>
+ 45e:	cd b7       	in	r28, 0x3d	; 61
+ 460:	de b7       	in	r29, 0x3e	; 62
+ 462:	9a 83       	std	Y+2, r25	; 0x02
+ 464:	89 83       	std	Y+1, r24	; 0x01
+ 466:	7c 83       	std	Y+4, r23	; 0x04
+ 468:	6b 83       	std	Y+3, r22	; 0x03
+ 46a:	89 81       	ldd	r24, Y+1	; 0x01
+ 46c:	9a 81       	ldd	r25, Y+2	; 0x02
+	if (__tmp < 1.0)
+ 46e:	81 30       	cpi	r24, 0x01	; 1
+ 470:	91 05       	cpc	r25, r1
+ 472:	b1 f4       	brne	.+44     	; 0x4a0 <_Z41__static_initialization_and_destruction_0ii+0x4a>
+ 474:	8b 81       	ldd	r24, Y+3	; 0x03
+ 476:	9c 81       	ldd	r25, Y+4	; 0x04
+ 478:	8f 3f       	cpi	r24, 0xFF	; 255
+ 47a:	2f ef       	ldi	r18, 0xFF	; 255
+ 47c:	92 07       	cpc	r25, r18
+ 47e:	81 f4       	brne	.+32     	; 0x4a0 <_Z41__static_initialization_and_destruction_0ii+0x4a>
+ 480:	89 e0       	ldi	r24, 0x09	; 9
+ 482:	91 e0       	ldi	r25, 0x01	; 1
+ 484:	0e 94 03 04 	call	0x806	; 0x806 <_ZN18KeyboardControllerC1Ev>
+ 488:	81 e3       	ldi	r24, 0x31	; 49
+ 48a:	91 e0       	ldi	r25, 0x01	; 1
+		__ticks = 1;
+ 48c:	0e 94 25 06 	call	0xc4a	; 0xc4a <_ZN14MemoControllerC1Ev>
+ 490:	8b e3       	ldi	r24, 0x3B	; 59
+ 492:	91 e0       	ldi	r25, 0x01	; 1
+ 494:	0e 94 8b 02 	call	0x516	; 0x516 <_ZN13CalcOperationC1Ev>
+ 498:	83 e5       	ldi	r24, 0x53	; 83
+ 49a:	91 e0       	ldi	r25, 0x01	; 1
+ 49c:	0e 94 df 05 	call	0xbbe	; 0xbbe <_ZN13LCDControllerC1Ev>
+	else if (__tmp > 65535)
+ 4a0:	89 81       	ldd	r24, Y+1	; 0x01
+ 4a2:	9a 81       	ldd	r25, Y+2	; 0x02
+ 4a4:	00 97       	sbiw	r24, 0x00	; 0
+ 4a6:	b1 f4       	brne	.+44     	; 0x4d4 <_Z41__static_initialization_and_destruction_0ii+0x7e>
+ 4a8:	8b 81       	ldd	r24, Y+3	; 0x03
+ 4aa:	9c 81       	ldd	r25, Y+4	; 0x04
+ 4ac:	8f 3f       	cpi	r24, 0xFF	; 255
+ 4ae:	2f ef       	ldi	r18, 0xFF	; 255
+ 4b0:	92 07       	cpc	r25, r18
+ 4b2:	81 f4       	brne	.+32     	; 0x4d4 <_Z41__static_initialization_and_destruction_0ii+0x7e>
+ 4b4:	83 e5       	ldi	r24, 0x53	; 83
+ 4b6:	91 e0       	ldi	r25, 0x01	; 1
+ 4b8:	0e 94 eb 05 	call	0xbd6	; 0xbd6 <_ZN13LCDControllerD1Ev>
+ 4bc:	8b e3       	ldi	r24, 0x3B	; 59
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+ 4be:	91 e0       	ldi	r25, 0x01	; 1
+ 4c0:	0e 94 b8 02 	call	0x570	; 0x570 <_ZN13CalcOperationD1Ev>
+ 4c4:	81 e3       	ldi	r24, 0x31	; 49
+ 4c6:	91 e0       	ldi	r25, 0x01	; 1
+ 4c8:	0e 94 35 06 	call	0xc6a	; 0xc6a <_ZN14MemoControllerD1Ev>
+ 4cc:	89 e0       	ldi	r24, 0x09	; 9
+ 4ce:	91 e0       	ldi	r25, 0x01	; 1
+ 4d0:	0e 94 3d 04 	call	0x87a	; 0x87a <_ZN18KeyboardControllerD1Ev>
+ 4d4:	0f 90       	pop	r0
+ 4d6:	0f 90       	pop	r0
+ 4d8:	0f 90       	pop	r0
+ 4da:	0f 90       	pop	r0
+ 4dc:	df 91       	pop	r29
+ 4de:	cf 91       	pop	r28
+ 4e0:	08 95       	ret
+
+000004e2 <_GLOBAL__sub_I_calc>:
+ 4e2:	cf 93       	push	r28
+ 4e4:	df 93       	push	r29
+ 4e6:	cd b7       	in	r28, 0x3d	; 61
+ 4e8:	de b7       	in	r29, 0x3e	; 62
+ 4ea:	6f ef       	ldi	r22, 0xFF	; 255
+ 4ec:	7f ef       	ldi	r23, 0xFF	; 255
+ 4ee:	81 e0       	ldi	r24, 0x01	; 1
+ 4f0:	90 e0       	ldi	r25, 0x00	; 0
+ 4f2:	0e 94 2b 02 	call	0x456	; 0x456 <_Z41__static_initialization_and_destruction_0ii>
+ 4f6:	df 91       	pop	r29
+ 4f8:	cf 91       	pop	r28
+ 4fa:	08 95       	ret
+
+000004fc <_GLOBAL__sub_D_calc>:
+ 4fc:	cf 93       	push	r28
+ 4fe:	df 93       	push	r29
+ 500:	cd b7       	in	r28, 0x3d	; 61
+ 502:	de b7       	in	r29, 0x3e	; 62
+ 504:	6f ef       	ldi	r22, 0xFF	; 255
+ 506:	7f ef       	ldi	r23, 0xFF	; 255
+ 508:	80 e0       	ldi	r24, 0x00	; 0
+ 50a:	90 e0       	ldi	r25, 0x00	; 0
+ 50c:	0e 94 2b 02 	call	0x456	; 0x456 <_Z41__static_initialization_and_destruction_0ii>
+ 510:	df 91       	pop	r29
+ 512:	cf 91       	pop	r28
+ 514:	08 95       	ret
+
+00000516 <_ZN13CalcOperationC1Ev>:
+ 516:	cf 93       	push	r28
+ 518:	df 93       	push	r29
+ 51a:	cd b7       	in	r28, 0x3d	; 61
+ 51c:	de b7       	in	r29, 0x3e	; 62
+ 51e:	2c 97       	sbiw	r28, 0x0c	; 12
+ 520:	0f b6       	in	r0, 0x3f	; 63
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 522:	f8 94       	cli
+ 524:	de bf       	out	0x3e, r29	; 62
+ 526:	0f be       	out	0x3f, r0	; 63
+ 528:	cd bf       	out	0x3d, r28	; 61
+ 52a:	9c 87       	std	Y+12, r25	; 0x0c
+ 52c:	8b 87       	std	Y+11, r24	; 0x0b
+ 52e:	8b 85       	ldd	r24, Y+11	; 0x0b
+ 530:	9c 85       	ldd	r25, Y+12	; 0x0c
+ 532:	0e 94 14 03 	call	0x628	; 0x628 <_ZN10CalcResultC1Ev>
+ 536:	ce 01       	movw	r24, r28
+ 538:	01 96       	adiw	r24, 0x01	; 1
+ 53a:	0e 94 14 03 	call	0x628	; 0x628 <_ZN10CalcResultC1Ev>
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 53e:	8b 85       	ldd	r24, Y+11	; 0x0b
+ 540:	9c 85       	ldd	r25, Y+12	; 0x0c
+ 542:	4a e0       	ldi	r20, 0x0A	; 10
+ 544:	9e 01       	movw	r18, r28
+ 546:	2f 5f       	subi	r18, 0xFF	; 255
+ 548:	3f 4f       	sbci	r19, 0xFF	; 255
+ 54a:	f9 01       	movw	r30, r18
+ 54c:	dc 01       	movw	r26, r24
+ 54e:	01 90       	ld	r0, Z+
+ 550:	0d 92       	st	X+, r0
+ 552:	4a 95       	dec	r20
+ 554:	e1 f7       	brne	.-8      	; 0x54e <_ZN13CalcOperationC1Ev+0x38>
+ 556:	ce 01       	movw	r24, r28
+			__ticks --;
+		}
+		return;
+	}
+	else
+		__ticks = (uint16_t)__tmp;
+ 558:	01 96       	adiw	r24, 0x01	; 1
+ 55a:	0e 94 20 03 	call	0x640	; 0x640 <_ZN10CalcResultD1Ev>
+ 55e:	2c 96       	adiw	r28, 0x0c	; 12
+ 560:	0f b6       	in	r0, 0x3f	; 63
+ 562:	f8 94       	cli
+ 564:	de bf       	out	0x3e, r29	; 62
+ 566:	0f be       	out	0x3f, r0	; 63
+ 568:	cd bf       	out	0x3d, r28	; 61
+ 56a:	df 91       	pop	r29
+ 56c:	cf 91       	pop	r28
+ 56e:	08 95       	ret
+
+00000570 <_ZN13CalcOperationD1Ev>:
+ 570:	cf 93       	push	r28
+ 572:	df 93       	push	r29
+ 574:	00 d0       	rcall	.+0      	; 0x576 <_ZN13CalcOperationD1Ev+0x6>
+ 576:	cd b7       	in	r28, 0x3d	; 61
+ 578:	de b7       	in	r29, 0x3e	; 62
+ 57a:	9a 83       	std	Y+2, r25	; 0x02
+ 57c:	89 83       	std	Y+1, r24	; 0x01
+ 57e:	89 81       	ldd	r24, Y+1	; 0x01
+ 580:	9a 81       	ldd	r25, Y+2	; 0x02
+ 582:	0e 94 20 03 	call	0x640	; 0x640 <_ZN10CalcResultD1Ev>
+ 586:	0f 90       	pop	r0
+ 588:	0f 90       	pop	r0
+ 58a:	df 91       	pop	r29
+ 58c:	cf 91       	pop	r28
+ 58e:	08 95       	ret
+
+00000590 <_ZN13CalcOperation18cleanCalcOperationEv>:
+ 590:	cf 93       	push	r28
+ 592:	df 93       	push	r29
+ 594:	00 d0       	rcall	.+0      	; 0x596 <_ZN13CalcOperation18cleanCalcOperationEv+0x6>
+ 596:	cd b7       	in	r28, 0x3d	; 61
+ 598:	de b7       	in	r29, 0x3e	; 62
+ 59a:	9a 83       	std	Y+2, r25	; 0x02
+ 59c:	89 83       	std	Y+1, r24	; 0x01
+ 59e:	89 81       	ldd	r24, Y+1	; 0x01
+ 5a0:	9a 81       	ldd	r25, Y+2	; 0x02
+ 5a2:	fc 01       	movw	r30, r24
+ 5a4:	12 86       	std	Z+10, r1	; 0x0a
+ 5a6:	13 86       	std	Z+11, r1	; 0x0b
+ 5a8:	14 86       	std	Z+12, r1	; 0x0c
+ 5aa:	15 86       	std	Z+13, r1	; 0x0d
+ 5ac:	89 81       	ldd	r24, Y+1	; 0x01
+ 5ae:	9a 81       	ldd	r25, Y+2	; 0x02
+ 5b0:	fc 01       	movw	r30, r24
+ 5b2:	16 86       	std	Z+14, r1	; 0x0e
+	_delay_ms(5);
+	WriteByte(0x01);
+ 5b4:	17 86       	std	Z+15, r1	; 0x0f
+ 5b6:	10 8a       	std	Z+16, r1	; 0x10
+ 5b8:	11 8a       	std	Z+17, r1	; 0x11
+ 5ba:	89 81       	ldd	r24, Y+1	; 0x01
+ 5bc:	9a 81       	ldd	r25, Y+2	; 0x02
+ 5be:	fc 01       	movw	r30, r24
+ 5c0:	12 8a       	std	Z+18, r1	; 0x12
+ 5c2:	13 8a       	std	Z+19, r1	; 0x13
+ 5c4:	14 8a       	std	Z+20, r1	; 0x14
+ 5c6:	15 8a       	std	Z+21, r1	; 0x15
+ 5c8:	89 81       	ldd	r24, Y+1	; 0x01
+ 5ca:	9a 81       	ldd	r25, Y+2	; 0x02
+ 5cc:	fc 01       	movw	r30, r24
+ 5ce:	16 8a       	std	Z+22, r1	; 0x16
+ 5d0:	89 81       	ldd	r24, Y+1	; 0x01
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	__tmp = ((F_CPU) / 4e3) * __ms;
+ 5d2:	9a 81       	ldd	r25, Y+2	; 0x02
+ 5d4:	fc 01       	movw	r30, r24
+ 5d6:	17 8a       	std	Z+23, r1	; 0x17
+ 5d8:	89 81       	ldd	r24, Y+1	; 0x01
+ 5da:	9a 81       	ldd	r25, Y+2	; 0x02
+ 5dc:	0e 94 2c 03 	call	0x658	; 0x658 <_ZN10CalcResult11cleanResultEv>
+ 5e0:	0f 90       	pop	r0
+ 5e2:	0f 90       	pop	r0
+ 5e4:	df 91       	pop	r29
+ 5e6:	cf 91       	pop	r28
+ 5e8:	08 95       	ret
+
+000005ea <_ZN13CalcOperation9getResultEv>:
+ 5ea:	cf 93       	push	r28
+ 5ec:	df 93       	push	r29
+ 5ee:	00 d0       	rcall	.+0      	; 0x5f0 <_ZN13CalcOperation9getResultEv+0x6>
+ 5f0:	cd b7       	in	r28, 0x3d	; 61
+ 5f2:	de b7       	in	r29, 0x3e	; 62
+ 5f4:	9a 83       	std	Y+2, r25	; 0x02
+ 5f6:	89 83       	std	Y+1, r24	; 0x01
+ 5f8:	89 81       	ldd	r24, Y+1	; 0x01
+ 5fa:	9a 81       	ldd	r25, Y+2	; 0x02
+ 5fc:	0f 90       	pop	r0
+ 5fe:	0f 90       	pop	r0
+ 600:	df 91       	pop	r29
+	if (__tmp < 1.0)
+ 602:	cf 91       	pop	r28
+ 604:	08 95       	ret
+
+00000606 <_ZN13CalcOperation14loadCalcResultEP10CalcResult>:
+ 606:	cf 93       	push	r28
+ 608:	df 93       	push	r29
+ 60a:	00 d0       	rcall	.+0      	; 0x60c <_ZN13CalcOperation14loadCalcResultEP10CalcResult+0x6>
+ 60c:	00 d0       	rcall	.+0      	; 0x60e <_ZN13CalcOperation14loadCalcResultEP10CalcResult+0x8>
+ 60e:	cd b7       	in	r28, 0x3d	; 61
+ 610:	de b7       	in	r29, 0x3e	; 62
+ 612:	9a 83       	std	Y+2, r25	; 0x02
+ 614:	89 83       	std	Y+1, r24	; 0x01
+ 616:	7c 83       	std	Y+4, r23	; 0x04
+ 618:	6b 83       	std	Y+3, r22	; 0x03
+ 61a:	0f 90       	pop	r0
+ 61c:	0f 90       	pop	r0
+ 61e:	0f 90       	pop	r0
+ 620:	0f 90       	pop	r0
+		__ticks = 1;
+ 622:	df 91       	pop	r29
+ 624:	cf 91       	pop	r28
+ 626:	08 95       	ret
+
+00000628 <_ZN10CalcResultC1Ev>:
+ 628:	cf 93       	push	r28
+ 62a:	df 93       	push	r29
+ 62c:	00 d0       	rcall	.+0      	; 0x62e <_ZN10CalcResultC1Ev+0x6>
+ 62e:	cd b7       	in	r28, 0x3d	; 61
+ 630:	de b7       	in	r29, 0x3e	; 62
+ 632:	9a 83       	std	Y+2, r25	; 0x02
+	else if (__tmp > 65535)
+ 634:	89 83       	std	Y+1, r24	; 0x01
+ 636:	0f 90       	pop	r0
+ 638:	0f 90       	pop	r0
+ 63a:	df 91       	pop	r29
+ 63c:	cf 91       	pop	r28
+ 63e:	08 95       	ret
+
+00000640 <_ZN10CalcResultD1Ev>:
+ 640:	cf 93       	push	r28
+ 642:	df 93       	push	r29
+ 644:	00 d0       	rcall	.+0      	; 0x646 <_ZN10CalcResultD1Ev+0x6>
+ 646:	cd b7       	in	r28, 0x3d	; 61
+ 648:	de b7       	in	r29, 0x3e	; 62
+ 64a:	9a 83       	std	Y+2, r25	; 0x02
+ 64c:	89 83       	std	Y+1, r24	; 0x01
+ 64e:	0f 90       	pop	r0
+ 650:	0f 90       	pop	r0
+ 652:	df 91       	pop	r29
+ 654:	cf 91       	pop	r28
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+ 656:	08 95       	ret
+
+00000658 <_ZN10CalcResult11cleanResultEv>:
+ 658:	cf 93       	push	r28
+ 65a:	df 93       	push	r29
+ 65c:	00 d0       	rcall	.+0      	; 0x65e <_ZN10CalcResult11cleanResultEv+0x6>
+ 65e:	00 d0       	rcall	.+0      	; 0x660 <_ZN10CalcResult11cleanResultEv+0x8>
+ 660:	cd b7       	in	r28, 0x3d	; 61
+ 662:	de b7       	in	r29, 0x3e	; 62
+ 664:	9c 83       	std	Y+4, r25	; 0x04
+ 666:	8b 83       	std	Y+3, r24	; 0x03
+ 668:	1a 82       	std	Y+2, r1	; 0x02
+ 66a:	19 82       	std	Y+1, r1	; 0x01
+ 66c:	0e c0       	rjmp	.+28     	; 0x68a <_ZN10CalcResult11cleanResultEv+0x32>
+ 66e:	2b 81       	ldd	r18, Y+3	; 0x03
+ 670:	3c 81       	ldd	r19, Y+4	; 0x04
+ 672:	89 81       	ldd	r24, Y+1	; 0x01
+ 674:	9a 81       	ldd	r25, Y+2	; 0x02
+ 676:	82 0f       	add	r24, r18
+ 678:	93 1f       	adc	r25, r19
+ 67a:	02 96       	adiw	r24, 0x02	; 2
+ 67c:	fc 01       	movw	r30, r24
+ 67e:	10 82       	st	Z, r1
+ 680:	89 81       	ldd	r24, Y+1	; 0x01
+ 682:	9a 81       	ldd	r25, Y+2	; 0x02
+ 684:	01 96       	adiw	r24, 0x01	; 1
+ 686:	9a 83       	std	Y+2, r25	; 0x02
+ 688:	89 83       	std	Y+1, r24	; 0x01
+ 68a:	21 e0       	ldi	r18, 0x01	; 1
+ 68c:	89 81       	ldd	r24, Y+1	; 0x01
+ 68e:	9a 81       	ldd	r25, Y+2	; 0x02
+ 690:	88 30       	cpi	r24, 0x08	; 8
+ 692:	91 05       	cpc	r25, r1
+ 694:	0c f0       	brlt	.+2      	; 0x698 <_ZN10CalcResult11cleanResultEv+0x40>
+ 696:	20 e0       	ldi	r18, 0x00	; 0
+ 698:	22 23       	and	r18, r18
+ 69a:	49 f7       	brne	.-46     	; 0x66e <_ZN10CalcResult11cleanResultEv+0x16>
+ 69c:	8b 81       	ldd	r24, Y+3	; 0x03
+ 69e:	9c 81       	ldd	r25, Y+4	; 0x04
+ 6a0:	fc 01       	movw	r30, r24
+ 6a2:	11 82       	std	Z+1, r1	; 0x01
+ 6a4:	10 82       	st	Z, r1
+ 6a6:	0f 90       	pop	r0
+ 6a8:	0f 90       	pop	r0
+ 6aa:	0f 90       	pop	r0
+ 6ac:	0f 90       	pop	r0
+ 6ae:	df 91       	pop	r29
+ 6b0:	cf 91       	pop	r28
+ 6b2:	08 95       	ret
+
+000006b4 <_ZN7KeyItemC1Ev>:
+ 6b4:	cf 93       	push	r28
+ 6b6:	df 93       	push	r29
+ 6b8:	00 d0       	rcall	.+0      	; 0x6ba <_ZN7KeyItemC1Ev+0x6>
+ 6ba:	cd b7       	in	r28, 0x3d	; 61
+ 6bc:	de b7       	in	r29, 0x3e	; 62
+ 6be:	9a 83       	std	Y+2, r25	; 0x02
+ 6c0:	89 83       	std	Y+1, r24	; 0x01
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 6c2:	89 81       	ldd	r24, Y+1	; 0x01
+ 6c4:	9a 81       	ldd	r25, Y+2	; 0x02
+ 6c6:	fc 01       	movw	r30, r24
+ 6c8:	11 82       	std	Z+1, r1	; 0x01
+ 6ca:	0f 90       	pop	r0
+ 6cc:	0f 90       	pop	r0
+ 6ce:	df 91       	pop	r29
+ 6d0:	cf 91       	pop	r28
+ 6d2:	08 95       	ret
+
+000006d4 <_ZN11KeyOperatorC1Ec>:
+ 6d4:	cf 93       	push	r28
+ 6d6:	df 93       	push	r29
+ 6d8:	00 d0       	rcall	.+0      	; 0x6da <_ZN11KeyOperatorC1Ec+0x6>
+ 6da:	1f 92       	push	r1
+ 6dc:	cd b7       	in	r28, 0x3d	; 61
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 6de:	de b7       	in	r29, 0x3e	; 62
+ 6e0:	9a 83       	std	Y+2, r25	; 0x02
+ 6e2:	89 83       	std	Y+1, r24	; 0x01
+ 6e4:	6b 83       	std	Y+3, r22	; 0x03
+ 6e6:	89 81       	ldd	r24, Y+1	; 0x01
+ 6e8:	9a 81       	ldd	r25, Y+2	; 0x02
+ 6ea:	0e 94 5a 03 	call	0x6b4	; 0x6b4 <_ZN7KeyItemC1Ev>
+ 6ee:	89 81       	ldd	r24, Y+1	; 0x01
+ 6f0:	9a 81       	ldd	r25, Y+2	; 0x02
+ 6f2:	2b 81       	ldd	r18, Y+3	; 0x03
+ 6f4:	fc 01       	movw	r30, r24
+ 6f6:	20 83       	st	Z, r18
+			__ticks --;
+		}
+		return;
+	}
+	else
+		__ticks = (uint16_t)__tmp;
+ 6f8:	89 81       	ldd	r24, Y+1	; 0x01
+ 6fa:	9a 81       	ldd	r25, Y+2	; 0x02
+ 6fc:	21 e0       	ldi	r18, 0x01	; 1
+ 6fe:	fc 01       	movw	r30, r24
+ 700:	21 83       	std	Z+1, r18	; 0x01
+ 702:	0f 90       	pop	r0
+ 704:	0f 90       	pop	r0
+ 706:	0f 90       	pop	r0
+ 708:	df 91       	pop	r29
+ 70a:	cf 91       	pop	r28
+ 70c:	08 95       	ret
+
+0000070e <_ZN11KeyOperatorD1Ev>:
+ 70e:	cf 93       	push	r28
+ 710:	df 93       	push	r29
+ 712:	00 d0       	rcall	.+0      	; 0x714 <_ZN11KeyOperatorD1Ev+0x6>
+ 714:	cd b7       	in	r28, 0x3d	; 61
+ 716:	de b7       	in	r29, 0x3e	; 62
+ 718:	9a 83       	std	Y+2, r25	; 0x02
+ 71a:	89 83       	std	Y+1, r24	; 0x01
+ 71c:	0f 90       	pop	r0
+ 71e:	0f 90       	pop	r0
+ 720:	df 91       	pop	r29
+ 722:	cf 91       	pop	r28
+ 724:	08 95       	ret
+
+00000726 <_ZN7KeyMemoC1Ei>:
+ 726:	cf 93       	push	r28
+ 728:	df 93       	push	r29
+ 72a:	00 d0       	rcall	.+0      	; 0x72c <_ZN7KeyMemoC1Ei+0x6>
+ 72c:	00 d0       	rcall	.+0      	; 0x72e <_ZN7KeyMemoC1Ei+0x8>
+ 72e:	cd b7       	in	r28, 0x3d	; 61
+ 730:	de b7       	in	r29, 0x3e	; 62
+ 732:	9a 83       	std	Y+2, r25	; 0x02
+ 734:	89 83       	std	Y+1, r24	; 0x01
+ 736:	7c 83       	std	Y+4, r23	; 0x04
+ 738:	6b 83       	std	Y+3, r22	; 0x03
+ 73a:	89 81       	ldd	r24, Y+1	; 0x01
+ 73c:	9a 81       	ldd	r25, Y+2	; 0x02
+ 73e:	0e 94 5a 03 	call	0x6b4	; 0x6b4 <_ZN7KeyItemC1Ev>
+ 742:	2b 81       	ldd	r18, Y+3	; 0x03
+ 744:	89 81       	ldd	r24, Y+1	; 0x01
+ 746:	9a 81       	ldd	r25, Y+2	; 0x02
+ 748:	fc 01       	movw	r30, r24
+ 74a:	20 83       	st	Z, r18
+ 74c:	89 81       	ldd	r24, Y+1	; 0x01
+ 74e:	9a 81       	ldd	r25, Y+2	; 0x02
+ 750:	22 e0       	ldi	r18, 0x02	; 2
+ 752:	fc 01       	movw	r30, r24
+ 754:	21 83       	std	Z+1, r18	; 0x01
+	_delay_ms(5);
+	WriteByte(0x06);
+ 756:	0f 90       	pop	r0
+ 758:	0f 90       	pop	r0
+ 75a:	0f 90       	pop	r0
+ 75c:	0f 90       	pop	r0
+ 75e:	df 91       	pop	r29
+ 760:	cf 91       	pop	r28
+ 762:	08 95       	ret
+
+00000764 <_ZN8KeyCleanC1Ev>:
+ 764:	cf 93       	push	r28
+ 766:	df 93       	push	r29
+ 768:	00 d0       	rcall	.+0      	; 0x76a <_ZN8KeyCleanC1Ev+0x6>
+ 76a:	cd b7       	in	r28, 0x3d	; 61
+ 76c:	de b7       	in	r29, 0x3e	; 62
+ 76e:	9a 83       	std	Y+2, r25	; 0x02
+ 770:	89 83       	std	Y+1, r24	; 0x01
+ 772:	89 81       	ldd	r24, Y+1	; 0x01
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	__tmp = ((F_CPU) / 4e3) * __ms;
+ 774:	9a 81       	ldd	r25, Y+2	; 0x02
+ 776:	0e 94 5a 03 	call	0x6b4	; 0x6b4 <_ZN7KeyItemC1Ev>
+ 77a:	89 81       	ldd	r24, Y+1	; 0x01
+ 77c:	9a 81       	ldd	r25, Y+2	; 0x02
+ 77e:	fc 01       	movw	r30, r24
+ 780:	10 82       	st	Z, r1
+ 782:	89 81       	ldd	r24, Y+1	; 0x01
+ 784:	9a 81       	ldd	r25, Y+2	; 0x02
+ 786:	23 e0       	ldi	r18, 0x03	; 3
+ 788:	fc 01       	movw	r30, r24
+ 78a:	21 83       	std	Z+1, r18	; 0x01
+ 78c:	0f 90       	pop	r0
+ 78e:	0f 90       	pop	r0
+ 790:	df 91       	pop	r29
+ 792:	cf 91       	pop	r28
+ 794:	08 95       	ret
+
+00000796 <_ZN9KeyResultC1Ev>:
+ 796:	cf 93       	push	r28
+ 798:	df 93       	push	r29
+ 79a:	00 d0       	rcall	.+0      	; 0x79c <_ZN9KeyResultC1Ev+0x6>
+ 79c:	cd b7       	in	r28, 0x3d	; 61
+ 79e:	de b7       	in	r29, 0x3e	; 62
+ 7a0:	9a 83       	std	Y+2, r25	; 0x02
+ 7a2:	89 83       	std	Y+1, r24	; 0x01
+	if (__tmp < 1.0)
+ 7a4:	89 81       	ldd	r24, Y+1	; 0x01
+ 7a6:	9a 81       	ldd	r25, Y+2	; 0x02
+ 7a8:	0e 94 5a 03 	call	0x6b4	; 0x6b4 <_ZN7KeyItemC1Ev>
+ 7ac:	89 81       	ldd	r24, Y+1	; 0x01
+ 7ae:	9a 81       	ldd	r25, Y+2	; 0x02
+ 7b0:	fc 01       	movw	r30, r24
+ 7b2:	10 82       	st	Z, r1
+ 7b4:	89 81       	ldd	r24, Y+1	; 0x01
+ 7b6:	9a 81       	ldd	r25, Y+2	; 0x02
+ 7b8:	24 e0       	ldi	r18, 0x04	; 4
+ 7ba:	fc 01       	movw	r30, r24
+ 7bc:	21 83       	std	Z+1, r18	; 0x01
+ 7be:	0f 90       	pop	r0
+ 7c0:	0f 90       	pop	r0
+ 7c2:	df 91       	pop	r29
+		__ticks = 1;
+ 7c4:	cf 91       	pop	r28
+ 7c6:	08 95       	ret
+
+000007c8 <_ZN9KeyNumberC1Ei>:
+ 7c8:	cf 93       	push	r28
+ 7ca:	df 93       	push	r29
+ 7cc:	00 d0       	rcall	.+0      	; 0x7ce <_ZN9KeyNumberC1Ei+0x6>
+ 7ce:	00 d0       	rcall	.+0      	; 0x7d0 <_ZN9KeyNumberC1Ei+0x8>
+ 7d0:	cd b7       	in	r28, 0x3d	; 61
+ 7d2:	de b7       	in	r29, 0x3e	; 62
+ 7d4:	9a 83       	std	Y+2, r25	; 0x02
+	else if (__tmp > 65535)
+ 7d6:	89 83       	std	Y+1, r24	; 0x01
+ 7d8:	7c 83       	std	Y+4, r23	; 0x04
+ 7da:	6b 83       	std	Y+3, r22	; 0x03
+ 7dc:	89 81       	ldd	r24, Y+1	; 0x01
+ 7de:	9a 81       	ldd	r25, Y+2	; 0x02
+ 7e0:	0e 94 5a 03 	call	0x6b4	; 0x6b4 <_ZN7KeyItemC1Ev>
+ 7e4:	2b 81       	ldd	r18, Y+3	; 0x03
+ 7e6:	89 81       	ldd	r24, Y+1	; 0x01
+ 7e8:	9a 81       	ldd	r25, Y+2	; 0x02
+ 7ea:	fc 01       	movw	r30, r24
+ 7ec:	20 83       	st	Z, r18
+ 7ee:	89 81       	ldd	r24, Y+1	; 0x01
+ 7f0:	9a 81       	ldd	r25, Y+2	; 0x02
+ 7f2:	25 e0       	ldi	r18, 0x05	; 5
+ 7f4:	fc 01       	movw	r30, r24
+ 7f6:	21 83       	std	Z+1, r18	; 0x01
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+ 7f8:	0f 90       	pop	r0
+ 7fa:	0f 90       	pop	r0
+ 7fc:	0f 90       	pop	r0
+ 7fe:	0f 90       	pop	r0
+ 800:	df 91       	pop	r29
+ 802:	cf 91       	pop	r28
+ 804:	08 95       	ret
+
+00000806 <_ZN18KeyboardControllerC1Ev>:
+ 806:	cf 93       	push	r28
+ 808:	df 93       	push	r29
+ 80a:	00 d0       	rcall	.+0      	; 0x80c <_ZN18KeyboardControllerC1Ev+0x6>
+ 80c:	cd b7       	in	r28, 0x3d	; 61
+ 80e:	de b7       	in	r29, 0x3e	; 62
+ 810:	9a 83       	std	Y+2, r25	; 0x02
+ 812:	89 83       	std	Y+1, r24	; 0x01
+ 814:	89 81       	ldd	r24, Y+1	; 0x01
+ 816:	9a 81       	ldd	r25, Y+2	; 0x02
+ 818:	20 e1       	ldi	r18, 0x10	; 16
+ 81a:	e8 e6       	ldi	r30, 0x68	; 104
+ 81c:	f0 e0       	ldi	r31, 0x00	; 0
+ 81e:	dc 01       	movw	r26, r24
+ 820:	01 90       	ld	r0, Z+
+ 822:	0d 92       	st	X+, r0
+ 824:	2a 95       	dec	r18
+ 826:	e1 f7       	brne	.-8      	; 0x820 <_ZN18KeyboardControllerC1Ev+0x1a>
+ 828:	89 81       	ldd	r24, Y+1	; 0x01
+ 82a:	9a 81       	ldd	r25, Y+2	; 0x02
+ 82c:	20 e1       	ldi	r18, 0x10	; 16
+ 82e:	e8 e7       	ldi	r30, 0x78	; 120
+ 830:	f0 e0       	ldi	r31, 0x00	; 0
+ 832:	dc 01       	movw	r26, r24
+ 834:	50 96       	adiw	r26, 0x10	; 16
+ 836:	01 90       	ld	r0, Z+
+ 838:	0d 92       	st	X+, r0
+ 83a:	2a 95       	dec	r18
+ 83c:	e1 f7       	brne	.-8      	; 0x836 <_ZN18KeyboardControllerC1Ev+0x30>
+ 83e:	89 81       	ldd	r24, Y+1	; 0x01
+ 840:	9a 81       	ldd	r25, Y+2	; 0x02
+ 842:	2b e2       	ldi	r18, 0x2B	; 43
+ 844:	fc 01       	movw	r30, r24
+ 846:	20 a3       	std	Z+32, r18	; 0x20
+ 848:	89 81       	ldd	r24, Y+1	; 0x01
+ 84a:	9a 81       	ldd	r25, Y+2	; 0x02
+ 84c:	2d e2       	ldi	r18, 0x2D	; 45
+ 84e:	fc 01       	movw	r30, r24
+ 850:	21 a3       	std	Z+33, r18	; 0x21
+ 852:	89 81       	ldd	r24, Y+1	; 0x01
+ 854:	9a 81       	ldd	r25, Y+2	; 0x02
+ 856:	2a e2       	ldi	r18, 0x2A	; 42
+ 858:	fc 01       	movw	r30, r24
+ 85a:	22 a3       	std	Z+34, r18	; 0x22
+ 85c:	89 81       	ldd	r24, Y+1	; 0x01
+ 85e:	9a 81       	ldd	r25, Y+2	; 0x02
+ 860:	2f e2       	ldi	r18, 0x2F	; 47
+ 862:	fc 01       	movw	r30, r24
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 864:	23 a3       	std	Z+35, r18	; 0x23
+ 866:	89 81       	ldd	r24, Y+1	; 0x01
+ 868:	9a 81       	ldd	r25, Y+2	; 0x02
+ 86a:	fc 01       	movw	r30, r24
+ 86c:	15 a2       	std	Z+37, r1	; 0x25
+ 86e:	14 a2       	std	Z+36, r1	; 0x24
+ 870:	0f 90       	pop	r0
+ 872:	0f 90       	pop	r0
+ 874:	df 91       	pop	r29
+ 876:	cf 91       	pop	r28
+ 878:	08 95       	ret
+
+0000087a <_ZN18KeyboardControllerD1Ev>:
+ 87a:	cf 93       	push	r28
+ 87c:	df 93       	push	r29
+ 87e:	00 d0       	rcall	.+0      	; 0x880 <_ZN18KeyboardControllerD1Ev+0x6>
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 880:	cd b7       	in	r28, 0x3d	; 61
+ 882:	de b7       	in	r29, 0x3e	; 62
+ 884:	9a 83       	std	Y+2, r25	; 0x02
+ 886:	89 83       	std	Y+1, r24	; 0x01
+ 888:	0f 90       	pop	r0
+ 88a:	0f 90       	pop	r0
+ 88c:	df 91       	pop	r29
+ 88e:	cf 91       	pop	r28
+ 890:	08 95       	ret
+
+00000892 <_ZN18KeyboardController21readValueFromKeyboardEv>:
+ 892:	0f 93       	push	r16
+ 894:	1f 93       	push	r17
+ 896:	cf 93       	push	r28
+ 898:	df 93       	push	r29
+			__ticks --;
+		}
+		return;
+	}
+	else
+		__ticks = (uint16_t)__tmp;
+ 89a:	cd b7       	in	r28, 0x3d	; 61
+ 89c:	de b7       	in	r29, 0x3e	; 62
+ 89e:	68 97       	sbiw	r28, 0x18	; 24
+ 8a0:	0f b6       	in	r0, 0x3f	; 63
+ 8a2:	f8 94       	cli
+ 8a4:	de bf       	out	0x3e, r29	; 62
+ 8a6:	0f be       	out	0x3f, r0	; 63
+ 8a8:	cd bf       	out	0x3d, r28	; 61
+ 8aa:	98 8f       	std	Y+24, r25	; 0x18
+ 8ac:	8f 8b       	std	Y+23, r24	; 0x17
+ 8ae:	85 e3       	ldi	r24, 0x35	; 53
+ 8b0:	90 e0       	ldi	r25, 0x00	; 0
+ 8b2:	fc 01       	movw	r30, r24
+ 8b4:	10 82       	st	Z, r1
+ 8b6:	84 e3       	ldi	r24, 0x34	; 52
+ 8b8:	90 e0       	ldi	r25, 0x00	; 0
+ 8ba:	20 ef       	ldi	r18, 0xF0	; 240
+ 8bc:	fc 01       	movw	r30, r24
+ 8be:	20 83       	st	Z, r18
+ 8c0:	85 e3       	ldi	r24, 0x35	; 53
+ 8c2:	90 e0       	ldi	r25, 0x00	; 0
+ 8c4:	2f e0       	ldi	r18, 0x0F	; 15
+ 8c6:	fc 01       	movw	r30, r24
+ 8c8:	20 83       	st	Z, r18
+ 8ca:	1a 82       	std	Y+2, r1	; 0x02
+ 8cc:	19 82       	std	Y+1, r1	; 0x01
+ 8ce:	05 c0       	rjmp	.+10     	; 0x8da <_ZN18KeyboardController21readValueFromKeyboardEv+0x48>
+ 8d0:	89 81       	ldd	r24, Y+1	; 0x01
+ 8d2:	9a 81       	ldd	r25, Y+2	; 0x02
+ 8d4:	01 96       	adiw	r24, 0x01	; 1
+ 8d6:	9a 83       	std	Y+2, r25	; 0x02
+ 8d8:	89 83       	std	Y+1, r24	; 0x01
+ 8da:	21 e0       	ldi	r18, 0x01	; 1
+ 8dc:	89 81       	ldd	r24, Y+1	; 0x01
+ 8de:	9a 81       	ldd	r25, Y+2	; 0x02
+ 8e0:	84 36       	cpi	r24, 0x64	; 100
+ 8e2:	91 05       	cpc	r25, r1
+ 8e4:	0c f0       	brlt	.+2      	; 0x8e8 <_ZN18KeyboardController21readValueFromKeyboardEv+0x56>
+ 8e6:	20 e0       	ldi	r18, 0x00	; 0
+ 8e8:	22 23       	and	r18, r18
+ 8ea:	91 f7       	brne	.-28     	; 0x8d0 <_ZN18KeyboardController21readValueFromKeyboardEv+0x3e>
+ 8ec:	83 e3       	ldi	r24, 0x33	; 51
+ 8ee:	90 e0       	ldi	r25, 0x00	; 0
+ 8f0:	fc 01       	movw	r30, r24
+ 8f2:	80 81       	ld	r24, Z
+ 8f4:	88 2f       	mov	r24, r24
+ 8f6:	90 e0       	ldi	r25, 0x00	; 0
+	_delay_ms(5);
+	WriteByte(0x0F);
+ 8f8:	2f 89       	ldd	r18, Y+23	; 0x17
+ 8fa:	38 8d       	ldd	r19, Y+24	; 0x18
+ 8fc:	82 0f       	add	r24, r18
+ 8fe:	93 1f       	adc	r25, r19
+ 900:	40 96       	adiw	r24, 0x10	; 16
+ 902:	fc 01       	movw	r30, r24
+ 904:	80 81       	ld	r24, Z
+ 906:	88 2f       	mov	r24, r24
+ 908:	90 e0       	ldi	r25, 0x00	; 0
+ 90a:	98 87       	std	Y+8, r25	; 0x08
+ 90c:	8f 83       	std	Y+7, r24	; 0x07
+ 90e:	85 e3       	ldi	r24, 0x35	; 53
+ 910:	90 e0       	ldi	r25, 0x00	; 0
+ 912:	fc 01       	movw	r30, r24
+ 914:	10 82       	st	Z, r1
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	__tmp = ((F_CPU) / 4e3) * __ms;
+ 916:	84 e3       	ldi	r24, 0x34	; 52
+ 918:	90 e0       	ldi	r25, 0x00	; 0
+ 91a:	2f e0       	ldi	r18, 0x0F	; 15
+ 91c:	fc 01       	movw	r30, r24
+ 91e:	20 83       	st	Z, r18
+ 920:	85 e3       	ldi	r24, 0x35	; 53
+ 922:	90 e0       	ldi	r25, 0x00	; 0
+ 924:	20 ef       	ldi	r18, 0xF0	; 240
+ 926:	fc 01       	movw	r30, r24
+ 928:	20 83       	st	Z, r18
+ 92a:	1c 82       	std	Y+4, r1	; 0x04
+ 92c:	1b 82       	std	Y+3, r1	; 0x03
+ 92e:	05 c0       	rjmp	.+10     	; 0x93a <_ZN18KeyboardController21readValueFromKeyboardEv+0xa8>
+ 930:	8b 81       	ldd	r24, Y+3	; 0x03
+ 932:	9c 81       	ldd	r25, Y+4	; 0x04
+ 934:	01 96       	adiw	r24, 0x01	; 1
+ 936:	9c 83       	std	Y+4, r25	; 0x04
+ 938:	8b 83       	std	Y+3, r24	; 0x03
+ 93a:	21 e0       	ldi	r18, 0x01	; 1
+ 93c:	8b 81       	ldd	r24, Y+3	; 0x03
+ 93e:	9c 81       	ldd	r25, Y+4	; 0x04
+ 940:	84 36       	cpi	r24, 0x64	; 100
+ 942:	91 05       	cpc	r25, r1
+ 944:	0c f0       	brlt	.+2      	; 0x948 <_ZN18KeyboardController21readValueFromKeyboardEv+0xb6>
+	if (__tmp < 1.0)
+ 946:	20 e0       	ldi	r18, 0x00	; 0
+ 948:	22 23       	and	r18, r18
+ 94a:	91 f7       	brne	.-28     	; 0x930 <_ZN18KeyboardController21readValueFromKeyboardEv+0x9e>
+ 94c:	83 e3       	ldi	r24, 0x33	; 51
+ 94e:	90 e0       	ldi	r25, 0x00	; 0
+ 950:	fc 01       	movw	r30, r24
+ 952:	80 81       	ld	r24, Z
+ 954:	88 2f       	mov	r24, r24
+ 956:	90 e0       	ldi	r25, 0x00	; 0
+ 958:	95 95       	asr	r25
+ 95a:	87 95       	ror	r24
+ 95c:	95 95       	asr	r25
+ 95e:	87 95       	ror	r24
+ 960:	95 95       	asr	r25
+ 962:	87 95       	ror	r24
+ 964:	95 95       	asr	r25
+		__ticks = 1;
+ 966:	87 95       	ror	r24
+ 968:	2f 89       	ldd	r18, Y+23	; 0x17
+ 96a:	38 8d       	ldd	r19, Y+24	; 0x18
+ 96c:	82 0f       	add	r24, r18
+ 96e:	93 1f       	adc	r25, r19
+ 970:	40 96       	adiw	r24, 0x10	; 16
+ 972:	fc 01       	movw	r30, r24
+ 974:	80 81       	ld	r24, Z
+ 976:	88 2f       	mov	r24, r24
+	else if (__tmp > 65535)
+ 978:	90 e0       	ldi	r25, 0x00	; 0
+ 97a:	9a 87       	std	Y+10, r25	; 0x0a
+ 97c:	89 87       	std	Y+9, r24	; 0x09
+ 97e:	89 85       	ldd	r24, Y+9	; 0x09
+ 980:	9a 85       	ldd	r25, Y+10	; 0x0a
+ 982:	00 97       	sbiw	r24, 0x00	; 0
+ 984:	21 f0       	breq	.+8      	; 0x98e <_ZN18KeyboardController21readValueFromKeyboardEv+0xfc>
+ 986:	8f 81       	ldd	r24, Y+7	; 0x07
+ 988:	98 85       	ldd	r25, Y+8	; 0x08
+ 98a:	00 97       	sbiw	r24, 0x00	; 0
+ 98c:	49 f4       	brne	.+18     	; 0x9a0 <_ZN18KeyboardController21readValueFromKeyboardEv+0x10e>
+ 98e:	1d 8a       	std	Y+21, r1	; 0x15
+ 990:	1e 8a       	std	Y+22, r1	; 0x16
+ 992:	ce 01       	movw	r24, r28
+ 994:	45 96       	adiw	r24, 0x15	; 21
+ 996:	0e 94 5a 03 	call	0x6b4	; 0x6b4 <_ZN7KeyItemC1Ev>
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+ 99a:	0d 89       	ldd	r16, Y+21	; 0x15
+ 99c:	1e 89       	ldd	r17, Y+22	; 0x16
+ 99e:	ca c0       	rjmp	.+404    	; 0xb34 <_ZN18KeyboardController21readValueFromKeyboardEv+0x2a2>
+ 9a0:	89 85       	ldd	r24, Y+9	; 0x09
+ 9a2:	9a 85       	ldd	r25, Y+10	; 0x0a
+ 9a4:	ac 01       	movw	r20, r24
+ 9a6:	41 50       	subi	r20, 0x01	; 1
+ 9a8:	51 09       	sbc	r21, r1
+ 9aa:	8f 81       	ldd	r24, Y+7	; 0x07
+ 9ac:	98 85       	ldd	r25, Y+8	; 0x08
+ 9ae:	01 97       	sbiw	r24, 0x01	; 1
+ 9b0:	2f 89       	ldd	r18, Y+23	; 0x17
+ 9b2:	38 8d       	ldd	r19, Y+24	; 0x18
+ 9b4:	44 0f       	add	r20, r20
+ 9b6:	55 1f       	adc	r21, r21
+ 9b8:	44 0f       	add	r20, r20
+ 9ba:	55 1f       	adc	r21, r21
+ 9bc:	84 0f       	add	r24, r20
+ 9be:	95 1f       	adc	r25, r21
+ 9c0:	82 0f       	add	r24, r18
+ 9c2:	93 1f       	adc	r25, r19
+ 9c4:	fc 01       	movw	r30, r24
+ 9c6:	80 81       	ld	r24, Z
+ 9c8:	28 2f       	mov	r18, r24
+ 9ca:	30 e0       	ldi	r19, 0x00	; 0
+ 9cc:	8f 89       	ldd	r24, Y+23	; 0x17
+ 9ce:	98 8d       	ldd	r25, Y+24	; 0x18
+ 9d0:	fc 01       	movw	r30, r24
+ 9d2:	37 a3       	std	Z+39, r19	; 0x27
+ 9d4:	26 a3       	std	Z+38, r18	; 0x26
+ 9d6:	8f 89       	ldd	r24, Y+23	; 0x17
+ 9d8:	98 8d       	ldd	r25, Y+24	; 0x18
+ 9da:	fc 01       	movw	r30, r24
+ 9dc:	86 a1       	ldd	r24, Z+38	; 0x26
+ 9de:	97 a1       	ldd	r25, Z+39	; 0x27
+ 9e0:	84 30       	cpi	r24, 0x04	; 4
+ 9e2:	91 05       	cpc	r25, r1
+ 9e4:	21 f0       	breq	.+8      	; 0x9ee <_ZN18KeyboardController21readValueFromKeyboardEv+0x15c>
+ 9e6:	8f 89       	ldd	r24, Y+23	; 0x17
+ 9e8:	98 8d       	ldd	r25, Y+24	; 0x18
+ 9ea:	0e 94 cc 05 	call	0xb98	; 0xb98 <_ZN18KeyboardController14initOperatorIdEv>
+ 9ee:	8f 89       	ldd	r24, Y+23	; 0x17
+ 9f0:	98 8d       	ldd	r25, Y+24	; 0x18
+ 9f2:	fc 01       	movw	r30, r24
+ 9f4:	86 a1       	ldd	r24, Z+38	; 0x26
+ 9f6:	97 a1       	ldd	r25, Z+39	; 0x27
+ 9f8:	84 30       	cpi	r24, 0x04	; 4
+ 9fa:	91 05       	cpc	r25, r1
+ 9fc:	b9 f4       	brne	.+46     	; 0xa2c <_ZN18KeyboardController21readValueFromKeyboardEv+0x19a>
+ 9fe:	8f 89       	ldd	r24, Y+23	; 0x17
+ a00:	98 8d       	ldd	r25, Y+24	; 0x18
+ a02:	0e 94 a6 05 	call	0xb4c	; 0xb4c <_ZN18KeyboardController15getNextOperatorEv>
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ a06:	2f 89       	ldd	r18, Y+23	; 0x17
+ a08:	38 8d       	ldd	r19, Y+24	; 0x18
+ a0a:	82 0f       	add	r24, r18
+ a0c:	93 1f       	adc	r25, r19
+ a0e:	80 96       	adiw	r24, 0x20	; 32
+ a10:	fc 01       	movw	r30, r24
+ a12:	20 81       	ld	r18, Z
+ a14:	ce 01       	movw	r24, r28
+ a16:	43 96       	adiw	r24, 0x13	; 19
+ a18:	62 2f       	mov	r22, r18
+ a1a:	0e 94 6a 03 	call	0x6d4	; 0x6d4 <_ZN11KeyOperatorC1Ec>
+ a1e:	0b 89       	ldd	r16, Y+19	; 0x13
+ a20:	1c 89       	ldd	r17, Y+20	; 0x14
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ a22:	ce 01       	movw	r24, r28
+ a24:	43 96       	adiw	r24, 0x13	; 19
+ a26:	0e 94 87 03 	call	0x70e	; 0x70e <_ZN11KeyOperatorD1Ev>
+ a2a:	84 c0       	rjmp	.+264    	; 0xb34 <_ZN18KeyboardController21readValueFromKeyboardEv+0x2a2>
+ a2c:	8f 89       	ldd	r24, Y+23	; 0x17
+ a2e:	98 8d       	ldd	r25, Y+24	; 0x18
+ a30:	fc 01       	movw	r30, r24
+ a32:	86 a1       	ldd	r24, Z+38	; 0x26
+ a34:	97 a1       	ldd	r25, Z+39	; 0x27
+ a36:	83 70       	andi	r24, 0x03	; 3
+ a38:	99 27       	eor	r25, r25
+ a3a:	00 97       	sbiw	r24, 0x00	; 0
+			__ticks --;
+		}
+		return;
+	}
+	else
+		__ticks = (uint16_t)__tmp;
+ a3c:	a9 f4       	brne	.+42     	; 0xa68 <_ZN18KeyboardController21readValueFromKeyboardEv+0x1d6>
+ a3e:	8f 89       	ldd	r24, Y+23	; 0x17
+ a40:	98 8d       	ldd	r25, Y+24	; 0x18
+ a42:	fc 01       	movw	r30, r24
+ a44:	86 a1       	ldd	r24, Z+38	; 0x26
+ a46:	97 a1       	ldd	r25, Z+39	; 0x27
+ a48:	99 23       	and	r25, r25
+ a4a:	0c f4       	brge	.+2      	; 0xa4e <_ZN18KeyboardController21readValueFromKeyboardEv+0x1bc>
+ a4c:	03 96       	adiw	r24, 0x03	; 3
+ a4e:	95 95       	asr	r25
+ a50:	87 95       	ror	r24
+ a52:	95 95       	asr	r25
+ a54:	87 95       	ror	r24
+ a56:	9c 01       	movw	r18, r24
+ a58:	ce 01       	movw	r24, r28
+ a5a:	41 96       	adiw	r24, 0x11	; 17
+ a5c:	b9 01       	movw	r22, r18
+ a5e:	0e 94 93 03 	call	0x726	; 0x726 <_ZN7KeyMemoC1Ei>
+ a62:	09 89       	ldd	r16, Y+17	; 0x11
+ a64:	1a 89       	ldd	r17, Y+18	; 0x12
+ a66:	66 c0       	rjmp	.+204    	; 0xb34 <_ZN18KeyboardController21readValueFromKeyboardEv+0x2a2>
+ a68:	8f 89       	ldd	r24, Y+23	; 0x17
+ a6a:	98 8d       	ldd	r25, Y+24	; 0x18
+ a6c:	fc 01       	movw	r30, r24
+ a6e:	86 a1       	ldd	r24, Z+38	; 0x26
+ a70:	97 a1       	ldd	r25, Z+39	; 0x27
+ a72:	8d 30       	cpi	r24, 0x0D	; 13
+ a74:	91 05       	cpc	r25, r1
+ a76:	39 f4       	brne	.+14     	; 0xa86 <_ZN18KeyboardController21readValueFromKeyboardEv+0x1f4>
+ a78:	ce 01       	movw	r24, r28
+ a7a:	0f 96       	adiw	r24, 0x0f	; 15
+ a7c:	0e 94 b2 03 	call	0x764	; 0x764 <_ZN8KeyCleanC1Ev>
+ a80:	0f 85       	ldd	r16, Y+15	; 0x0f
+ a82:	18 89       	ldd	r17, Y+16	; 0x10
+ a84:	57 c0       	rjmp	.+174    	; 0xb34 <_ZN18KeyboardController21readValueFromKeyboardEv+0x2a2>
+ a86:	8f 89       	ldd	r24, Y+23	; 0x17
+ a88:	98 8d       	ldd	r25, Y+24	; 0x18
+ a8a:	fc 01       	movw	r30, r24
+ a8c:	86 a1       	ldd	r24, Z+38	; 0x26
+ a8e:	97 a1       	ldd	r25, Z+39	; 0x27
+ a90:	8f 30       	cpi	r24, 0x0F	; 15
+ a92:	91 05       	cpc	r25, r1
+ a94:	39 f4       	brne	.+14     	; 0xaa4 <_ZN18KeyboardController21readValueFromKeyboardEv+0x212>
+ a96:	ce 01       	movw	r24, r28
+ a98:	0d 96       	adiw	r24, 0x0d	; 13
+	_delay_ms(5);
+	
+};
+ a9a:	0e 94 cb 03 	call	0x796	; 0x796 <_ZN9KeyResultC1Ev>
+ a9e:	0d 85       	ldd	r16, Y+13	; 0x0d
+ aa0:	1e 85       	ldd	r17, Y+14	; 0x0e
+ aa2:	48 c0       	rjmp	.+144    	; 0xb34 <_ZN18KeyboardController21readValueFromKeyboardEv+0x2a2>
+ aa4:	1e 82       	std	Y+6, r1	; 0x06
+ aa6:	1d 82       	std	Y+5, r1	; 0x05
+ aa8:	8f 89       	ldd	r24, Y+23	; 0x17
+ aaa:	98 8d       	ldd	r25, Y+24	; 0x18
+ aac:	fc 01       	movw	r30, r24
+ aae:	86 a1       	ldd	r24, Z+38	; 0x26
+ ab0:	97 a1       	ldd	r25, Z+39	; 0x27
+		}else if(readKey == 15){			//Finish calculate
+		return KeyResult();
+		}else{								//Numbers left
+		
+		int val = 0;
+		if(readKey < 4){
+ ab2:	84 30       	cpi	r24, 0x04	; 4
+ ab4:	91 05       	cpc	r25, r1
+ ab6:	64 f4       	brge	.+24     	; 0xad0 <_ZN18KeyboardController21readValueFromKeyboardEv+0x23e>
+			val+=readKey;
+ ab8:	8f 89       	ldd	r24, Y+23	; 0x17
+ aba:	98 8d       	ldd	r25, Y+24	; 0x18
+ abc:	fc 01       	movw	r30, r24
+ abe:	86 a1       	ldd	r24, Z+38	; 0x26
+ ac0:	97 a1       	ldd	r25, Z+39	; 0x27
+ ac2:	2d 81       	ldd	r18, Y+5	; 0x05
+ ac4:	3e 81       	ldd	r19, Y+6	; 0x06
+ ac6:	82 0f       	add	r24, r18
+ ac8:	93 1f       	adc	r25, r19
+ aca:	9e 83       	std	Y+6, r25	; 0x06
+ acc:	8d 83       	std	Y+5, r24	; 0x05
+ ace:	29 c0       	rjmp	.+82     	; 0xb22 <_ZN18KeyboardController21readValueFromKeyboardEv+0x290>
+		}else if(readKey < 8){
+ ad0:	8f 89       	ldd	r24, Y+23	; 0x17
+ ad2:	98 8d       	ldd	r25, Y+24	; 0x18
+ ad4:	fc 01       	movw	r30, r24
+ ad6:	86 a1       	ldd	r24, Z+38	; 0x26
+ ad8:	97 a1       	ldd	r25, Z+39	; 0x27
+ ada:	88 30       	cpi	r24, 0x08	; 8
+ adc:	91 05       	cpc	r25, r1
+ ade:	6c f4       	brge	.+26     	; 0xafa <_ZN18KeyboardController21readValueFromKeyboardEv+0x268>
+			val +=(readKey-1);
+ ae0:	8f 89       	ldd	r24, Y+23	; 0x17
+ ae2:	98 8d       	ldd	r25, Y+24	; 0x18
+ ae4:	fc 01       	movw	r30, r24
+ ae6:	86 a1       	ldd	r24, Z+38	; 0x26
+ ae8:	97 a1       	ldd	r25, Z+39	; 0x27
+ aea:	01 97       	sbiw	r24, 0x01	; 1
+ aec:	2d 81       	ldd	r18, Y+5	; 0x05
+ aee:	3e 81       	ldd	r19, Y+6	; 0x06
+ af0:	82 0f       	add	r24, r18
+ af2:	93 1f       	adc	r25, r19
+ af4:	9e 83       	std	Y+6, r25	; 0x06
+ af6:	8d 83       	std	Y+5, r24	; 0x05
+ af8:	14 c0       	rjmp	.+40     	; 0xb22 <_ZN18KeyboardController21readValueFromKeyboardEv+0x290>
+		}else if(readKey < 12){
+ afa:	8f 89       	ldd	r24, Y+23	; 0x17
+ afc:	98 8d       	ldd	r25, Y+24	; 0x18
+ afe:	fc 01       	movw	r30, r24
+ b00:	86 a1       	ldd	r24, Z+38	; 0x26
+ b02:	97 a1       	ldd	r25, Z+39	; 0x27
+ b04:	8c 30       	cpi	r24, 0x0C	; 12
+ b06:	91 05       	cpc	r25, r1
+ b08:	64 f4       	brge	.+24     	; 0xb22 <_ZN18KeyboardController21readValueFromKeyboardEv+0x290>
+			val +=(readKey-2);
+ b0a:	8f 89       	ldd	r24, Y+23	; 0x17
+ b0c:	98 8d       	ldd	r25, Y+24	; 0x18
+ b0e:	fc 01       	movw	r30, r24
+ b10:	86 a1       	ldd	r24, Z+38	; 0x26
+ b12:	97 a1       	ldd	r25, Z+39	; 0x27
+ b14:	02 97       	sbiw	r24, 0x02	; 2
+ b16:	2d 81       	ldd	r18, Y+5	; 0x05
+ b18:	3e 81       	ldd	r19, Y+6	; 0x06
+ b1a:	82 0f       	add	r24, r18
+ b1c:	93 1f       	adc	r25, r19
+ b1e:	9e 83       	std	Y+6, r25	; 0x06
+ b20:	8d 83       	std	Y+5, r24	; 0x05
+		}
+		
+		return KeyNumber(val);
+ b22:	2d 81       	ldd	r18, Y+5	; 0x05
+ b24:	3e 81       	ldd	r19, Y+6	; 0x06
+ b26:	ce 01       	movw	r24, r28
+ b28:	0b 96       	adiw	r24, 0x0b	; 11
+ b2a:	b9 01       	movw	r22, r18
+ b2c:	0e 94 e4 03 	call	0x7c8	; 0x7c8 <_ZN9KeyNumberC1Ei>
+ b30:	0b 85       	ldd	r16, Y+11	; 0x0b
+ b32:	1c 85       	ldd	r17, Y+12	; 0x0c
+ b34:	c8 01       	movw	r24, r16
+	}
+}
+ b36:	68 96       	adiw	r28, 0x18	; 24
+ b38:	0f b6       	in	r0, 0x3f	; 63
+ b3a:	f8 94       	cli
+ b3c:	de bf       	out	0x3e, r29	; 62
+ b3e:	0f be       	out	0x3f, r0	; 63
+ b40:	cd bf       	out	0x3d, r28	; 61
+ b42:	df 91       	pop	r29
+ b44:	cf 91       	pop	r28
+ b46:	1f 91       	pop	r17
+ b48:	0f 91       	pop	r16
+ b4a:	08 95       	ret
+
+00000b4c <_ZN18KeyboardController15getNextOperatorEv>:
+
+int KeyboardController::getNextOperator(){
+ b4c:	cf 93       	push	r28
+ b4e:	df 93       	push	r29
+ b50:	00 d0       	rcall	.+0      	; 0xb52 <_ZN18KeyboardController15getNextOperatorEv+0x6>
+ b52:	cd b7       	in	r28, 0x3d	; 61
+ b54:	de b7       	in	r29, 0x3e	; 62
+ b56:	9a 83       	std	Y+2, r25	; 0x02
+ b58:	89 83       	std	Y+1, r24	; 0x01
+	return (++operatorId)%MAX_OPERATORS;
+ b5a:	89 81       	ldd	r24, Y+1	; 0x01
+ b5c:	9a 81       	ldd	r25, Y+2	; 0x02
+ b5e:	fc 01       	movw	r30, r24
+ b60:	84 a1       	ldd	r24, Z+36	; 0x24
+ b62:	95 a1       	ldd	r25, Z+37	; 0x25
+ b64:	9c 01       	movw	r18, r24
+ b66:	2f 5f       	subi	r18, 0xFF	; 255
+ b68:	3f 4f       	sbci	r19, 0xFF	; 255
+ b6a:	89 81       	ldd	r24, Y+1	; 0x01
+ b6c:	9a 81       	ldd	r25, Y+2	; 0x02
+ b6e:	fc 01       	movw	r30, r24
+ b70:	35 a3       	std	Z+37, r19	; 0x25
+ b72:	24 a3       	std	Z+36, r18	; 0x24
+ b74:	89 81       	ldd	r24, Y+1	; 0x01
+ b76:	9a 81       	ldd	r25, Y+2	; 0x02
+ b78:	fc 01       	movw	r30, r24
+ b7a:	84 a1       	ldd	r24, Z+36	; 0x24
+ b7c:	95 a1       	ldd	r25, Z+37	; 0x25
+ b7e:	83 70       	andi	r24, 0x03	; 3
+ b80:	90 78       	andi	r25, 0x80	; 128
+ b82:	99 23       	and	r25, r25
+ b84:	24 f4       	brge	.+8      	; 0xb8e <_ZN18KeyboardController15getNextOperatorEv+0x42>
+ b86:	01 97       	sbiw	r24, 0x01	; 1
+ b88:	8c 6f       	ori	r24, 0xFC	; 252
+ b8a:	9f 6f       	ori	r25, 0xFF	; 255
+ b8c:	01 96       	adiw	r24, 0x01	; 1
+}
+ b8e:	0f 90       	pop	r0
+ b90:	0f 90       	pop	r0
+ b92:	df 91       	pop	r29
+ b94:	cf 91       	pop	r28
+ b96:	08 95       	ret
+
+00000b98 <_ZN18KeyboardController14initOperatorIdEv>:
+
+void KeyboardController::initOperatorId(){
+ b98:	cf 93       	push	r28
+ b9a:	df 93       	push	r29
+ b9c:	00 d0       	rcall	.+0      	; 0xb9e <_ZN18KeyboardController14initOperatorIdEv+0x6>
+ b9e:	cd b7       	in	r28, 0x3d	; 61
+ ba0:	de b7       	in	r29, 0x3e	; 62
+ ba2:	9a 83       	std	Y+2, r25	; 0x02
+ ba4:	89 83       	std	Y+1, r24	; 0x01
+	operatorId = MAX_OPERATORS-1;
+ ba6:	89 81       	ldd	r24, Y+1	; 0x01
+ ba8:	9a 81       	ldd	r25, Y+2	; 0x02
+ baa:	23 e0       	ldi	r18, 0x03	; 3
+ bac:	30 e0       	ldi	r19, 0x00	; 0
+ bae:	fc 01       	movw	r30, r24
+ bb0:	35 a3       	std	Z+37, r19	; 0x25
+ bb2:	24 a3       	std	Z+36, r18	; 0x24
+}
+ bb4:	0f 90       	pop	r0
+ bb6:	0f 90       	pop	r0
+ bb8:	df 91       	pop	r29
+ bba:	cf 91       	pop	r28
+ bbc:	08 95       	ret
+
+00000bbe <_ZN13LCDControllerC1Ev>:
+*  Author: gauee
+*/
+
+#include "LCD.h"
+
+LCDController::LCDController(){};
+ bbe:	cf 93       	push	r28
+ bc0:	df 93       	push	r29
+ bc2:	00 d0       	rcall	.+0      	; 0xbc4 <_ZN13LCDControllerC1Ev+0x6>
+ bc4:	cd b7       	in	r28, 0x3d	; 61
+ bc6:	de b7       	in	r29, 0x3e	; 62
+ bc8:	9a 83       	std	Y+2, r25	; 0x02
+ bca:	89 83       	std	Y+1, r24	; 0x01
+ bcc:	0f 90       	pop	r0
+ bce:	0f 90       	pop	r0
+ bd0:	df 91       	pop	r29
+ bd2:	cf 91       	pop	r28
+ bd4:	08 95       	ret
+
+00000bd6 <_ZN13LCDControllerD1Ev>:
+
+LCDController::~LCDController(){};
+ bd6:	cf 93       	push	r28
+ bd8:	df 93       	push	r29
+ bda:	00 d0       	rcall	.+0      	; 0xbdc <_ZN13LCDControllerD1Ev+0x6>
+ bdc:	cd b7       	in	r28, 0x3d	; 61
+ bde:	de b7       	in	r29, 0x3e	; 62
+ be0:	9a 83       	std	Y+2, r25	; 0x02
+ be2:	89 83       	std	Y+1, r24	; 0x01
+ be4:	0f 90       	pop	r0
+ be6:	0f 90       	pop	r0
+ be8:	df 91       	pop	r29
+ bea:	cf 91       	pop	r28
+ bec:	08 95       	ret
+
+00000bee <_ZN13LCDController12cleanDisplayEv>:
+
+void LCDController::cleanDisplay(){
+ bee:	cf 93       	push	r28
+ bf0:	df 93       	push	r29
+ bf2:	00 d0       	rcall	.+0      	; 0xbf4 <_ZN13LCDController12cleanDisplayEv+0x6>
+ bf4:	cd b7       	in	r28, 0x3d	; 61
+ bf6:	de b7       	in	r29, 0x3e	; 62
+ bf8:	9a 83       	std	Y+2, r25	; 0x02
+ bfa:	89 83       	std	Y+1, r24	; 0x01
+	//TODO: implement.
+};
+ bfc:	0f 90       	pop	r0
+ bfe:	0f 90       	pop	r0
+ c00:	df 91       	pop	r29
+ c02:	cf 91       	pop	r28
+ c04:	08 95       	ret
+
+00000c06 <_ZN13LCDController14loadCalcResultEP10CalcResult>:
+
+void LCDController::loadCalcResult(CalcResult* cr){
+ c06:	cf 93       	push	r28
+ c08:	df 93       	push	r29
+ c0a:	00 d0       	rcall	.+0      	; 0xc0c <_ZN13LCDController14loadCalcResultEP10CalcResult+0x6>
+ c0c:	00 d0       	rcall	.+0      	; 0xc0e <_ZN13LCDController14loadCalcResultEP10CalcResult+0x8>
+ c0e:	cd b7       	in	r28, 0x3d	; 61
+ c10:	de b7       	in	r29, 0x3e	; 62
+ c12:	9a 83       	std	Y+2, r25	; 0x02
+ c14:	89 83       	std	Y+1, r24	; 0x01
+ c16:	7c 83       	std	Y+4, r23	; 0x04
+ c18:	6b 83       	std	Y+3, r22	; 0x03
+	//TODO: implement.
+}
+ c1a:	0f 90       	pop	r0
+ c1c:	0f 90       	pop	r0
+ c1e:	0f 90       	pop	r0
+ c20:	0f 90       	pop	r0
+ c22:	df 91       	pop	r29
+ c24:	cf 91       	pop	r28
+ c26:	08 95       	ret
+
+00000c28 <_ZN13LCDController15writeCalcResultEP10CalcResult>:
+
+void LCDController::writeCalcResult(CalcResult* cr){
+ c28:	cf 93       	push	r28
+ c2a:	df 93       	push	r29
+ c2c:	00 d0       	rcall	.+0      	; 0xc2e <_ZN13LCDController15writeCalcResultEP10CalcResult+0x6>
+ c2e:	00 d0       	rcall	.+0      	; 0xc30 <_ZN13LCDController15writeCalcResultEP10CalcResult+0x8>
+ c30:	cd b7       	in	r28, 0x3d	; 61
+ c32:	de b7       	in	r29, 0x3e	; 62
+ c34:	9a 83       	std	Y+2, r25	; 0x02
+ c36:	89 83       	std	Y+1, r24	; 0x01
+ c38:	7c 83       	std	Y+4, r23	; 0x04
+ c3a:	6b 83       	std	Y+3, r22	; 0x03
+	//TODO: implement.
+ c3c:	0f 90       	pop	r0
+ c3e:	0f 90       	pop	r0
+ c40:	0f 90       	pop	r0
+ c42:	0f 90       	pop	r0
+ c44:	df 91       	pop	r29
+ c46:	cf 91       	pop	r28
+ c48:	08 95       	ret
+
+00000c4a <_ZN14MemoControllerC1Ev>:
+ *  Author: gauee
+ */ 
+
+#include "Memo.h"
+
+MemoController::MemoController(){};
+ c4a:	cf 93       	push	r28
+ c4c:	df 93       	push	r29
+ c4e:	00 d0       	rcall	.+0      	; 0xc50 <_ZN14MemoControllerC1Ev+0x6>
+ c50:	cd b7       	in	r28, 0x3d	; 61
+ c52:	de b7       	in	r29, 0x3e	; 62
+ c54:	9a 83       	std	Y+2, r25	; 0x02
+ c56:	89 83       	std	Y+1, r24	; 0x01
+ c58:	89 81       	ldd	r24, Y+1	; 0x01
+ c5a:	9a 81       	ldd	r25, Y+2	; 0x02
+ c5c:	0e 94 14 03 	call	0x628	; 0x628 <_ZN10CalcResultC1Ev>
+ c60:	0f 90       	pop	r0
+ c62:	0f 90       	pop	r0
+ c64:	df 91       	pop	r29
+ c66:	cf 91       	pop	r28
+ c68:	08 95       	ret
+
+00000c6a <_ZN14MemoControllerD1Ev>:
+
+MemoController::~MemoController(){};
+ c6a:	cf 93       	push	r28
+ c6c:	df 93       	push	r29
+ c6e:	00 d0       	rcall	.+0      	; 0xc70 <_ZN14MemoControllerD1Ev+0x6>
+ c70:	cd b7       	in	r28, 0x3d	; 61
+ c72:	de b7       	in	r29, 0x3e	; 62
+ c74:	9a 83       	std	Y+2, r25	; 0x02
+ c76:	89 83       	std	Y+1, r24	; 0x01
+ c78:	89 81       	ldd	r24, Y+1	; 0x01
+ c7a:	9a 81       	ldd	r25, Y+2	; 0x02
+ c7c:	0e 94 20 03 	call	0x640	; 0x640 <_ZN10CalcResultD1Ev>
+ c80:	0f 90       	pop	r0
+ c82:	0f 90       	pop	r0
+ c84:	df 91       	pop	r29
+ c86:	cf 91       	pop	r28
+ c88:	08 95       	ret
+
+00000c8a <_ZN14MemoController9addToMemoEP10CalcResult>:
+	
+void MemoController::addToMemo(CalcResult* cr){
+ c8a:	cf 93       	push	r28
+ c8c:	df 93       	push	r29
+ c8e:	00 d0       	rcall	.+0      	; 0xc90 <_ZN14MemoController9addToMemoEP10CalcResult+0x6>
+ c90:	00 d0       	rcall	.+0      	; 0xc92 <_ZN14MemoController9addToMemoEP10CalcResult+0x8>
+ c92:	cd b7       	in	r28, 0x3d	; 61
+ c94:	de b7       	in	r29, 0x3e	; 62
+ c96:	9a 83       	std	Y+2, r25	; 0x02
+ c98:	89 83       	std	Y+1, r24	; 0x01
+ c9a:	7c 83       	std	Y+4, r23	; 0x04
+ c9c:	6b 83       	std	Y+3, r22	; 0x03
+	//TODO: implement.
+	this->cr = *cr;
+ c9e:	89 81       	ldd	r24, Y+1	; 0x01
+ ca0:	9a 81       	ldd	r25, Y+2	; 0x02
+ ca2:	2b 81       	ldd	r18, Y+3	; 0x03
+ ca4:	3c 81       	ldd	r19, Y+4	; 0x04
+ ca6:	4a e0       	ldi	r20, 0x0A	; 10
+ ca8:	f9 01       	movw	r30, r18
+ caa:	dc 01       	movw	r26, r24
+ cac:	01 90       	ld	r0, Z+
+ cae:	0d 92       	st	X+, r0
+ cb0:	4a 95       	dec	r20
+ cb2:	e1 f7       	brne	.-8      	; 0xcac <_ZN14MemoController9addToMemoEP10CalcResult+0x22>
+}
+ cb4:	0f 90       	pop	r0
+ cb6:	0f 90       	pop	r0
+ cb8:	0f 90       	pop	r0
+ cba:	0f 90       	pop	r0
+ cbc:	df 91       	pop	r29
+ cbe:	cf 91       	pop	r28
+ cc0:	08 95       	ret
+
+00000cc2 <_ZN14MemoController12readFromMemoEv>:
+	
+CalcResult* MemoController::readFromMemo(){
+ cc2:	cf 93       	push	r28
+ cc4:	df 93       	push	r29
+ cc6:	00 d0       	rcall	.+0      	; 0xcc8 <_ZN14MemoController12readFromMemoEv+0x6>
+ cc8:	cd b7       	in	r28, 0x3d	; 61
+ cca:	de b7       	in	r29, 0x3e	; 62
+ ccc:	9a 83       	std	Y+2, r25	; 0x02
+ cce:	89 83       	std	Y+1, r24	; 0x01
+	//TODO: implement.
+	return &cr;	
+ cd0:	89 81       	ldd	r24, Y+1	; 0x01
+ cd2:	9a 81       	ldd	r25, Y+2	; 0x02
+}
+ cd4:	0f 90       	pop	r0
+ cd6:	0f 90       	pop	r0
+ cd8:	df 91       	pop	r29
+ cda:	cf 91       	pop	r28
+ cdc:	08 95       	ret
+
+00000cde <_ZN14MemoController13eraseFromMemoEv>:
+
+void MemoController::eraseFromMemo(){
+ cde:	cf 93       	push	r28
+ ce0:	df 93       	push	r29
+ ce2:	00 d0       	rcall	.+0      	; 0xce4 <_ZN14MemoController13eraseFromMemoEv+0x6>
+ ce4:	cd b7       	in	r28, 0x3d	; 61
+ ce6:	de b7       	in	r29, 0x3e	; 62
+ ce8:	9a 83       	std	Y+2, r25	; 0x02
+ cea:	89 83       	std	Y+1, r24	; 0x01
+	//TODO: implement.
+	this->cr.cleanResult();
+ cec:	89 81       	ldd	r24, Y+1	; 0x01
+ cee:	9a 81       	ldd	r25, Y+2	; 0x02
+ cf0:	0e 94 2c 03 	call	0x658	; 0x658 <_ZN10CalcResult11cleanResultEv>
+ cf4:	0f 90       	pop	r0
+ cf6:	0f 90       	pop	r0
+ cf8:	df 91       	pop	r29
+ cfa:	cf 91       	pop	r28
+ cfc:	08 95       	ret
+
+00000cfe <_Z8schedulev>:
+	scheduled_task[new_task_idx].task_ptr = t;
+	
+	++new_task_idx;
+}
+
+void schedule(){
+ cfe:	cf 93       	push	r28
+ d00:	df 93       	push	r29
+ d02:	00 d0       	rcall	.+0      	; 0xd04 <_Z8schedulev+0x6>
+ d04:	cd b7       	in	r28, 0x3d	; 61
+ d06:	de b7       	in	r29, 0x3e	; 62
+	for(int i=0;i<new_task_idx;++i){
+ d08:	1a 82       	std	Y+2, r1	; 0x02
+ d0a:	19 82       	std	Y+1, r1	; 0x01
+ d0c:	8e c0       	rjmp	.+284    	; 0xe2a <_Z8schedulev+0x12c>
+		if(scheduled_task[i].to_go){
+ d0e:	29 81       	ldd	r18, Y+1	; 0x01
+ d10:	3a 81       	ldd	r19, Y+2	; 0x02
+ d12:	c9 01       	movw	r24, r18
+ d14:	88 0f       	add	r24, r24
+ d16:	99 1f       	adc	r25, r25
+ d18:	88 0f       	add	r24, r24
+ d1a:	99 1f       	adc	r25, r25
+ d1c:	88 0f       	add	r24, r24
+ d1e:	99 1f       	adc	r25, r25
+ d20:	82 1b       	sub	r24, r18
+ d22:	93 0b       	sbc	r25, r19
+ d24:	8a 5a       	subi	r24, 0xAA	; 170
+ d26:	9e 4f       	sbci	r25, 0xFE	; 254
+ d28:	fc 01       	movw	r30, r24
+ d2a:	80 81       	ld	r24, Z
+ d2c:	91 81       	ldd	r25, Z+1	; 0x01
+ d2e:	00 97       	sbiw	r24, 0x00	; 0
+ d30:	09 f4       	brne	.+2      	; 0xd34 <_Z8schedulev+0x36>
+ d32:	76 c0       	rjmp	.+236    	; 0xe20 <_Z8schedulev+0x122>
+			scheduled_task[i].to_go--;
+ d34:	29 81       	ldd	r18, Y+1	; 0x01
+ d36:	3a 81       	ldd	r19, Y+2	; 0x02
+ d38:	c9 01       	movw	r24, r18
+ d3a:	88 0f       	add	r24, r24
+ d3c:	99 1f       	adc	r25, r25
+ d3e:	88 0f       	add	r24, r24
+ d40:	99 1f       	adc	r25, r25
+ d42:	88 0f       	add	r24, r24
+ d44:	99 1f       	adc	r25, r25
+ d46:	82 1b       	sub	r24, r18
+ d48:	93 0b       	sbc	r25, r19
+ d4a:	8a 5a       	subi	r24, 0xAA	; 170
+ d4c:	9e 4f       	sbci	r25, 0xFE	; 254
+ d4e:	fc 01       	movw	r30, r24
+ d50:	80 81       	ld	r24, Z
+ d52:	91 81       	ldd	r25, Z+1	; 0x01
+ d54:	ac 01       	movw	r20, r24
+ d56:	41 50       	subi	r20, 0x01	; 1
+ d58:	51 09       	sbc	r21, r1
+ d5a:	29 81       	ldd	r18, Y+1	; 0x01
+ d5c:	3a 81       	ldd	r19, Y+2	; 0x02
+ d5e:	c9 01       	movw	r24, r18
+ d60:	88 0f       	add	r24, r24
+ d62:	99 1f       	adc	r25, r25
+ d64:	88 0f       	add	r24, r24
+ d66:	99 1f       	adc	r25, r25
+ d68:	88 0f       	add	r24, r24
+ d6a:	99 1f       	adc	r25, r25
+ d6c:	82 1b       	sub	r24, r18
+ d6e:	93 0b       	sbc	r25, r19
+ d70:	8a 5a       	subi	r24, 0xAA	; 170
+ d72:	9e 4f       	sbci	r25, 0xFE	; 254
+ d74:	fc 01       	movw	r30, r24
+ d76:	51 83       	std	Z+1, r21	; 0x01
+ d78:	40 83       	st	Z, r20
+			if(!scheduled_task[i].to_go){
+ d7a:	29 81       	ldd	r18, Y+1	; 0x01
+ d7c:	3a 81       	ldd	r19, Y+2	; 0x02
+ d7e:	c9 01       	movw	r24, r18
+ d80:	88 0f       	add	r24, r24
+ d82:	99 1f       	adc	r25, r25
+ d84:	88 0f       	add	r24, r24
+ d86:	99 1f       	adc	r25, r25
+ d88:	88 0f       	add	r24, r24
+ d8a:	99 1f       	adc	r25, r25
+ d8c:	82 1b       	sub	r24, r18
+ d8e:	93 0b       	sbc	r25, r19
+ d90:	8a 5a       	subi	r24, 0xAA	; 170
+ d92:	9e 4f       	sbci	r25, 0xFE	; 254
+ d94:	fc 01       	movw	r30, r24
+ d96:	80 81       	ld	r24, Z
+ d98:	91 81       	ldd	r25, Z+1	; 0x01
+ d9a:	00 97       	sbiw	r24, 0x00	; 0
+ d9c:	09 f0       	breq	.+2      	; 0xda0 <_Z8schedulev+0xa2>
+ d9e:	40 c0       	rjmp	.+128    	; 0xe20 <_Z8schedulev+0x122>
+				scheduled_task[i].ready++;
+ da0:	29 81       	ldd	r18, Y+1	; 0x01
+ da2:	3a 81       	ldd	r19, Y+2	; 0x02
+ da4:	c9 01       	movw	r24, r18
+ da6:	88 0f       	add	r24, r24
+ da8:	99 1f       	adc	r25, r25
+ daa:	88 0f       	add	r24, r24
+ dac:	99 1f       	adc	r25, r25
+ dae:	88 0f       	add	r24, r24
+ db0:	99 1f       	adc	r25, r25
+ db2:	82 1b       	sub	r24, r18
+ db4:	93 0b       	sbc	r25, r19
+ db6:	86 5a       	subi	r24, 0xA6	; 166
+ db8:	9e 4f       	sbci	r25, 0xFE	; 254
+ dba:	fc 01       	movw	r30, r24
+ dbc:	80 81       	ld	r24, Z
+ dbe:	48 2f       	mov	r20, r24
+ dc0:	4f 5f       	subi	r20, 0xFF	; 255
+ dc2:	29 81       	ldd	r18, Y+1	; 0x01
+ dc4:	3a 81       	ldd	r19, Y+2	; 0x02
+ dc6:	c9 01       	movw	r24, r18
+ dc8:	88 0f       	add	r24, r24
+ dca:	99 1f       	adc	r25, r25
+ dcc:	88 0f       	add	r24, r24
+ dce:	99 1f       	adc	r25, r25
+ dd0:	88 0f       	add	r24, r24
+ dd2:	99 1f       	adc	r25, r25
+ dd4:	82 1b       	sub	r24, r18
+ dd6:	93 0b       	sbc	r25, r19
+ dd8:	86 5a       	subi	r24, 0xA6	; 166
+ dda:	9e 4f       	sbci	r25, 0xFE	; 254
+ ddc:	fc 01       	movw	r30, r24
+ dde:	40 83       	st	Z, r20
+				scheduled_task[i].to_go = scheduled_task[i].inteval;
+ de0:	29 81       	ldd	r18, Y+1	; 0x01
+ de2:	3a 81       	ldd	r19, Y+2	; 0x02
+ de4:	c9 01       	movw	r24, r18
+ de6:	88 0f       	add	r24, r24
+ de8:	99 1f       	adc	r25, r25
+ dea:	88 0f       	add	r24, r24
+ dec:	99 1f       	adc	r25, r25
+ dee:	88 0f       	add	r24, r24
+ df0:	99 1f       	adc	r25, r25
+ df2:	82 1b       	sub	r24, r18
+ df4:	93 0b       	sbc	r25, r19
+ df6:	88 5a       	subi	r24, 0xA8	; 168
+ df8:	9e 4f       	sbci	r25, 0xFE	; 254
+ dfa:	fc 01       	movw	r30, r24
+ dfc:	40 81       	ld	r20, Z
+ dfe:	51 81       	ldd	r21, Z+1	; 0x01
+ e00:	29 81       	ldd	r18, Y+1	; 0x01
+ e02:	3a 81       	ldd	r19, Y+2	; 0x02
+ e04:	c9 01       	movw	r24, r18
+ e06:	88 0f       	add	r24, r24
+ e08:	99 1f       	adc	r25, r25
+ e0a:	88 0f       	add	r24, r24
+ e0c:	99 1f       	adc	r25, r25
+ e0e:	88 0f       	add	r24, r24
+ e10:	99 1f       	adc	r25, r25
+ e12:	82 1b       	sub	r24, r18
+ e14:	93 0b       	sbc	r25, r19
+ e16:	8a 5a       	subi	r24, 0xAA	; 170
+ e18:	9e 4f       	sbci	r25, 0xFE	; 254
+ e1a:	fc 01       	movw	r30, r24
+ e1c:	51 83       	std	Z+1, r21	; 0x01
+ e1e:	40 83       	st	Z, r20
+	
+	++new_task_idx;
+}
+
+void schedule(){
+	for(int i=0;i<new_task_idx;++i){
+ e20:	89 81       	ldd	r24, Y+1	; 0x01
+ e22:	9a 81       	ldd	r25, Y+2	; 0x02
+ e24:	01 96       	adiw	r24, 0x01	; 1
+ e26:	9a 83       	std	Y+2, r25	; 0x02
+ e28:	89 83       	std	Y+1, r24	; 0x01
+ e2a:	80 91 9a 01 	lds	r24, 0x019A
+ e2e:	90 91 9b 01 	lds	r25, 0x019B
+ e32:	41 e0       	ldi	r20, 0x01	; 1
+ e34:	29 81       	ldd	r18, Y+1	; 0x01
+ e36:	3a 81       	ldd	r19, Y+2	; 0x02
+ e38:	28 17       	cp	r18, r24
+ e3a:	39 07       	cpc	r19, r25
+ e3c:	0c f0       	brlt	.+2      	; 0xe40 <_Z8schedulev+0x142>
+ e3e:	40 e0       	ldi	r20, 0x00	; 0
+ e40:	44 23       	and	r20, r20
+ e42:	09 f0       	breq	.+2      	; 0xe46 <_Z8schedulev+0x148>
+ e44:	64 cf       	rjmp	.-312    	; 0xd0e <_Z8schedulev+0x10>
+				scheduled_task[i].to_go = scheduled_task[i].inteval;
+			}
+		}
+	}
+	
+}
+ e46:	0f 90       	pop	r0
+ e48:	0f 90       	pop	r0
+ e4a:	df 91       	pop	r29
+ e4c:	cf 91       	pop	r28
+ e4e:	08 95       	ret
+
+00000e50 <__vector_10>:
+		}
+		i++;
+	}
+}
+
+ISR(TIMER0_COMP_vect){
+ e50:	1f 92       	push	r1
+ e52:	0f 92       	push	r0
+ e54:	00 90 5f 00 	lds	r0, 0x005F
+ e58:	0f 92       	push	r0
+ e5a:	11 24       	eor	r1, r1
+ e5c:	2f 93       	push	r18
+ e5e:	3f 93       	push	r19
+ e60:	4f 93       	push	r20
+ e62:	5f 93       	push	r21
+ e64:	6f 93       	push	r22
+ e66:	7f 93       	push	r23
+ e68:	8f 93       	push	r24
+ e6a:	9f 93       	push	r25
+ e6c:	af 93       	push	r26
+ e6e:	bf 93       	push	r27
+ e70:	ef 93       	push	r30
+ e72:	ff 93       	push	r31
+ e74:	cf 93       	push	r28
+ e76:	df 93       	push	r29
+ e78:	cd b7       	in	r28, 0x3d	; 61
+ e7a:	de b7       	in	r29, 0x3e	; 62
+	schedule();
+ e7c:	0e 94 7f 06 	call	0xcfe	; 0xcfe <_Z8schedulev>
+}
+ e80:	df 91       	pop	r29
+ e82:	cf 91       	pop	r28
+ e84:	ff 91       	pop	r31
+ e86:	ef 91       	pop	r30
+ e88:	bf 91       	pop	r27
+ e8a:	af 91       	pop	r26
+ e8c:	9f 91       	pop	r25
+ e8e:	8f 91       	pop	r24
+ e90:	7f 91       	pop	r23
+ e92:	6f 91       	pop	r22
+ e94:	5f 91       	pop	r21
+ e96:	4f 91       	pop	r20
+ e98:	3f 91       	pop	r19
+ e9a:	2f 91       	pop	r18
+ e9c:	0f 90       	pop	r0
+ e9e:	00 92 5f 00 	sts	0x005F, r0
+ ea2:	0f 90       	pop	r0
+ ea4:	1f 90       	pop	r1
+ ea6:	18 95       	reti
+
+00000ea8 <__tablejump2__>:
+ ea8:	ee 0f       	add	r30, r30
+ eaa:	ff 1f       	adc	r31, r31
+
+00000eac <__tablejump__>:
+ eac:	05 90       	lpm	r0, Z+
+ eae:	f4 91       	lpm	r31, Z
+ eb0:	e0 2d       	mov	r30, r0
+ eb2:	09 94       	ijmp
+
+00000eb4 <__do_global_dtors>:
+ eb4:	10 e0       	ldi	r17, 0x00	; 0
+ eb6:	c6 e5       	ldi	r28, 0x56	; 86
+ eb8:	d0 e0       	ldi	r29, 0x00	; 0
+ eba:	04 c0       	rjmp	.+8      	; 0xec4 <__do_global_dtors+0x10>
+ ebc:	fe 01       	movw	r30, r28
+ ebe:	0e 94 56 07 	call	0xeac	; 0xeac <__tablejump__>
+ ec2:	22 96       	adiw	r28, 0x02	; 2
+ ec4:	c8 35       	cpi	r28, 0x58	; 88
+ ec6:	d1 07       	cpc	r29, r17
+ ec8:	c9 f7       	brne	.-14     	; 0xebc <__do_global_dtors+0x8>
+ eca:	f8 94       	cli
+
+00000ecc <__stop_program>:
+ ecc:	ff cf       	rjmp	.-2      	; 0xecc <__stop_program>

@@ -17,6 +17,7 @@ static int MEMO_ERASE=3;
 
 class MemoController
 {
+
 	public:
 	MemoController();
 	~MemoController();
