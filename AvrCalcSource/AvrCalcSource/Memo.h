@@ -39,6 +39,7 @@ class MemoController
 	
 	protected:
 	private:
+	int rslt;
 	CalcResult cr;
 };
 
