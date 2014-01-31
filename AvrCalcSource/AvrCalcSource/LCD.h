@@ -22,6 +22,13 @@ class LCDController
 
 	protected:
 	private:
+	//Variables
+	static const int MAX_CALC_OPER_SIZE = 128;
+	char calcOperStr[MAX_CALC_OPER_SIZE];
+	int curIdx;
+
+	//Methods	
+	void displayCalcOperation();
 };
 
 

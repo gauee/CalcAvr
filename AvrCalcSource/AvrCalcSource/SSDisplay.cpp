@@ -7,6 +7,7 @@
 #include "SSDispaly.h"
 
 void SSDisplay::initSSDisplay(){
+	cur_idx = 0;
 	initPortB();
 }
 

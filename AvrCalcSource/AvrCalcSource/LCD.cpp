@@ -6,19 +6,35 @@
 */
 
 #include "LCD.h"
+#include "HD44780.h"
 
-LCDController::LCDController(){};
+LCDController::LCDController(){
+	curIdx =0;
+	};
 
 LCDController::~LCDController(){};
 
 void LCDController::cleanDisplay(){
-	//TODO: implement.
+	LCD_Clear();
+	for(int i=0;i<MAX_CALC_OPER_SIZE;++i){
+		calcOperStr[i]=0;
+	}
+	curIdx =0;
 };
 
 void LCDController::loadCalcResult(CalcResult* cr){
-	//TODO: implement.
+	for(int i=0;i<cr->size;++i){
+		calcOperStr[curIdx++] = cr->tableResult[i];
+	}
+	displayCalcOperation();
 }
 
 void LCDController::writeCalcResult(CalcResult* cr){
-	//TODO: implement.
+	cleanDisplay();
+	calcOperStr[curIdx++] = '=';
+	loadCalcResult(cr);
+}
+
+void LCDController::displayCalcOperation(){
+	LCD_Text(calcOperStr);
 }

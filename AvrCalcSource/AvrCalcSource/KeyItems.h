@@ -13,17 +13,26 @@
 //#define MEMO_READ 3
 //#define MEMO_ERASE 4
 
-#define ID_NO_INPUT 0
-#define ID_OPERATOR 1
-#define ID_MEMO 2
-#define ID_CLEAN 3
-#define ID_RESULT 4
-#define ID_NUMBER 5
+static const int ID_NO_INPUT = 0;
+static const int ID_OPERATOR = 1;
+static const int ID_MEMO = 2;
+static const int ID_CLEAN = 3;
+static const int ID_RESULT = 4;
+static const int ID_NUMBER = 5;
+//#define ID_NO_INPUT 0
+//#define ID_OPERATOR 1
+//#define ID_MEMO 2
+//#define ID_CLEAN 3
+//#define ID_RESULT 4
+//#define ID_NUMBER 5
 
 class KeyItem{
 	public:
 	uint8_t val;
-	uint8_t id = ID_NO_INPUT;
+	uint8_t id;
+	KeyItem(){
+		id = ID_NO_INPUT;
+	}
 	
 	uint8_t getVal(){
 		return val;
