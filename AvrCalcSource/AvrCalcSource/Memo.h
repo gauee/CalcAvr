@@ -26,6 +26,7 @@ class MemoController
 	void addToMemo(CalcResult* cr);
 	CalcResult* readFromMemo();
 	void eraseFromMemo();
+	void saveToMemo();
 	
 	static bool isMemoWrite(KeyItem* item){
 		return item->getVal() == MEMO_WRITE;
@@ -39,8 +40,9 @@ class MemoController
 	
 	protected:
 	private:
-	int rslt;
+	double rslt;
 	CalcResult cr;
+	void recoverFromArray(CalcResult* cr);
 };
 
 
