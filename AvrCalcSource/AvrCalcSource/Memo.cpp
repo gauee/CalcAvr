@@ -12,8 +12,10 @@ MemoController::MemoController(){};
 MemoController::~MemoController(){};
 	
 void MemoController::addToMemo(CalcResult* cr){
-	//TODO: implement.
-	this->cr = *cr;
+	this->cr.size = cr->size;
+	for(int i=0;i<cr->size;++i){
+		this->cr.tableResult[i]=cr->tableResult[i];
+	}
 }
 	
 CalcResult* MemoController::readFromMemo(){
