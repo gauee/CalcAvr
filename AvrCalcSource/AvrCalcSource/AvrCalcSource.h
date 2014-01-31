@@ -8,7 +8,9 @@
 #define __AVR__CALC__SOURCE__H__
 
 #include <avr/io.h>
-#include "Keyboard.h"
+#include "KeyItems.h"
+
+void initAvrCalc();
 
 //Obsługa LCD
 void cleanCalculation();
@@ -20,7 +22,7 @@ void cleanLastResultInMemo();
 double getLastResultFromMemo();
 
 //Obsługa Klawiatury
-int readPressedKey(KeyboardController keyboardCntlr);
+void readPressedKey();
 void appendKeyItem(KeyItem item);
 
 //Obsługa Portu szeregowego
@@ -31,6 +33,10 @@ void printToSerialPort(char c);
 double calcResult();
 void cleanResults();
 char getOperator(int iter);
+
+//Osbluga lancucha operacji
+void appendOperator(KeyItem optr);
+void appendNumber(KeyItem number);
 
 
 #endif /*__AVR__CALC__SOURCE__H__*/

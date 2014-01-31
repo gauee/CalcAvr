@@ -4,11 +4,17 @@
 
 AvrCalcSource.cpp
 
-calcOperation.cpp
+CalcOperation.cpp
+
+CalcResult.cpp
 
 HD44780.cpp
 
 Keyboard.cpp
+
+LCD.cpp
+
+Memo.cpp
 
 SSDisplay.cpp
 

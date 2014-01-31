@@ -5,79 +5,56 @@
 *  Author: gauee
 */
 
-#include "calcOperation.h"
+#include "CalcOperation.h"
 #include "AvrCalcSource.h"
-CalcResult rslt = CalcResult();
-
 //potrzebujemy 3 pola zwiazane ze zmienymi i 2 ostatnie operatory w liscie
 
+CalcOperation::CalcOperation(){
+	cr = CalcResult();
+};
+
+CalcOperation::~CalcOperation(){
+};
+	
+
 //obs³uga operacji dodawania
-double numbersAdd(double first,double second){
+double CalcOperation::numbersAdd(double first,double second){
 	return first+second;
 }
 
-double numbersSub(double first,double second){
+double CalcOperation::numbersSub(double first,double second){
 	return first-second;
 }
 
-double numbersMul(double first,double second){
+double CalcOperation::numbersMul(double first,double second){
 	return first*second;
 }
 
-double numbersDiv(double first,double second){
+double CalcOperation::numbersDiv(double first,double second){
 	if(second != 0){
 		return first/second;
 	}
 	return -0.12345;
 }
 
-void CalcResult::cleanCalcOperation(){
-	rslt.first_variable = 0;
-	rslt.second_variable = 0;
-	rslt.third_variable = 0;
-	rslt.operator1 = 0;
-	rslt.operator2 = 0;
+void CalcOperation::cleanCalcOperation(){
+	first_variable = 0;
+	second_variable = 0;
+	third_variable = 0;
+	operator1 = 0;
+	operator2 = 0;
 	
-	for (int i = 0; i< 8; i++)
-	{
-		rslt.tableResult[i] = 0;
-	}
+	cr.cleanResult();
 	
 	
 }
-
-void CalcResult::addToMemo(){
-	
-	for(int i = 0 ; i < 8 ; i++){
-		
-		rslt.tableMemo[i] = rslt.tableResult[i];
-		
-	}
-	
+CalcResult* CalcOperation::getResult(){
+	return &cr;
 }
 
-void CalcResult::readMemo(){
-	
-	for(int i = 0 ; i < 8 ; i++){
-		
-		rslt.tableResult[i] = rslt.tableMemo[i];
-		
-	}
-	
-}
 
-void CalcResult::eraseMemo(){
-	
-	for(int i = 0 ; i < 8 ; i++){
-		
-		rslt.tableMemo[i] = 0;
-		
-	}
-	
-}
-
-CalcResult getResult(){
-	return rslt;
+void CalcOperation::loadCalcResult(CalcResult* cr){
+	//TODO: implement.
 }
 
 //dopisac do konca

@@ -6,19 +6,15 @@
  */ 
 #include "SSDispaly.h"
 
-void initSSDisplay(){
+void SSDisplay::initSSDisplay(){
 	initPortB();
-	initPortD();
 }
 
-void initPortB(){
+void SSDisplay::initPortB(){
 	DDRA = 0xFF;
 }
-void initPortD(){
-	DDRB = 0xFF;
-}
 
-void setNumberToDisplay(int val)
+void SSDisplay::setNumberToDisplay(int val)
 {
 	val%=10000;
 	numberAt4Cols[0] = val/1000;
@@ -27,7 +23,7 @@ void setNumberToDisplay(int val)
 	numberAt4Cols[3] = val%10;
 }
 
-void showNextDigit(void){
+void SSDisplay::showNextDigit(void){
 	PORTA = Digits[numberAt4Cols[cur_idx]];
 	PORTB = COLS[cur_idx];
 	//cur_idx++;

@@ -7,29 +7,35 @@
 #ifndef __CALC__OPERATIONS__H__
 #define __CALC__OPERATIONS__H__
 
+#include "CalcResult.h"
 
-class CalcResult{
+class CalcOperation{
 	public:
-	int size;
-	char tableResult [8];
-	char tableMemo[8];
-	void cleanCalcOperation();
-	void addToMemo();
-	void readMemo();
-	void eraseMemo();
+	CalcOperation();
+	~CalcOperation();
+	
+	void addOperator(char op);
+	void addNumber(int num);
+	void loadCalcResult(CalcResult* cr);
+	void cleanCalcOperation();	
+	CalcResult* getResult();
+
+	private:
+	//Variables
+	CalcResult cr;
 	double first_variable;
 	double second_variable;
 	double third_variable;
 	char operator1;
 	char operator2;
+	//Methods
+	double numbersAdd(double first,double second);
+	double numbersSub(double first,double second);
+	double numbersMul(double first,double second);
+	double numbersDiv(double first,double second);
 	
-};
+	};
 
-double numbersAdd(double first,double second);
-double numbersSub(double first,double second);
-double numbersMul(double first,double second);
-double numbersDiv(double first,double second);
-CalcResult getResult();
 
 
 #endif /*__CALC__OPERATIONS__H__*/

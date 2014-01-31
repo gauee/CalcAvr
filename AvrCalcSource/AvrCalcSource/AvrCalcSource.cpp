@@ -6,96 +6,114 @@
 */
 
 #include "Keyboard.h"
+#include "CalcOperation.h"
+#include "Memo.h"
+#include "LCD.h"
 #include "AvrCalcSource.h"
-#include "calcOperation.h"
-#include "HD44780.h"
+
 
 const int size_table = 128;
 char calc[size_table];
 int curCalcIdx =-1;
 bool lastIsOperator = false;
+
+KeyboardController keyboardCntlr;
+MemoController memoCntlr;
+CalcOperation calcOperationCntlr;
+LCDController lcdCntrlr;
+
 int main(void)
 {
-	initPortA();
-	LCD_Initalize();
-	_delay_ms(100);
-	LCD_Text("Damian123");
-	
-	//KeyboardController keyboardCntlr = KeyboardController();
+
+	initAvrCalc();
 	//
 	////const int COMMANDS_NUM=10;
 	////int commands [COMMANDS_NUM] = {1, 2, 3, 4, 1, 2, 4, 4, 1, 15 };
-	////for(int i=0;i<COMMANDS_NUM;++i){
-		////keyboardCntlr.setKeyValue(commands[i]);
-		////readPressedKey(keyboardCntlr);
+	//for(int i=0;i<COMMANDS_NUM;++i){
+	////keyboardCntlr.setKeyValue(commands[i]);
+	////readPressedKey(keyboardCntlr);
 	////}
 	//
-	//while(1)
-	//{
-		//keyboardCntlr.readValueFromKeyboard();
+	while(1)
+	{
+		readPressedKey();
 		////TODO:: Please write your application code
-	//}
+	}
 }
 
-int readPressedKey(KeyboardController keyboardCntlr){
+void initAvrCalc(){
+	keyboardCntlr = KeyboardController();
+	memoCntlr = MemoController();
+	calcOperationCntlr = CalcOperation();
+	lcdCntrlr = LCDController();
+}
+
+void readPressedKey(){
 	KeyItem item = keyboardCntlr.readValueFromKeyboard();
 	appendKeyItem(item);
 }
 
 void appendKeyItem(KeyItem item){
+	if(item.getId() == ID_NO_INPUT){
+		return;
+	}
+	
 	if(item.getId() == ID_OPERATOR){
-		if(!lastIsOperator){
-			++curCalcIdx;
-		}
-		calc[curCalcIdx] = (char)item.getVal();
-		lastIsOperator = true;
+		appendOperator(item);
+		
 		return;
 	}
 	
 	if(item.id == ID_NUMBER){
-		calc[++curCalcIdx] = '0' + item.getVal();
-		lastIsOperator = false;
+		appendNumber(item);
 		return;
 	}
 	
 	if(item.getId() == ID_CLEAN){
 		
-		getResult().cleanCalcOperation();
-		for (int i = 0; i < curCalcIdx + 1; i++ )
-		{
-			calc[i] = 0;
-		}
+		calcOperationCntlr.cleanCalcOperation();
+		lcdCntrlr.cleanDisplay();
+		
+		//CalcResult cr = calcOperationCntlr.getResult();
+		//getResult().cleanCalcOperation();
+		//for (int i = 0; i < curCalcIdx + 1; i++ )
+		//{
+		//calc[i] = 0;
+		//}
 		
 	}
 	
 	if (item.getId() == ID_MEMO)
 	{
-		if (item.getVal() == MEMO_WRITE){
-			getResult().addToMemo();
+		if (MemoController::isMemoWrite(&item)){
+			memoCntlr.addToMemo(calcOperationCntlr.getResult());
 		}
-		if (item.getVal() == MEMO_READ)
-		{
-			getResult().readMemo();
+		if (MemoController::isMemoRead(&item)){
+			CalcResult* rslt = memoCntlr.readFromMemo();
+			calcOperationCntlr.loadCalcResult(rslt);
+			lcdCntrlr.loadCalcResult(rslt);
 		}
-		if (item.getVal() == MEMO_ERASE)
-		{
-			getResult().eraseMemo();
+		if (MemoController::isMemoErase(&item)){
+			memoCntlr.eraseFromMemo();
 		}
 	}
 	
 	
 	if(item.getId() == ID_RESULT){
 		// to jest efekt kiedy zczytamy "="
-		for(int i = 0; i < size_table;i++){
-			calc[i] = 0;
-		}
-		
-		CalcResult rslt = getResult();
-		calc[0] = '=';
-		for(int i = 0; i < rslt.size; i++){
-			
-			calc[i + 1] = rslt.tableResult[i];
-			
-		}
+		lcdCntrlr.writeCalcResult(calcOperationCntlr.getResult());
 	}
+}
+
+void appendOperator(KeyItem optr){
+	if(!lastIsOperator){
+		++curCalcIdx;
+	}
+	calc[curCalcIdx] = (char)optr.getVal();
+	lastIsOperator = true;
+}
+
+void appendNumber(KeyItem number){
+	calc[++curCalcIdx] = '0' + number.getVal();
+	lastIsOperator = false;
 }

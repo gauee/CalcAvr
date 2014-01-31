@@ -18,11 +18,6 @@ PC1 - k3
 PC0 - k4
 */
 
-uint8_t KeyboardValues[4][4] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-uint8_t zero[16]={0,0,0,0,0,0,0,1,0,0,0,2,0,3,4,0};
-char oprtrs[MAX_OPERATORS] = {'+','-','*','/'};
-int operatorId = 0;
-int readKey;
 
 
 KeyboardController::KeyboardController(){}
@@ -48,7 +43,7 @@ KeyItem KeyboardController::readValueFromKeyboard(){
 	int row = zero[PINC>>4];
 	
 	if(row == 0 || col == 0){
-		readKey =0;
+		return KeyItem();
 	}else{
 		readKey = KeyboardValues[row-1][col-1];
 	}
@@ -89,5 +84,13 @@ int KeyboardController::getNextOperator(){
 
 void KeyboardController::initOperatorId(){
 	operatorId = MAX_OPERATORS-1;
+}
+
+void KeyboardController::initPortC(){
+	
+}
+
+void KeyboardController::initKeyboard(){
+	
 }
 

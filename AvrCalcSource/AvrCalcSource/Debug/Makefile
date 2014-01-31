@@ -37,9 +37,12 @@ SUBDIRS :=
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../AvrCalcSource.cpp \
-../calcOperation.cpp \
+../CalcOperation.cpp \
+../CalcResult.cpp \
 ../HD44780.cpp \
 ../Keyboard.cpp \
+../LCD.cpp \
+../Memo.cpp \
 ../SSDisplay.cpp \
 ../TaskScheduler.cpp
 
@@ -52,33 +55,45 @@ ASM_SRCS +=
 
 OBJS +=  \
 AvrCalcSource.o \
-calcOperation.o \
+CalcOperation.o \
+CalcResult.o \
 HD44780.o \
 Keyboard.o \
+LCD.o \
+Memo.o \
 SSDisplay.o \
 TaskScheduler.o
 
 OBJS_AS_ARGS +=  \
 AvrCalcSource.o \
-calcOperation.o \
+CalcOperation.o \
+CalcResult.o \
 HD44780.o \
 Keyboard.o \
+LCD.o \
+Memo.o \
 SSDisplay.o \
 TaskScheduler.o
 
 C_DEPS +=  \
 AvrCalcSource.d \
-calcOperation.d \
+CalcOperation.d \
+CalcResult.d \
 HD44780.d \
 Keyboard.d \
+LCD.d \
+Memo.d \
 SSDisplay.d \
 TaskScheduler.d
 
 C_DEPS_AS_ARGS +=  \
 AvrCalcSource.d \
-calcOperation.d \
+CalcOperation.d \
+CalcResult.d \
 HD44780.d \
 Keyboard.d \
+LCD.d \
+Memo.d \
 SSDisplay.d \
 TaskScheduler.d
 
@@ -93,6 +108,12 @@ OUTPUT_FILE_DEP:= ./makedep.mk
 LIB_DEP+= 
 
 # AVR32/GNU C Compiler
+
+
+
+
+
+
 
 
 

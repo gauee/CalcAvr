@@ -7,10 +7,13 @@
 #ifndef __KEYBOARD__ITEMS__H__
 #define __KEYBOARD__ITEMS__H__
 
-#define MEMO_WRITE 2
-#define MEMO_READ 3
-#define MEMO_ERASE 4
+#include <avr/io.h>
 
+//#define MEMO_WRITE 2
+//#define MEMO_READ 3
+//#define MEMO_ERASE 4
+
+#define ID_NO_INPUT 0
 #define ID_OPERATOR 1
 #define ID_MEMO 2
 #define ID_CLEAN 3
@@ -20,7 +23,7 @@
 class KeyItem{
 	public:
 	uint8_t val;
-	uint8_t id;
+	uint8_t id = ID_NO_INPUT;
 	
 	uint8_t getVal(){
 		return val;
@@ -48,17 +51,6 @@ class KeyMemo : public KeyItem{
 		val = option;
 		id=ID_MEMO;
 	}
-	
-	bool isReadFromMemo(){
-		return val == MEMO_READ;
-	}
-	bool isWriteFromMemo(){
-		return val == MEMO_WRITE;
-	}
-	bool isEraseFromMemo(){
-		return val == MEMO_ERASE;
-	}
-	
 };
 
 class KeyClean : public KeyItem{
