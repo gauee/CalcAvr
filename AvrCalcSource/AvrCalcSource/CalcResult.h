@@ -18,6 +18,7 @@ class CalcResult{
 	char tableResult [CALC_RESULT_SIZE];
 	void cleanResult();
 	void setResult(double toSetRslt);
+	double getValue();
 	
 };
 

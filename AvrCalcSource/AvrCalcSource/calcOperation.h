@@ -19,6 +19,7 @@ class CalcOperation{
 	void loadCalcResult(CalcResult* cr);
 	void cleanCalcOperation();	
 	CalcResult* getResult();
+	void initFromResult();
 
 	private:
 	//Variables

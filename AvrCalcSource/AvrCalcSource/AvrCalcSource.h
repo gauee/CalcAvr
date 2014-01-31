@@ -37,6 +37,7 @@ char getOperator(int iter);
 //Osbluga lancucha operacji
 void appendOperator(KeyItem optr);
 void appendNumber(KeyItem number);
+void handleMemo(KeyItem memo);
 
 
 #endif /*__AVR__CALC__SOURCE__H__*/

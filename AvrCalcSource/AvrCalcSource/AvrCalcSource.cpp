@@ -22,19 +22,25 @@ MemoController memoCntlr;
 CalcOperation calcOperationCntlr;
 LCDController lcdCntrlr;
 
+bool isCountResult = false;
+
 int main(void)
 {
 
 	initAvrCalc();
 	//
-	const int COMMANDS_NUM=14;
-	//21*3+40*5=  //=263
-	int commands [COMMANDS_NUM] = {/*21*/2,1,/*'*'*/4,4,4,/*3*/3,/*'+'*/4,/*40*/5,14,/*'*'*/4,4,4,/*5*/6,/*'='*/15};
+	//const int COMMANDS_NUM=14;
+	////21*3+40*5=  //=263
+	//int commands [COMMANDS_NUM] = {/*21*/2,1,/*'*'*/4,4,4,/*3*/3,/*'+'*/4,/*40*/5,14,/*'*'*/4,4,4,/*5*/6,/*'='*/15};
+	const int COMMANDS_NUM=8;
+	//21*3=  //=63
+	int commands [COMMANDS_NUM] = {/*21*/2,1,/*'*'*/4,4,4,4,/*3*/3,/*'='*/15};
 	for(int i=0;i<COMMANDS_NUM;++i){
 		keyboardCntlr.setKeyValue(commands[i]);
 		readPressedKey();
 	}
 	//
+	keyboardCntlr.setKeyValue(0);
 	while(1)
 	{
 		readPressedKey();
@@ -55,45 +61,35 @@ void readPressedKey(){
 }
 
 void appendKeyItem(KeyItem item){
-	if(item.getId() == ID_NO_INPUT){
-		return;
-	}
 	
-	if(item.getId() == ID_OPERATOR){
-		appendOperator(item);
-		return;
+	switch(item.getId()){
+		case ID_OPERATOR:
+			if(isCountResult){
+				lcdCntrlr.cleanDisplay();
+				lcdCntrlr.loadCalcResult(calcOperationCntlr.getResult());
+				calcOperationCntlr.initFromResult();
+			}
+			appendOperator(item);
+			return;
+		case ID_NUMBER:
+			appendNumber(item);
+			return;
+		case ID_CLEAN:
+			calcOperationCntlr.cleanCalcOperation();
+			lcdCntrlr.cleanDisplay();
+			return;
+		case ID_MEMO:
+			handleMemo(item);
+			return;
+		case ID_RESULT:
+			lcdCntrlr.writeCalcResult(calcOperationCntlr.getResult());
+			isCountResult = true;
+			return;
+		case ID_NO_INPUT:
+		default:
+			return;
 	}
-	
-	if(item.id == ID_NUMBER){
-		appendNumber(item);
-		return;
-	}
-	
-	if(item.getId() == ID_CLEAN){
-		
-		calcOperationCntlr.cleanCalcOperation();
-		lcdCntrlr.cleanDisplay();		
-	}
-	
-	if (item.getId() == ID_MEMO)
-	{
-		if (MemoController::isMemoWrite(&item)){
-			memoCntlr.addToMemo(calcOperationCntlr.getResult());
-		}
-		if (MemoController::isMemoRead(&item)){
-			CalcResult* rslt = memoCntlr.readFromMemo();
-			calcOperationCntlr.loadCalcResult(rslt);
-			lcdCntrlr.loadCalcResult(rslt);
-		}
-		if (MemoController::isMemoErase(&item)){
-			memoCntlr.eraseFromMemo();
-		}
-	}
-	
-	
-	if(item.getId() == ID_RESULT){
-		lcdCntrlr.writeCalcResult(calcOperationCntlr.getResult());
-	}
+
 }
 
 void appendOperator(KeyItem optr){
@@ -104,4 +100,18 @@ void appendOperator(KeyItem optr){
 void appendNumber(KeyItem number){
 	lcdCntrlr.addNumber(number.getVal());
 	calcOperationCntlr.addNumber(number.getVal());
+}
+
+void handleMemo(KeyItem memo){
+	if (MemoController::isMemoWrite(&memo)){
+		memoCntlr.addToMemo(calcOperationCntlr.getResult());
+	}
+	if (MemoController::isMemoRead(&memo)){
+		CalcResult* rslt = memoCntlr.readFromMemo();
+		calcOperationCntlr.loadCalcResult(rslt);
+		lcdCntrlr.loadCalcResult(rslt);
+	}
+	if (MemoController::isMemoErase(&memo)){
+		memoCntlr.eraseFromMemo();
+	}
 }

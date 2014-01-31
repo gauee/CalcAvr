@@ -41,3 +41,24 @@ void CalcResult::setResult(double toSetRslt){
 	}
 	this->size=curSize;
 }
+
+double CalcResult::getValue(){
+	double rslt =0;
+	int scale = 10;
+	int t=1;
+	bool isPart = false;
+	for(int i=0;i<this->size;++i){
+		if(this->tableResult[i] == '.'){
+			isPart = true;
+			continue;
+		}
+		rslt *=scale;
+		rslt += (this->tableResult[i]-'0');
+		if(isPart){
+			t*=scale;
+		}
+		
+	}
+	
+	return rslt/t;
+}

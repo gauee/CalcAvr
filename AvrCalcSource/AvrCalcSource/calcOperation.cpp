@@ -155,5 +155,9 @@ int CalcOperation::getOperatorPrior(char opt){
 	}
 }
 
+void CalcOperation::initFromResult(){
+	variables[0] = cr.getValue();
+}
+
 
 //dopisac do konca
