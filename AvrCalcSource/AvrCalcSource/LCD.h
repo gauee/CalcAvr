@@ -19,6 +19,8 @@ class LCDController
 	void cleanDisplay(void);
 	void loadCalcResult(CalcResult* cr);
 	void writeCalcResult(CalcResult* cr);
+	void addOperator(KeyItem item);
+	void addNumber(KeyItem item);
 
 	protected:
 	private:

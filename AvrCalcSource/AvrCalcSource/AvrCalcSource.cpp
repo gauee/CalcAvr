@@ -60,7 +60,6 @@ void appendKeyItem(KeyItem item){
 	
 	if(item.getId() == ID_OPERATOR){
 		appendOperator(item);
-		
 		return;
 	}
 	
@@ -72,15 +71,7 @@ void appendKeyItem(KeyItem item){
 	if(item.getId() == ID_CLEAN){
 		
 		calcOperationCntlr.cleanCalcOperation();
-		lcdCntrlr.cleanDisplay();
-		
-		//CalcResult cr = calcOperationCntlr.getResult();
-		//getResult().cleanCalcOperation();
-		//for (int i = 0; i < curCalcIdx + 1; i++ )
-		//{
-		//calc[i] = 0;
-		//}
-		
+		lcdCntrlr.cleanDisplay();		
 	}
 	
 	if (item.getId() == ID_MEMO)
@@ -100,20 +91,16 @@ void appendKeyItem(KeyItem item){
 	
 	
 	if(item.getId() == ID_RESULT){
-		// to jest efekt kiedy zczytamy "="
 		lcdCntrlr.writeCalcResult(calcOperationCntlr.getResult());
 	}
 }
 
 void appendOperator(KeyItem optr){
-	if(!lastIsOperator){
-		++curCalcIdx;
-	}
-	calc[curCalcIdx] = (char)optr.getVal();
-	lastIsOperator = true;
+	lcdCntrlr.addOperator(optr);
+	calcOperationCntlr.addOperator(optr);
 }
 
 void appendNumber(KeyItem number){
-	calc[++curCalcIdx] = '0' + number.getVal();
-	lastIsOperator = false;
+	lcdCntrlr.addNumber(number);
+	calcOperationCntlr.addNumber(number);
 }

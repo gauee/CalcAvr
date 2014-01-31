@@ -38,3 +38,11 @@ void LCDController::writeCalcResult(CalcResult* cr){
 void LCDController::displayCalcOperation(){
 	LCD_Text(calcOperStr);
 }
+
+void LCDController::addNumber(KeyItem item){
+	
+}
+
+void LCDController::addOperator(KeyItem item){
+	
+}
