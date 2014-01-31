@@ -19,7 +19,6 @@ class CalcOperation{
 	void loadCalcResult(CalcResult* cr);
 	void cleanCalcOperation();	
 	CalcResult* getResult();
-	void initFromResult();
 
 	private:
 	//Variables
@@ -31,6 +30,7 @@ class CalcOperation{
 	int curVarIdx;
 	int curOptIdx;
 	bool isLastVar;
+	bool isResultCompute;
 	
 	//Methods
 	double numbersAdd(double first,double second);
@@ -43,6 +43,7 @@ class CalcOperation{
 	double calculateResultFor(double var1,double var2,char opt);
 	bool isFirstOptGeater();
 	int getOperatorPrior(char opt);
+	void initResult();
 	};
 
 

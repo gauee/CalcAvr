@@ -32,9 +32,12 @@ int main(void)
 	//const int COMMANDS_NUM=14;
 	////21*3+40*5=  //=263
 	//int commands [COMMANDS_NUM] = {/*21*/2,1,/*'*'*/4,4,4,/*3*/3,/*'+'*/4,/*40*/5,14,/*'*'*/4,4,4,/*5*/6,/*'='*/15};
-	const int COMMANDS_NUM=8;
+	//const int COMMANDS_NUM=8;
+	////21*3=  //=63
+	//int commands [COMMANDS_NUM] = {/*21*/2,1,/*'*'*/4,4,4,4,/*3*/3,/*'='*/15};
+	const int COMMANDS_NUM=12;
 	//21*3=  //=63
-	int commands [COMMANDS_NUM] = {/*21*/2,1,/*'*'*/4,4,4,4,/*3*/3,/*'='*/15};
+	int commands [COMMANDS_NUM] = {/*21*/2,1,/*'*'*/4,4,4,4,/*3*/3,/*'='*/15,4,4,3,15};
 	for(int i=0;i<COMMANDS_NUM;++i){
 		keyboardCntlr.setKeyValue(commands[i]);
 		readPressedKey();
@@ -67,7 +70,9 @@ void appendKeyItem(KeyItem item){
 			if(isCountResult){
 				lcdCntrlr.cleanDisplay();
 				lcdCntrlr.loadCalcResult(calcOperationCntlr.getResult());
-				calcOperationCntlr.initFromResult();
+				calcOperationCntlr.addOperator(item.getVal());
+				isCountResult = false;
+				return;
 			}
 			appendOperator(item);
 			return;

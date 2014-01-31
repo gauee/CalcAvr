@@ -14,6 +14,7 @@ CalcOperation::CalcOperation(){
 	cleanOperators();
 	cleanVariables();
 	isLastVar = true;
+	isResultCompute = false;
 };
 
 CalcOperation::~CalcOperation(){
@@ -44,20 +45,23 @@ void CalcOperation::cleanCalcOperation(){
 	cleanOperators();
 	cleanVariables();
 	cr.cleanResult();
+	isResultCompute = false;
 }
 
 CalcResult* CalcOperation::getResult(){
-	curOptIdx++;
-	while(curOptIdx>0){
-		calculate();
+	if(!isResultCompute){
+		initResult();
 	}
-	cr.setResult(variables[0]);
 	return &cr;
 }
 
-
-void CalcOperation::loadCalcResult(CalcResult* cr){
-	//TODO: implement.
+void CalcOperation::initResult(){
+	curOptIdx++;
+	while(curOptIdx>=0){
+		calculate();
+	}
+	cr.setResult(variables[0]);
+	isResultCompute = true;
 }
 
 void CalcOperation::addNumber(int num){
@@ -68,6 +72,7 @@ void CalcOperation::addNumber(int num){
 	variables[curVarIdx] += num;
 	
 	isLastVar=true;
+	isResultCompute=0;
 }
 
 void CalcOperation::addOperator(char opt){
@@ -79,6 +84,7 @@ void CalcOperation::addOperator(char opt){
 	}
 	operators[curOptIdx] = opt;
 	isLastVar=false;
+	isResultCompute=0;
 }
 
 void CalcOperation::cleanOperators(){
@@ -97,6 +103,7 @@ void CalcOperation::cleanVariables(){
 
 void CalcOperation::calculate(){
 	if(curOptIdx==0){
+		curOptIdx=-1;
 		return;
 	}
 	int rslts[2];
@@ -155,8 +162,10 @@ int CalcOperation::getOperatorPrior(char opt){
 	}
 }
 
-void CalcOperation::initFromResult(){
-	variables[0] = cr.getValue();
+void CalcOperation::loadCalcResult(CalcResult* cr){
+	if(!isLastVar){
+		variables[curVarIdx++] = cr->getValue();
+	}
 }
 
 
