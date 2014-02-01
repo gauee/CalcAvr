@@ -11,8 +11,9 @@
 #include <avr/interrupt.h>
 
 
-int new_task_idx = 0;
 
+TASK scheduled_task[SCHEDULER_SIZE];
+int new_task_idx = 0;
 unsigned int toInc = 0;
 
 void increment(void){
@@ -23,7 +24,7 @@ void incrementOneShot(void){
 	toInc+=10;
 }
 
-void init(){
+void initTaskScheduler(){
 	for(int i=0;i<SCHEDULER_SIZE;++i){
 		scheduled_task[i].task_ptr = 0;
 		scheduled_task[i].inteval = 0;

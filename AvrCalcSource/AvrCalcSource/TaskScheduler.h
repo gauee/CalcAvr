@@ -13,7 +13,6 @@
 typedef void (*TASK_PTR)(void);
 
 typedef struct {
-	
 	TASK_PTR task_ptr;
 	uint16_t to_go;
 	uint16_t inteval;
@@ -21,13 +20,11 @@ typedef struct {
 	
 } TASK;
 
-TASK scheduled_task[SCHEDULER_SIZE];
-
 
 void increment(void);			//Simple function which increment toInc;
 void incrementOneShot(void);	//Simple function which should increment toInc only one time.
 
-void init();					//Init all arrays and variables
+void initTaskScheduler();					//Init all arrays and variables
 void start_timer();				//Init TIMER0,activate interrupts and run Timer
 void add_task(TASK_PTR t,int ms);		//Add periodical task
 void add_one_shot(TASK_PTR t,int ms);	//Add noperiodical task which should be executed only one time.

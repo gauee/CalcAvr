@@ -9,6 +9,7 @@
 #define __MEMO__CONTROLLER__H__
 
 #include "CalcResult.h"
+#include "SSDispaly.h"
 #include "KeyItems.h"
 
 static int MEMO_WRITE=1;
@@ -42,6 +43,7 @@ class MemoController
 	private:
 	double rslt;
 	CalcResult cr;
+	SSDisplay ssdisplayCntrlr;
 	void recoverFromArray(CalcResult* cr);
 };
 

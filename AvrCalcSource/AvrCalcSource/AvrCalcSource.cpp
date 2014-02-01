@@ -10,6 +10,7 @@
 #include "Memo.h"
 #include "LCD.h"
 #include "AvrCalcSource.h"
+#include "TaskScheduler.h"
 
 
 const int size_table = 128;
@@ -52,10 +53,13 @@ int main(void)
 }
 
 void initAvrCalc(){
+	initTaskScheduler();
 	keyboardCntlr = KeyboardController();
 	memoCntlr = MemoController();
+	memoCntlr.initMemoController();
 	calcOperationCntlr = CalcOperation();
 	lcdCntrlr = LCDController();
+	start_timer();
 }
 
 void readPressedKey(){

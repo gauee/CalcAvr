@@ -1,24 +1,32 @@
 /*
- * Memo.cpp
- *
- * Created: 2014-01-31 13:25:53
- *  Author: gauee
- */ 
+* Memo.cpp
+*
+* Created: 2014-01-31 13:25:53
+*  Author: gauee
+*/
 
 #include "Memo.h"
 #include <math.h>
 
-MemoController::MemoController(){};
+MemoController::MemoController(){
+	this->ssdisplayCntrlr = SSDisplay();
+};
+
 
 MemoController::~MemoController(){};
-	
+
+void MemoController::initMemoController(){
+	ssdisplayCntrlr.initSSDisplay();
+}
+
+
 void MemoController::addToMemo(CalcResult* cr){
 	this->cr.size = cr->size;
 	for(int i=0;i<cr->size;++i){
 		this->cr.tableResult[i]=cr->tableResult[i];
 	}
 }
-	
+
 CalcResult* MemoController::readFromMemo(){
 	return &cr;
 }
@@ -26,6 +34,7 @@ CalcResult* MemoController::readFromMemo(){
 void MemoController::eraseFromMemo(){
 	this->cr.cleanResult();
 	rslt = 0;
+	ssdisplayCntrlr.setNumberToDisplay(0);
 }
 
 void MemoController::recoverFromArray(CalcResult* cr){
@@ -37,7 +46,7 @@ void MemoController::recoverFromArray(CalcResult* cr){
 		if(cr->tableResult[i] == '.'){
 			whereIsDot = i;
 			break;
-		}	
+		}
 	}
 	
 	int c = 0;
@@ -54,6 +63,7 @@ void MemoController::recoverFromArray(CalcResult* cr){
 }
 
 void MemoController::saveToMemo(){
-	recoverFromArray(&this->cr);
+	//recoverFromArray(&this->cr);
+	ssdisplayCntrlr.setNumberToDisplay(cr.getValue());
 }
 

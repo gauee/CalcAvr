@@ -1,32 +1,75 @@
 /*
- * SSDisplay.cpp
- *
- * Created: 2014-01-28 14:12:38
- *  Author: gauee
- */ 
+* SSDisplay.cpp
+*
+* Created: 2014-01-28 14:12:38
+*  Author: gauee
+*/
 #include "SSDispaly.h"
+#include "TaskScheduler.h"
+
+static const int MAX_COL = 4;
+static const int DIGITS_SIZE = 10;
+static int cur_idx;
+static uint8_t numberAt4Cols[MAX_COL];
+static uint8_t COLS[MAX_COL] = {
+	0b11111110,
+	0b11111101,
+	0b11111011,
+	0b11110111
+};
+static uint8_t Digits[DIGITS_SIZE] = {
+	0b11000000,		//0
+	0b11111001,		//1
+	0b10100100,		//2
+	0b10110000,		//3
+	0b10011001,		//4
+	0b10010010,		//5
+	0b10000010,		//6
+	0b11111000,		//7
+	0b10000000,		//8
+	0b10010000		//9
+};
+
+SSDisplay::SSDisplay(){
+	powVal=1;
+	for(int i=0;i<MAX_COL;++i){
+		powVal *=10;
+	}
+}
+
+SSDisplay::~SSDisplay(){
+	
+}
 
 void SSDisplay::initSSDisplay(){
 	cur_idx = 0;
 	initPortB();
+	initPortD();
+	setNumberToDisplay(0);
+	add_task(showNextDigit,4);
 }
 
 void SSDisplay::initPortB(){
-	DDRA = 0xFF;
+	DDRB = 0xFF;
+}
+
+void SSDisplay::initPortD(){
+	DDRD = 0xFF;
 }
 
 void SSDisplay::setNumberToDisplay(int val)
 {
-	val%=10000;
-	numberAt4Cols[0] = val/1000;
-	numberAt4Cols[1] = (val%1000)/100;
-	numberAt4Cols[2] = (val%100)/10;
-	numberAt4Cols[3] = val%10;
+	int pow = powVal;
+	for(int i=0;i<MAX_COL;++i){
+		val%=pow;
+		pow /=10;
+		numberAt4Cols[i] = val/pow;
+	}
 }
 
 void SSDisplay::showNextDigit(void){
-	PORTA = Digits[numberAt4Cols[cur_idx]];
-	PORTB = COLS[cur_idx];
-	//cur_idx++;
+	
+	PORTB = Digits[numberAt4Cols[cur_idx]];
+	PORTD = COLS[cur_idx];
 	(++cur_idx)%=MAX_COL;
 }
