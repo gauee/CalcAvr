@@ -133,7 +133,7 @@ double CalcOperation::calculateResultFor(double var1,double var2,char opt){
 		case '+':
 		return numbersAdd(var1,var2);
 		case '-':
-		return numbersDiv(var1,var2);
+		return numbersSub(var1,var2);
 		case '*':
 		return numbersMul(var1,var2);
 		case '/':

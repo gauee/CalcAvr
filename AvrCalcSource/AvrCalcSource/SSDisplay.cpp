@@ -45,8 +45,10 @@ void SSDisplay::initSSDisplay(){
 	cur_idx = 0;
 	initPortB();
 	initPortD();
-	setNumberToDisplay(0);
-	add_task(showNextDigit,4);
+	setNumberToDisplay(4321);
+	PORTB = 0b10010010;
+	PORTD = 0b11111110;
+	//add_task(showNextDigit,40);
 }
 
 void SSDisplay::initPortB(){
@@ -63,13 +65,13 @@ void SSDisplay::setNumberToDisplay(int val)
 	for(int i=0;i<MAX_COL;++i){
 		val%=pow;
 		pow /=10;
-		numberAt4Cols[i] = val/pow;
+		numberAt4Cols[i] = 1;
 	}
 }
 
 void SSDisplay::showNextDigit(void){
-	
-	PORTB = Digits[numberAt4Cols[cur_idx]];
+	PORTB = 0b10010010;
+	//Digits[numberAt4Cols[cur_idx]];
 	PORTD = COLS[cur_idx];
 	(++cur_idx)%=MAX_COL;
 }

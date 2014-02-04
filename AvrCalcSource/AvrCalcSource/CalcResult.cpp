@@ -20,10 +20,20 @@ void CalcResult::cleanResult(){
 };
 
 void CalcResult::setResult(double toSetRslt){
-	int firstPart = toSetRslt;
 	int tenPow = 1;
 	int curSize=0;
-	while(firstPart>tenPow){
+	if(toSetRslt<0){
+		toSetRslt*=-1;
+		this->tableResult[curSize++]='-';
+	}
+	int firstPart = toSetRslt;
+	if(firstPart == 0){
+		this->tableResult[curSize++]='0';
+		this->size = curSize;
+		return;
+	}
+	
+	while(firstPart>=tenPow){
 		tenPow*=10;
 	}
 	int tmp = firstPart;

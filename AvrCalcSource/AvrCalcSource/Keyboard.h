@@ -7,7 +7,9 @@
 #ifndef __KEYBOARD__H__
 #define __KEYBOARD__H__
 
+#define F_CPU 16000000UL
 #include <avr/io.h>
+#include <util/delay.h>
 #include "KeyItems.h"
 
 //Keyboard uses PORTC

@@ -15,6 +15,11 @@ LCDController::LCDController(){
 
 LCDController::~LCDController(){};
 
+void LCDController::initLcd(){
+	LCD_Initalize();
+	LCD_Text("Init calc");
+}
+
 void LCDController::cleanDisplay(){
 	LCD_Clear();
 	for(int i=0;i<MAX_CALC_OPER_SIZE;++i){
@@ -37,6 +42,7 @@ void LCDController::writeCalcResult(CalcResult* cr){
 }
 
 void LCDController::displayCalcOperation(){
+	LCD_Clear();
 	LCD_Text(calcOperStr);
 }
 

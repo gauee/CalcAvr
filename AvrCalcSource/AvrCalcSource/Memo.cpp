@@ -17,6 +17,7 @@ MemoController::~MemoController(){};
 
 void MemoController::initMemoController(){
 	ssdisplayCntrlr.initSSDisplay();
+	ssdisplayCntrlr.setNumberToDisplay(1234);
 }
 
 

@@ -30,23 +30,23 @@ void KeyboardController::setKeyValue(int val){
 
 KeyItem KeyboardController::readValueFromKeyboard(){
 
-	//PORTC = 0;
-	//DDRC = 0xF0;
-	//PORTC = 0x0F;
-	//for(int i=0;i<100;++i){}
-	//int col= zero[PINC];
-	//
-	//PORTC = 0;
-	//DDRC = 0x0F;
-	//PORTC = 0xF0;
-	//for(int i=0;i<100;++i){}
-	//int row = zero[PINC>>4];
-	//
-	//if(row == 0 || col == 0){
-		//return KeyItem();
-	//}else{
-		//readKey = KeyboardValues[row-1][col-1];
-	//}
+	PORTC = 0;
+	DDRC = 0xF0;
+	PORTC = 0x0F;
+	for(int i=0;i<100;++i){}
+	int col= zero[PINC];
+	
+	PORTC = 0;
+	DDRC = 0x0F;
+	PORTC = 0xF0;
+	for(int i=0;i<100;++i){}
+	int row = zero[PINC>>4];
+	
+	if(row == 0 || col == 0){
+		return KeyItem();
+		}else{
+		readKey = KeyboardValues[row-1][col-1];
+	}
 	
 	
 	//liczby przechowywane w int
@@ -55,6 +55,7 @@ KeyItem KeyboardController::readValueFromKeyboard(){
 		initOperatorId();
 	}
 	
+	_delay_ms(3000);
 	if(readKey == 4){					//operator +,-,*,/
 		return KeyOperator(oprtrs[getNextOperator()]);
 		}else if(readKey % 4 ==0){			//memory operations

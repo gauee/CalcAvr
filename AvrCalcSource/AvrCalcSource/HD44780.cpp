@@ -47,7 +47,7 @@ void LCD_GoToXY(unsigned char x, unsigned char y)
 void LCD_Clear(void)
 {
 	LCD_Command(0x01);
-	_delay_us(100);
+	_delay_ms(10);
 };
 
 void LCD_Home(void)
@@ -58,6 +58,7 @@ void LCD_Home(void)
 
 void LCD_Initalize(void)
 {
+	initPortA();
 	_delay_ms(20);
 	for(int i=0;i<3;++i){
 		WriteNibble(0x03);

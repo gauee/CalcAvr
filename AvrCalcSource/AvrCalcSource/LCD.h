@@ -16,6 +16,7 @@ class LCDController
 	LCDController();
 	~LCDController();
 	
+	void initLcd();
 	void cleanDisplay(void);
 	void loadCalcResult(CalcResult* cr);
 	void writeCalcResult(CalcResult* cr);
