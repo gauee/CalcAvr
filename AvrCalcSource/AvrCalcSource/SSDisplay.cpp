@@ -48,7 +48,7 @@ void SSDisplay::initSSDisplay(){
 	setNumberToDisplay(4321);
 	PORTB = 0b10010010;
 	PORTD = 0b11111110;
-	//add_task(showNextDigit,40);
+	add_task(showNextDigit,10);
 }
 
 void SSDisplay::initPortB(){

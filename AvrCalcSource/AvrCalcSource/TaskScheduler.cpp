@@ -80,7 +80,7 @@ void schedule(){
 	
 }
 
-void execute(){
+void executeTasks(){
 	int i =0;
 	while(i < new_task_idx){
 		if(scheduled_task[i].ready){

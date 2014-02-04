@@ -49,6 +49,7 @@ int main(void)
 	while(1)
 	{
 		readPressedKey();
+		executeTasks();
 		////TODO:: Please write your application code
 	}
 }
@@ -60,7 +61,7 @@ void initAvrCalc(){
 	memoCntlr.initMemoController();
 	calcOperationCntlr = CalcOperation();
 	lcdCntrlr = LCDController();
-	lcdCntrlr.initLcd();
+	//lcdCntrlr.initLcd();
 	start_timer();
 }
 

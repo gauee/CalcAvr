@@ -29,6 +29,6 @@ void start_timer();				//Init TIMER0,activate interrupts and run Timer
 void add_task(TASK_PTR t,int ms);		//Add periodical task
 void add_one_shot(TASK_PTR t,int ms);	//Add noperiodical task which should be executed only one time.
 void schedule();				//Method executes in every interrupt checking task array and setting parameters
-void execute();					//Method executes all time, this method checking which task can be execute and calling method from reference in struct TASK 
+void executeTasks();					//Method executes all time, this method checking which task can be execute and calling method from reference in struct TASK 
 
 #endif /* TASK_SCHEDULER_H_ */
