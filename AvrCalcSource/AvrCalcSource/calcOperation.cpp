@@ -38,7 +38,7 @@ double CalcOperation::numbersDiv(double first,double second){
 	if(second != 0){
 		return first/second;
 	}
-	return -0.12345;
+	return -0.4321;
 }
 
 void CalcOperation::cleanCalcOperation(){
@@ -72,7 +72,7 @@ void CalcOperation::addNumber(int num){
 	variables[curVarIdx] += num;
 	
 	isLastVar=true;
-	isResultCompute=0;
+	isResultCompute=false;
 }
 
 void CalcOperation::addOperator(char opt){
@@ -82,9 +82,12 @@ void CalcOperation::addOperator(char opt){
 			calculate();
 		}
 	}
+	if(curOptIdx<0){
+		curOptIdx=0;
+	}
 	operators[curOptIdx] = opt;
 	isLastVar=false;
-	isResultCompute=0;
+	isResultCompute=false;
 }
 
 void CalcOperation::cleanOperators(){
@@ -106,7 +109,7 @@ void CalcOperation::calculate(){
 		curOptIdx=-1;
 		return;
 	}
-	int rslts[2];
+	double rslts[2];
 	for(int i=0;i<curOptIdx;++i){
 		rslts[i] = calculateResultFor(variables[i],variables[i+1],operators[i]);
 	}
@@ -164,7 +167,7 @@ int CalcOperation::getOperatorPrior(char opt){
 
 void CalcOperation::loadCalcResult(CalcResult* cr){
 	if(!isLastVar){
-		variables[curVarIdx++] = cr->getValue();
+		variables[++curVarIdx] = cr->getValue();
 	}
 }
 

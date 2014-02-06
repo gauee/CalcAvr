@@ -29,6 +29,10 @@ void LCDController::cleanDisplay(){
 };
 
 void LCDController::loadCalcResult(CalcResult* cr){
+	if(lastWasOperator){
+			++curIdx;
+	}
+
 	for(int i=0;i<cr->size;++i){
 		calcOperStr[curIdx++] = cr->tableResult[i];
 	}
@@ -38,6 +42,7 @@ void LCDController::loadCalcResult(CalcResult* cr){
 void LCDController::writeCalcResult(CalcResult* cr){
 	cleanDisplay();
 	calcOperStr[curIdx++] = '=';
+	lastWasOperator=false;
 	loadCalcResult(cr);
 }
 

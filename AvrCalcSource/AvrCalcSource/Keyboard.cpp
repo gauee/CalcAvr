@@ -42,20 +42,23 @@ KeyItem KeyboardController::readValueFromKeyboard(){
 	for(int i=0;i<100;++i){}
 	int row = zero[PINC>>4];
 	
-	if(row == 0 || col == 0){
+	if(row == 0 || col == 0 ){
+		prevKeyNull=true;
 		return KeyItem();
-		}else{
+	}else{
 		readKey = KeyboardValues[row-1][col-1];
 	}
+	if(!prevKeyNull){
+		return KeyItem();
+	}
 	
+	prevKeyNull = false;
 	
 	//liczby przechowywane w int
-	
 	if(readKey != 4){
 		initOperatorId();
 	}
 	
-	_delay_ms(3000);
 	if(readKey == 4){					//operator +,-,*,/
 		return KeyOperator(oprtrs[getNextOperator()]);
 		}else if(readKey % 4 ==0){			//memory operations

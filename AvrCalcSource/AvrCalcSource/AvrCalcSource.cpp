@@ -61,7 +61,7 @@ void initAvrCalc(){
 	memoCntlr.initMemoController();
 	calcOperationCntlr = CalcOperation();
 	lcdCntrlr = LCDController();
-	//lcdCntrlr.initLcd();
+	lcdCntrlr.initLcd();
 	start_timer();
 }
 
@@ -71,7 +71,6 @@ void readPressedKey(){
 }
 
 void appendKeyItem(KeyItem item){
-	
 	switch(item.getId()){
 		case ID_OPERATOR:
 			if(isCountResult){
@@ -91,6 +90,7 @@ void appendKeyItem(KeyItem item){
 		case ID_CLEAN:
 			calcOperationCntlr.cleanCalcOperation();
 			lcdCntrlr.cleanDisplay();
+			isCountResult = false;
 			return;
 		case ID_MEMO:
 			handleMemo(item);
@@ -117,15 +117,15 @@ void appendNumber(KeyItem number){
 }
 
 void handleMemo(KeyItem memo){
-	//if (MemoController::isMemoWrite(&memo)){
-		//memoCntlr.addToMemo(calcOperationCntlr.getResult());
-	//}
-	//if (MemoController::isMemoRead(&memo)){
-		//CalcResult* rslt = memoCntlr.readFromMemo();
-		//calcOperationCntlr.loadCalcResult(rslt);
-		//lcdCntrlr.loadCalcResult(rslt);
-	//}
-	//if (MemoController::isMemoErase(&memo)){
-		//memoCntlr.eraseFromMemo();
-	//}
+	if (MemoController::isMemoWrite(&memo)){
+		memoCntlr.addToMemo(calcOperationCntlr.getResult());
+	}
+	if (MemoController::isMemoRead(&memo)){
+		CalcResult* rslt = memoCntlr.readFromMemo();
+		calcOperationCntlr.loadCalcResult(rslt);
+		lcdCntrlr.loadCalcResult(rslt);
+	}
+	if (MemoController::isMemoErase(&memo)){
+		memoCntlr.eraseFromMemo();
+	}
 }

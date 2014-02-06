@@ -20,7 +20,6 @@ void CalcResult::cleanResult(){
 };
 
 void CalcResult::setResult(double toSetRslt){
-	int tenPow = 1;
 	int curSize=0;
 	if(toSetRslt<0){
 		toSetRslt*=-1;
@@ -33,6 +32,7 @@ void CalcResult::setResult(double toSetRslt){
 		return;
 	}
 	
+	int tenPow = 1;
 	while(firstPart>=tenPow){
 		tenPow*=10;
 	}
@@ -67,7 +67,6 @@ double CalcResult::getValue(){
 		if(isPart){
 			t*=scale;
 		}
-		
 	}
 	
 	return rslt/t;

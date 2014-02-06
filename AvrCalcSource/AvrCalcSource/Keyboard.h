@@ -37,6 +37,7 @@ class KeyboardController{
 	char oprtrs[MAX_OPERATORS] = {'+','-','*','/'};
 	int operatorId = 0;
 	int readKey;
+	bool prevKeyNull;
 	//Methods
 	void initPortC();
 };

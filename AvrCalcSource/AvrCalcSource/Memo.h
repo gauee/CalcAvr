@@ -12,9 +12,9 @@
 #include "SSDispaly.h"
 #include "KeyItems.h"
 
-static int MEMO_WRITE=1;
-static int MEMO_READ=2;
-static int MEMO_ERASE=3;
+static int MEMO_WRITE=2;
+static int MEMO_READ=3;
+static int MEMO_ERASE=4;
 
 class MemoController
 {
@@ -28,6 +28,7 @@ class MemoController
 	CalcResult* readFromMemo();
 	void eraseFromMemo();
 	void saveToMemo();
+	void setSSDVal(int val);
 	
 	static bool isMemoWrite(KeyItem* item){
 		return item->getVal() == MEMO_WRITE;

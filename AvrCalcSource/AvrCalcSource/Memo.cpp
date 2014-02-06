@@ -17,7 +17,7 @@ MemoController::~MemoController(){};
 
 void MemoController::initMemoController(){
 	ssdisplayCntrlr.initSSDisplay();
-	ssdisplayCntrlr.setNumberToDisplay(1234);
+	ssdisplayCntrlr.setNumberToDisplay(0);
 }
 
 
@@ -26,6 +26,7 @@ void MemoController::addToMemo(CalcResult* cr){
 	for(int i=0;i<cr->size;++i){
 		this->cr.tableResult[i]=cr->tableResult[i];
 	}
+	saveToMemo();
 }
 
 CalcResult* MemoController::readFromMemo(){
@@ -34,8 +35,9 @@ CalcResult* MemoController::readFromMemo(){
 
 void MemoController::eraseFromMemo(){
 	this->cr.cleanResult();
-	rslt = 0;
-	ssdisplayCntrlr.setNumberToDisplay(0);
+	saveToMemo();
+	//rslt = 0;
+	//ssdisplayCntrlr.setNumberToDisplay(3);
 }
 
 void MemoController::recoverFromArray(CalcResult* cr){
@@ -64,7 +66,10 @@ void MemoController::recoverFromArray(CalcResult* cr){
 }
 
 void MemoController::saveToMemo(){
-	//recoverFromArray(&this->cr);
 	ssdisplayCntrlr.setNumberToDisplay(cr.getValue());
+}
+
+void MemoController::setSSDVal(int val){
+	ssdisplayCntrlr.setNumberToDisplay(val);
 }
 
