@@ -39,11 +39,11 @@ int main(void)
 	//const int COMMANDS_NUM=12;
 	//21*3=  //=63
 	//int commands [COMMANDS_NUM] = {/*999999*/11,11,11,11,11,11,/*'+'*/4,/*1*/1,/*'='*/15};
-	int commands [COMMANDS_NUM] = {/*999999*/3,/*'+'*/4,4,4,4,/*1*/2,/*'='*/15};
-	for(int i=0;i<COMMANDS_NUM;++i){
-		keyboardCntlr.setKeyValue(commands[i]);
-		readPressedKey();
-	}
+	//int commands [COMMANDS_NUM] = {/*999999*/3,/*'+'*/4,4,4,4,/*1*/2,/*'='*/15};
+	//for(int i=0;i<COMMANDS_NUM;++i){
+		//keyboardCntlr.setKeyValue(commands[i]);
+		//readPressedKey();
+	//}
 	//
 	//keyboardCntlr.setKeyValue(0);
 	
@@ -56,10 +56,10 @@ int main(void)
 }
 
 void initAvrCalc(){
-	//initTaskScheduler();
-	//memoCntlr = MemoController();
-	//memoCntlr.initMemoController();
-	//start_timer();
+	initTaskScheduler();
+	memoCntlr = MemoController();
+	memoCntlr.initMemoController();
+	start_timer();
 	
 	keyboardCntlr = KeyboardController();
 	calcOperationCntlr = CalcOperation();

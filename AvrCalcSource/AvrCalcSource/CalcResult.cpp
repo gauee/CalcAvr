@@ -44,9 +44,12 @@ void CalcResult::setResult(double toSetRslt){
 	}
 	if((toSetRslt-firstPart)>0 && curSize < CALC_RESULT_SIZE){
 		this->tableResult[curSize++]='.';
-		double secondPart = (toSetRslt-firstPart)*10;
-		while(curSize<CALC_RESULT_SIZE && secondPart>0){
-			this->tableResult[curSize++]=('0'+((int)secondPart));
+		tenPow =10;
+		int i=0;
+		while(curSize<CALC_RESULT_SIZE && i<2){
+			toSetRslt *=tenPow;
+			this->tableResult[curSize++]=('0'+((int)toSetRslt%10));
+			++i;
 		}
 	}
 	this->size=curSize;

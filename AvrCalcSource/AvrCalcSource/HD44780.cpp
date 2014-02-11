@@ -47,7 +47,7 @@ void LCD_GoToXY(unsigned char x, unsigned char y)
 void LCD_Clear(void)
 {
 	LCD_Command(0x01);
-	_delay_ms(2);
+	_delay_us(500);
 };
 
 void LCD_Home(void)
