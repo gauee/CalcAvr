@@ -53,7 +53,7 @@ void CalcResult::setResult(double toSetRslt){
 }
 
 double CalcResult::getValue(){
-	double rslt =0;
+	double rslt = 0;
 	int scale = 10;
 	int t=1;
 	bool isPart = false;

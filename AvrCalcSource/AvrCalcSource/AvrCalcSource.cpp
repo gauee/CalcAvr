@@ -17,6 +17,7 @@ const int size_table = 128;
 char calc[size_table];
 int curCalcIdx =-1;
 bool lastIsOperator = false;
+int ile = 0;
 
 KeyboardController keyboardCntlr;
 MemoController memoCntlr;
@@ -39,11 +40,11 @@ int main(void)
 	//const int COMMANDS_NUM=12;
 	//21*3=  //=63
 	//int commands [COMMANDS_NUM] = {/*999999*/11,11,11,11,11,11,/*'+'*/4,/*1*/1,/*'='*/15};
-	int commands [COMMANDS_NUM] = {/*999999*/3,/*'+'*/4,4,4,4,/*1*/2,/*'='*/15};
-	for(int i=0;i<COMMANDS_NUM;++i){
-		keyboardCntlr.setKeyValue(commands[i]);
-		readPressedKey();
-	}
+	//int commands [COMMANDS_NUM] = {/*999999*/3,/*'+'*/4,4,4,4,/*1*/2,/*'='*/15};
+	//for(int i=0;i<COMMANDS_NUM;++i){
+		//keyboardCntlr.setKeyValue(commands[i]);
+		//readPressedKey();
+	//}
 	//
 	//keyboardCntlr.setKeyValue(0);
 	
@@ -56,10 +57,10 @@ int main(void)
 }
 
 void initAvrCalc(){
-	//initTaskScheduler();
-	//memoCntlr = MemoController();
-	//memoCntlr.initMemoController();
-	//start_timer();
+	initTaskScheduler();
+	memoCntlr = MemoController();
+	memoCntlr.initMemoController();
+	start_timer();
 	
 	keyboardCntlr = KeyboardController();
 	calcOperationCntlr = CalcOperation();
@@ -75,31 +76,37 @@ void readPressedKey(){
 void appendKeyItem(KeyItem item){
 	switch(item.getId()){
 		case ID_OPERATOR:
+		ile = 0;
 			if(isCountResult){
 				lcdCntrlr.cleanDisplay();
 				lcdCntrlr.loadCalcResult(calcOperationCntlr.getResult());
 				appendOperator(item);
 				isCountResult = false;
+				
 				return;
 			}
 			appendOperator(item);
 			return;
 		case ID_NUMBER:
-			if(!isCountResult){
+			if(!isCountResult && ile < 4){
 				appendNumber(item);
+				ile++;
 			}
 			return;
 		case ID_CLEAN:
 			calcOperationCntlr.cleanCalcOperation();
 			lcdCntrlr.cleanDisplay();
 			isCountResult = false;
+			ile = 0;
 			return;
 		case ID_MEMO:
 			handleMemo(item);
+			ile = 0;
 			return;
 		case ID_RESULT:
 			lcdCntrlr.writeCalcResult(calcOperationCntlr.getResult());
 			isCountResult = true;
+			ile = 0;
 			return;
 		case ID_NO_INPUT:
 		default:
