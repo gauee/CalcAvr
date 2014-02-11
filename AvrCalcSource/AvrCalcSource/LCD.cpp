@@ -57,11 +57,23 @@ void LCDController::addNumber(int num){
 	}
 	calcOperStr[curIdx++]=('0'+num);
 	lastWasOperator = false;
+	//display(calcOperStr[curIdx-1]);
 	displayCalcOperation();
 }
 
 void LCDController::addOperator(char opt){
 	calcOperStr[curIdx]=opt;
 	lastWasOperator=true;
+	//displayOper(calcOperStr[curIdx]);
 	displayCalcOperation();
+}
+
+void LCDController::display(char c){
+	char txt[1] = {c};
+	LCD_Text(txt);
+}
+
+void LCDController::displayOper(char c){
+	LCD_Back();
+	display(c);
 }

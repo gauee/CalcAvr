@@ -82,7 +82,6 @@ void appendKeyItem(KeyItem item){
 				lcdCntrlr.loadCalcResult(calcOperationCntlr.getResult());
 				appendOperator(item);
 				isCountResult = false;
-				
 				return;
 			}
 			appendOperator(item);

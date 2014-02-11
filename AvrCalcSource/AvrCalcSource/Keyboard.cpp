@@ -29,7 +29,6 @@ void KeyboardController::setKeyValue(int val){
 }
 
 KeyItem KeyboardController::readValueFromKeyboard(){
-
 	PORTC = 0;
 	DDRC = 0xF0;
 	PORTC = 0x0F;

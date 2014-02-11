@@ -32,6 +32,8 @@ class LCDController
 	bool lastWasOperator;
 	//Methods	
 	void displayCalcOperation();
+	void displayOper(char c);
+	void display(char c);
 };
 
 
