@@ -115,7 +115,7 @@ void CalcOperation::calculate(){
 	}
 	if(curOptIdx==1){
 		variables[0]=rslts[0];
-		}else if(curOptIdx==2){
+	}else if(curOptIdx==2){
 		if(isFirstOptGeater()){
 			variables[0]=rslts[0];
 			variables[1] = variables[2];

@@ -30,7 +30,7 @@ int main(void)
 
 	initAvrCalc();
 	//
-	//const int COMMANDS_NUM=14;
+	const int COMMANDS_NUM=7;
 	////21*3+40*5=  //=263
 	//int commands [COMMANDS_NUM] = {/*21*/2,1,/*'*'*/4,4,4,/*3*/3,/*'+'*/4,/*40*/5,14,/*'*'*/4,4,4,/*5*/6,/*'='*/15};
 	//const int COMMANDS_NUM=8;
@@ -38,12 +38,13 @@ int main(void)
 	//int commands [COMMANDS_NUM] = {/*21*/2,1,/*'*'*/4,4,4,4,/*3*/3,/*'='*/15};
 	//const int COMMANDS_NUM=12;
 	//21*3=  //=63
-	//int commands [COMMANDS_NUM] = {/*21*/2,1,/*'*'*/4,4,4,4,/*3*/3,/*'='*/15,4,4,3,15};
-	//for(int i=0;i<COMMANDS_NUM;++i){
-		//keyboardCntlr.setKeyValue(commands[i]);
-		//readPressedKey();
-	//}
-	////
+	//int commands [COMMANDS_NUM] = {/*999999*/11,11,11,11,11,11,/*'+'*/4,/*1*/1,/*'='*/15};
+	int commands [COMMANDS_NUM] = {/*999999*/3,/*'+'*/4,4,4,4,/*1*/2,/*'='*/15};
+	for(int i=0;i<COMMANDS_NUM;++i){
+		keyboardCntlr.setKeyValue(commands[i]);
+		readPressedKey();
+	}
+	//
 	//keyboardCntlr.setKeyValue(0);
 	
 	while(1)
@@ -55,14 +56,15 @@ int main(void)
 }
 
 void initAvrCalc(){
-	initTaskScheduler();
+	//initTaskScheduler();
+	//memoCntlr = MemoController();
+	//memoCntlr.initMemoController();
+	//start_timer();
+	
 	keyboardCntlr = KeyboardController();
-	memoCntlr = MemoController();
-	memoCntlr.initMemoController();
 	calcOperationCntlr = CalcOperation();
 	lcdCntrlr = LCDController();
 	lcdCntrlr.initLcd();
-	start_timer();
 }
 
 void readPressedKey(){

@@ -32,8 +32,8 @@ void CalcResult::setResult(double toSetRslt){
 		return;
 	}
 	
-	int tenPow = 1;
-	while(firstPart>=tenPow){
+	unsigned long tenPow = 1;
+	while(tenPow > 0 && firstPart>=tenPow){
 		tenPow*=10;
 	}
 	int tmp = firstPart;

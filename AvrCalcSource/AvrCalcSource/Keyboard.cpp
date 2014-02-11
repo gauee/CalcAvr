@@ -30,27 +30,27 @@ void KeyboardController::setKeyValue(int val){
 
 KeyItem KeyboardController::readValueFromKeyboard(){
 
-	PORTC = 0;
-	DDRC = 0xF0;
-	PORTC = 0x0F;
-	for(int i=0;i<100;++i){}
-	int col= zero[PINC];
-	
-	PORTC = 0;
-	DDRC = 0x0F;
-	PORTC = 0xF0;
-	for(int i=0;i<100;++i){}
-	int row = zero[PINC>>4];
-	
-	if(row == 0 || col == 0 ){
-		prevKeyNull=true;
-		return KeyItem();
-	}else{
-		readKey = KeyboardValues[row-1][col-1];
-	}
-	if(!prevKeyNull){
-		return KeyItem();
-	}
+	//PORTC = 0;
+	//DDRC = 0xF0;
+	//PORTC = 0x0F;
+	//for(int i=0;i<100;++i){}
+	//int col= zero[PINC];
+	//
+	//PORTC = 0;
+	//DDRC = 0x0F;
+	//PORTC = 0xF0;
+	//for(int i=0;i<100;++i){}
+	//int row = zero[PINC>>4];
+	//
+	//if(row == 0 || col == 0 ){
+		//prevKeyNull=true;
+		//return KeyItem();
+	//}else{
+		//readKey = KeyboardValues[row-1][col-1];
+	//}
+	//if(!prevKeyNull){
+		//return KeyItem();
+	//}
 	
 	prevKeyNull = false;
 	
