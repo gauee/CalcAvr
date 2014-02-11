@@ -17,6 +17,7 @@ const int size_table = 128;
 char calc[size_table];
 int curCalcIdx =-1;
 bool lastIsOperator = false;
+int ile = 0;
 
 KeyboardController keyboardCntlr;
 MemoController memoCntlr;
@@ -75,31 +76,37 @@ void readPressedKey(){
 void appendKeyItem(KeyItem item){
 	switch(item.getId()){
 		case ID_OPERATOR:
+		ile = 0;
 			if(isCountResult){
 				lcdCntrlr.cleanDisplay();
 				lcdCntrlr.loadCalcResult(calcOperationCntlr.getResult());
 				appendOperator(item);
 				isCountResult = false;
+				
 				return;
 			}
 			appendOperator(item);
 			return;
 		case ID_NUMBER:
-			if(!isCountResult){
+			if(!isCountResult && ile < 4){
 				appendNumber(item);
+				ile++;
 			}
 			return;
 		case ID_CLEAN:
 			calcOperationCntlr.cleanCalcOperation();
 			lcdCntrlr.cleanDisplay();
 			isCountResult = false;
+			ile = 0;
 			return;
 		case ID_MEMO:
 			handleMemo(item);
+			ile = 0;
 			return;
 		case ID_RESULT:
 			lcdCntrlr.writeCalcResult(calcOperationCntlr.getResult());
 			isCountResult = true;
+			ile = 0;
 			return;
 		case ID_NO_INPUT:
 		default:
