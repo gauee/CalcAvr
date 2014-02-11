@@ -61,7 +61,7 @@ void LCDController::addNumber(int num){
 }
 
 void LCDController::addOperator(char opt){
-	calcOperStr[curIdx++]=opt;
+	calcOperStr[curIdx]=opt;
 	lastWasOperator=true;
 	displayCalcOperation();
 }
