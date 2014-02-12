@@ -19,6 +19,7 @@ class CalcResult{
 	void cleanResult();
 	void setResult(double toSetRslt);
 	double getValue();
+	void calcFractionalPart(double fractPart);
 	
 };
 

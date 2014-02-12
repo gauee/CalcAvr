@@ -11,18 +11,18 @@
 LCDController::LCDController(){
 	curIdx =0;
 	lastWasOperator = false;
-	};
+};
 
 LCDController::~LCDController(){};
 
 void LCDController::initLcd(){
 	LCD_Initalize();
-	LCD_Text("Init calc");
+	LCD_Text("Init calc please press Clean(C13)");
 }
 
 void LCDController::cleanDisplay(){
 	LCD_Clear();
-	for(int i=0;i<MAX_CALC_OPER_SIZE;++i){
+	for(int i=0;i<curIdx;++i){
 		calcOperStr[i]=0;
 	}
 	curIdx =0;
@@ -57,15 +57,15 @@ void LCDController::addNumber(int num){
 	}
 	calcOperStr[curIdx++]=('0'+num);
 	lastWasOperator = false;
-	//display(calcOperStr[curIdx-1]);
-	displayCalcOperation();
+	display(calcOperStr[curIdx-1]);
+	//displayCalcOperation();
 }
 
 void LCDController::addOperator(char opt){
 	calcOperStr[curIdx]=opt;
 	lastWasOperator=true;
-	//displayOper(calcOperStr[curIdx]);
-	displayCalcOperation();
+	displayOper(calcOperStr[curIdx]);
+	//displayCalcOperation();
 }
 
 void LCDController::display(char c){

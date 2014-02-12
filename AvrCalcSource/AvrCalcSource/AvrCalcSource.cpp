@@ -25,6 +25,7 @@ CalcOperation calcOperationCntlr;
 LCDController lcdCntrlr;
 
 bool isCountResult = false;
+bool isFirstTime;
 
 int main(void)
 {	
@@ -57,15 +58,17 @@ int main(void)
 }
 
 void initAvrCalc(){
+	isFirstTime = true;
 	initTaskScheduler();
 	memoCntlr = MemoController();
 	memoCntlr.initMemoController();
-	start_timer();
 	
 	keyboardCntlr = KeyboardController();
 	calcOperationCntlr = CalcOperation();
 	lcdCntrlr = LCDController();
 	lcdCntrlr.initLcd();
+	
+	start_timer();
 }
 
 void readPressedKey(){
@@ -74,6 +77,11 @@ void readPressedKey(){
 }
 
 void appendKeyItem(KeyItem item){
+	if(isFirstTime && item.getId() == ID_CLEAN){
+		isFirstTime = false;
+		return;
+	}
+	
 	switch(item.getId()){
 		case ID_OPERATOR:
 		ile = 0;

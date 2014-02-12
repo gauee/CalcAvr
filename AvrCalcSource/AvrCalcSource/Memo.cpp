@@ -6,10 +6,11 @@
 */
 
 #include "Memo.h"
-#include <math.h>
+//#include <math.h>
 
 MemoController::MemoController(){
 	this->ssdisplayCntrlr = SSDisplay();
+	this->cr = CalcResult();
 };
 
 
@@ -21,10 +22,10 @@ void MemoController::initMemoController(){
 }
 
 
-void MemoController::addToMemo(CalcResult* cr){
-	this->cr.size = cr->size;
-	for(int i=0;i<cr->size;++i){
-		this->cr.tableResult[i]=cr->tableResult[i];
+void MemoController::addToMemo(CalcResult* crTemp){
+	this->cr.size = crTemp->size;
+	for(int i=0;i<crTemp->size;++i){
+		this->cr.tableResult[i]=crTemp->tableResult[i];
 	}
 	saveToMemo();
 }

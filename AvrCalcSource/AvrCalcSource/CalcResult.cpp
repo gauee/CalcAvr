@@ -20,15 +20,17 @@ void CalcResult::cleanResult(){
 };
 
 void CalcResult::setResult(double toSetRslt){
-	int curSize=0;
+	this->size = 0;
 	if(toSetRslt<0){
 		toSetRslt*=-1;
-		this->tableResult[curSize++]='-';
+		this->tableResult[this->size++]='-';
 	}
 	int firstPart = toSetRslt;
 	if(firstPart == 0){
-		this->tableResult[curSize++]='0';
-		this->size = curSize;
+		this->tableResult[this->size++]='0';
+		if(toSetRslt>0){
+			caclFractionalPart(toSetRslt);
+		}
 		return;
 	}
 	
@@ -37,22 +39,25 @@ void CalcResult::setResult(double toSetRslt){
 		tenPow*=10;
 	}
 	int tmp = firstPart;
-	while(tenPow>1 && curSize<CALC_RESULT_SIZE){
+	while(tenPow>1 && this->size<CALC_RESULT_SIZE){
 		tmp %= tenPow;
 		tenPow/=10;
-		this->tableResult[curSize++]=('0'+(tmp/tenPow));
+		this->tableResult[this->size++]=('0'+(tmp/tenPow));
 	}
-	if((toSetRslt-firstPart)>0 && curSize < CALC_RESULT_SIZE){
-		this->tableResult[curSize++]='.';
-		tenPow =10;
-		int i=0;
-		while(curSize<CALC_RESULT_SIZE && i<2){
-			toSetRslt *=tenPow;
-			this->tableResult[curSize++]=('0'+((int)toSetRslt%10));
-			++i;
-		}
+	toSetRslt -= firstPart;
+	if(toSetRslt > 0 && this->size < CALC_RESULT_SIZE){
+		caclFractionalPart(toSetRslt);
 	}
-	this->size=curSize;
+}
+
+void CalcResult::calcFractionalPart(double fractPart){
+	this->tableResult[this->size++]='.';
+	int i=0;
+	while(i<2 && fractPart > 0){
+		fractPart *=10;
+		this->tableResult[this->size++]=('0'+(((int)fractPart)%10));
+		++i;
+	}
 }
 
 double CalcResult::getValue(){
@@ -69,6 +74,9 @@ double CalcResult::getValue(){
 		rslt += (this->tableResult[i]-'0');
 		if(isPart){
 			t*=scale;
+			if(t == 100){
+				break;
+			}
 		}
 	}
 	
