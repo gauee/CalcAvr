@@ -32,7 +32,7 @@ int main(void)
 
 	initAvrCalc();
 	//
-	const int COMMANDS_NUM=7;
+	//const int COMMANDS_NUM=7;
 	////21*3+40*5=  //=263
 	//int commands [COMMANDS_NUM] = {/*21*/2,1,/*'*'*/4,4,4,/*3*/3,/*'+'*/4,/*40*/5,14,/*'*'*/4,4,4,/*5*/6,/*'='*/15};
 	//const int COMMANDS_NUM=8;

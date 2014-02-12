@@ -165,9 +165,9 @@ int CalcOperation::getOperatorPrior(char opt){
 	}
 }
 
-void CalcOperation::loadCalcResult(CalcResult* cr){
+void CalcOperation::loadCalcResult(CalcResult* crTemp){
 	if(!isLastVar){
-		variables[++curVarIdx] = cr->getValue();
+		variables[++curVarIdx] = crTemp->getValue();
 	}
 }
 

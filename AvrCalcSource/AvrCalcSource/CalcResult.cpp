@@ -29,7 +29,7 @@ void CalcResult::setResult(double toSetRslt){
 	if(firstPart == 0){
 		this->tableResult[this->size++]='0';
 		if(toSetRslt>0){
-			caclFractionalPart(toSetRslt);
+			calcFractionalPart(toSetRslt);
 		}
 		return;
 	}
@@ -46,7 +46,7 @@ void CalcResult::setResult(double toSetRslt){
 	}
 	toSetRslt -= firstPart;
 	if(toSetRslt > 0 && this->size < CALC_RESULT_SIZE){
-		caclFractionalPart(toSetRslt);
+		calcFractionalPart(toSetRslt);
 	}
 }
 

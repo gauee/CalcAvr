@@ -41,30 +41,30 @@ void MemoController::eraseFromMemo(){
 	//ssdisplayCntrlr.setNumberToDisplay(3);
 }
 
-void MemoController::recoverFromArray(CalcResult* cr){
-	int whereIsDot = 0;
-	cr->size;
-	this->rslt;
-	
-	for(int i = 0; i < cr->size; i++){
-		if(cr->tableResult[i] == '.'){
-			whereIsDot = i;
-			break;
-		}
-	}
-	
-	int c = 0;
-	for(int i = whereIsDot -1; i > -1; i--){
-		rslt += cr->tableResult[i] * pow(10,c);
-		c++;
-	}
-	
-	int u = -1;
-	for(int i = whereIsDot + 1; i < cr->size; i++){
-		rslt += cr->tableResult[i] * pow(10,u);
-		u--;
-	}
-}
+//void MemoController::recoverFromArray(CalcResult* cr){
+	//int whereIsDot = 0;
+	//cr->size;
+	//this->rslt;
+	//
+	//for(int i = 0; i < cr->size; i++){
+		//if(cr->tableResult[i] == '.'){
+			//whereIsDot = i;
+			//break;
+		//}
+	//}
+	//
+	//int c = 0;
+	//for(int i = whereIsDot -1; i > -1; i--){
+		//rslt += cr->tableResult[i] * pow(10,c);
+		//c++;
+	//}
+	//
+	//int u = -1;
+	//for(int i = whereIsDot + 1; i < cr->size; i++){
+		//rslt += cr->tableResult[i] * pow(10,u);
+		//u--;
+	//}
+//}
 
 void MemoController::saveToMemo(){
 	ssdisplayCntrlr.setNumberToDisplay(cr.getValue());
